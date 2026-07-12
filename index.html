@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Śikṣā I — The Architecture of Vedic Phonetics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-void: #1a0e12;
+    --bg-panel: #24141a;
+    --bg-panel-raised: #2e1920;
+    --crimson: #7a1f2b;
+    --crimson-bright: #a72c3a;
+    --gold: #c9a24b;
+    --gold-soft: #e2c47e;
+    --ink: #ece2d8;
+    --ink-dim: #b9a99c;
+    --ink-faint: #8a7b70;
+    --line: #3c2429;
+    --tier-classical: #6f8f6a;
+    --tier-modern: #6a86ab;
+    --tier-synthesis: #a76a4f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg-void);
+    background-image:
+      radial-gradient(ellipse at 15% 0%, rgba(122,31,43,0.18), transparent 55%),
+      radial-gradient(ellipse at 85% 15%, rgba(201,162,75,0.08), transparent 45%);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    line-height: 1.75;
+  }
+  .devanagari { font-family: 'Noto Serif Devanagari', serif; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px 140px; }
+  header.masthead {
+    padding: 90px 32px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(122,31,43,0.14), transparent);
+  }
+  .eyebrow {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  h1.title {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: 44px;
+    letter-spacing: 0.01em;
+    margin: 0 0 16px;
+    color: var(--gold-soft);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .subtitle {
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 20px;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+  .tier-legend {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+    font-family: 'Cinzel', serif;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tier-chip { display: flex; align-items: center; gap: 8px; color: var(--ink-faint); }
+  .tier-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dot-classical { background: var(--tier-classical); }
+  .dot-modern { background: var(--tier-modern); }
+  .dot-synthesis { background: var(--tier-synthesis); }
+  nav.toc {
+    margin: 56px 0 70px;
+    padding: 30px 34px;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--crimson-bright);
+  }
+  nav.toc h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 18px;
+  }
+  nav.toc ol { margin: 0; padding-left: 22px; color: var(--ink-dim); }
+  nav.toc li { margin-bottom: 7px; }
+  nav.toc a { color: var(--ink-dim); text-decoration: none; }
+  nav.toc a:hover { color: var(--gold-soft); }
+  section.chapter { margin: 92px 0; }
+  .chapter-number {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    color: var(--crimson-bright);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h2.chapter-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--gold-soft);
+    margin: 0 0 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  h3.section-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 21px;
+    color: var(--gold);
+    margin: 46px 0 18px;
+    letter-spacing: 0.01em;
+  }
+  h4.sub-title {
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink);
+    margin: 30px 0 12px;
+  }
+  p { margin: 0 0 20px; color: var(--ink); }
+  p.lead { font-size: 21px; color: var(--ink-dim); font-style: italic; }
+  strong.term { color: var(--gold-soft); font-weight: 600; font-style: normal; }
+  em.skt { font-style: italic; color: var(--gold); }
+  ul, ol.content-list { margin: 0 0 22px; padding-left: 26px; }
+  li { margin-bottom: 9px; }
+  .tag-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 26px 0;
+    padding: 16px 20px;
+    border-left: 3px solid;
+    background: var(--bg-panel);
+    font-size: 17px;
+    color: var(--ink-dim);
+  }
+  .tag-classical { border-color: var(--tier-classical); }
+  .tag-modern { border-color: var(--tier-modern); }
+  .tag-synthesis { border-color: var(--tier-synthesis); }
+  .tag-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 3px;
+  }
+  .tag-classical .tag-label { color: var(--tier-classical); }
+  .tag-modern .tag-label { color: var(--tier-modern); }
+  .tag-synthesis .tag-label { color: var(--tier-synthesis); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    font-size: 17.5px;
+  }
+  caption {
+    text-align: left;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  th {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--gold);
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--crimson);
+  }
+  td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-dim);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  blockquote {
+    margin: 32px 0;
+    padding: 22px 28px;
+    border-left: 3px solid var(--gold);
+    background: var(--bg-panel-raised);
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 19px;
+  }
+  .diagram-flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 30px 0;
+    padding: 22px;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    color: var(--gold-soft);
+  }
+  .diagram-flow .node { padding: 8px 14px; border: 1px solid var(--crimson); background: rgba(122,31,43,0.15); }
+  .diagram-flow .arrow { color: var(--gold); }
+  .divider {
+    text-align: center;
+    margin: 60px 0;
+    color: var(--crimson-bright);
+    letter-spacing: 0.6em;
+    font-size: 12px;
+  }
+  footer.chapter-close {
+    margin-top: 44px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 17px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  .cross-ref {
+    font-size: 15px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="eyebrow">Cultural Musings · Śāstras Extended · Śikṣā Series</div>
+  <h1 class="title">Śikṣā I — The Architecture of Vedic Phonetics</h1>
+  <p class="subtitle">The embodied science of sacred sound: articulation, accent, duration, and the technologies of oral preservation</p>
+  <div class="tier-legend">
+    <span class="tier-chip"><span class="tier-dot dot-classical"></span>Classical Attested</span>
+    <span class="tier-chip"><span class="tier-dot dot-modern"></span>Modern Scholarship</span>
+    <span class="tier-chip"><span class="tier-dot dot-synthesis"></span>AI Synthesis</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#ch1">Śikṣā as the First Vedāṅga</a></li>
+    <li><a href="#ch2">The Textual Corpus of Śikṣā</a></li>
+    <li><a href="#ch3">The Six-Fold Analytic Grid</a></li>
+    <li><a href="#ch4">Sthāna and Karaṇa: The Sites of Articulation</a></li>
+    <li><a href="#ch5">Prayatna: The Classification of Articulatory Effort</a></li>
+    <li><a href="#ch6">The Pratyāhāra Architecture of the Sound Inventory</a></li>
+    <li><a href="#ch7">Svara: The Vedic Accent System</a></li>
+    <li><a href="#ch8">Mātrā: Duration as a Phonemic Category</a></li>
+    <li><a href="#ch9">The Pāṭha Systems: Engineering Redundancy into Memory</a></li>
+    <li><a href="#ch10">Oral Transmission as Cognitive Technology</a></li>
+    <li><a href="#ch11">Breath and Body: The Physiology of Vedic Recitation</a></li>
+    <li><a href="#ch12">Sandhi: The Regulated Grammar of Sound in Contact</a></li>
+    <li><a href="#ch13">Regional Traditions and the Living Continuity of Recitation</a></li>
+    <li><a href="#ch14">The Musical Extension: Śikṣā and Sāmavedic Chant</a></li>
+    <li><a href="#ch15">Error Taxonomy and the Pedagogy of Correction</a></li>
+    <li><a href="#ch16">Mnemonic Architecture: Versification as Memory Technology</a></li>
+    <li><a href="#ch17">Comparative Acoustic Phonetics: Śikṣā and Modern Instrumentation</a></li>
+    <li><a href="#ch18">Vyañjana Deep Dive: Semivowels, Sibilants, and Ayogavāha Sounds</a></li>
+    <li><a href="#ch19">Comparative Case Study: Divergences Between the Prātiśākhyas</a></li>
+    <li><a href="#ch20">The Epistemic Weight of Correct Recitation</a></li>
+    <li><a href="#ch21">The Pedagogical Sequence: A Reciter's Training from Childhood to Ghanapāṭhī</a></li>
+    <li><a href="#ch22">Counting as Verification: The Anukramaṇī and Numerical Indices</a></li>
+    <li><a href="#ch23">Glossary of Śikṣā Terminology</a></li>
+    <li><a href="#ch24">A Worked Analysis: Applying the Full Apparatus to a Single Verse</a></li>
+    <li><a href="#ch25">Reference Table: The Complete Sanskrit Sound Inventory</a></li>
+    <li><a href="#ch26">The Extended Corpus: Further Named Śikṣā Texts</a></li>
+    <li><a href="#ch27">Relative Chronology: Layering the Śikṣā Textual Tradition</a></li>
+    <li><a href="#ch28">Closing Position of Part I</a></li>
+  </ol>
+</nav>
+
+<section class="chapter" id="ch1">
+  <div class="chapter-number">Chapter One</div>
+  <h2 class="chapter-title">Śikṣā as the First Vedāṅga</h2>
+
+  <p class="lead">Śikṣā is the discipline that asks a single, exacting question of the Vedic word: has it been produced correctly? Not "does it mean what it should," not "is it grammatically well formed," but a question prior to both — was the sound itself, as a physical and temporal event, reproduced without deviation from the form in which it was received.</p>
+
+  <p>The Vedāṅgas, the six auxiliary sciences that grew up around the Veda to protect and interpret it, are traditionally ordered so that Śikṣā comes first. This ordering is not arbitrary. Vyākaraṇa can only operate on a text whose word-boundaries and sounds are fixed. Nirukta can only interpret a word whose phonetic identity is stable. Chandas can only scan a verse whose syllable count and duration are known precisely. Kalpa can only prescribe the correct performance of a rite whose mantras are pronounced correctly, since an error in a ritual utterance was traditionally held to invalidate or even reverse the effect of the rite. Jyotiṣa calculates the moments at which those correctly pronounced utterances are to be spoken. Every subsequent auxiliary discipline therefore presupposes the work that Śikṣā has already done: it presupposes a fixed, correctly articulated sound-object.</p>
+
+  <table>
+    <caption>The Six Vedāṅgas and Their Sequential Dependency</caption>
+    <thead>
+      <tr><th>Vedāṅga</th><th>Function</th><th>Presupposes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><em class="skt">Śikṣā</em></td><td>Phonetics, articulation, accent, duration</td><td>Nothing prior — the foundational layer</td></tr>
+      <tr><td><em class="skt">Chandas</em></td><td>Metrical structure, syllable counting</td><td>Fixed <em class="skt">mātrā</em> values from Śikṣā</td></tr>
+      <tr><td><em class="skt">Vyākaraṇa</em></td><td>Grammatical analysis, word formation</td><td>Stable phonetic word-boundaries</td></tr>
+      <tr><td><em class="skt">Nirukta</em></td><td>Etymological and semantic interpretation</td><td>Grammatically resolved word forms</td></tr>
+      <tr><td><em class="skt">Jyotiṣa</em></td><td>Astronomical timing of ritual acts</td><td>A calendar within which correctly recited mantras are placed</td></tr>
+      <tr><td><em class="skt">Kalpa</em></td><td>Ritual procedure and sequence</td><td>All five preceding sciences operating correctly together</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The designation of Śikṣā as the first of the six Vedāṅgas, and the metaphor of the Veda as a body of which Śikṣā is the nose (or, in some enumerations, the mouth), is preserved in the traditional verse enumerating the aṅgas: chandaḥ pādau tu vedasya hastau kalpo 'tha paṭhyate, jyotiṣām ayanaṃ cakṣur niruktaṃ śrotram ucyate, śikṣā ghrāṇaṃ tu vedasya mukhaṃ vyākaraṇaṃ smṛtam — "the metre is said to be the Veda's feet, the ritual its hands, astronomy its eye, etymology its ear, phonetics its nose, and grammar its mouth."</span>
+  </div>
+
+  <h3 class="section-title">Śikṣā as Discipline Rather than Doctrine</h3>
+
+  <p>It is important to be precise about what kind of knowledge Śikṣā constitutes. It is not a philosophy of language, and the earliest Śikṣā texts make no metaphysical claims about the nature of sound, consciousness, or reality. It is closer to what a modern reader would recognize as a manual of articulatory and prosodic phonetics combined with a pedagogy of correction. Its concerns are procedural: where in the vocal tract is each sound produced, how much force accompanies it, how long does it last, at what pitch is it delivered, and how does it behave when adjacent to other sounds.</p>
+
+  <p>This procedural character explains why Śikṣā could be transmitted independently across many Vedic schools (<em class="skt">śākhās</em>) without producing philosophical conflict between them. Two schools might disagree about the precise phonetic value of a particular accent in a boundary condition, but such disagreements were technical, not doctrinal. The discipline's authority rested on the fidelity of its transmission, not on argument.</p>
+
+  <h3 class="section-title">The Object of Śikṣā: Sound Before It Is Meaning</h3>
+
+  <p>A useful way to state the boundary of the field is this: Śikṣā treats the Vedic utterance as an acoustic and articulatory event before it is treated as a semantic one. This is a genuine methodological separation, not a denial that Vedic words carry meaning. The reciter trained in Śikṣā is trained to reproduce <strong class="term">varṇa</strong> (the sound unit), <strong class="term">svara</strong> (pitch), <strong class="term">mātrā</strong> (duration), and <strong class="term">bala</strong> (force) with total fidelity, independent of whether that reciter has mastered the semantic content of the passage being recited. Historically, many reciters within the oral tradition achieved extraordinary phonetic accuracy while receiving separate, and sometimes much later, training in the meaning of what they recited.</p>
+
+  <blockquote>Before one can interpret sacred language, one must first preserve its sound. Meaning, in the architecture of the Vedāṅgas, is a downstream operation performed on an already-stabilized acoustic object.</blockquote>
+
+  <footer class="chapter-close">
+    This chapter establishes the disciplinary boundary of Śikṣā. The chapters that follow move progressively inward: from the corpus of texts that carried this science, to its analytic categories, to the physiological mechanics of articulation itself.
+  </footer>
+</section>
+
+<section class="chapter" id="ch2">
+  <div class="chapter-number">Chapter Two</div>
+  <h2 class="chapter-title">The Textual Corpus of Śikṣā</h2>
+
+  <p class="lead">Śikṣā survives today in two related but distinct textual genres: the independent Śikṣā treatises, attributed to named or quasi-legendary authorities and associated loosely with particular schools, and the Prātiśākhyas, which are far more rigorous, school-specific phonetic manuals tied to a single recension of a single Veda.</p>
+
+  <h3 class="section-title">The Prātiśākhya Literature</h3>
+
+  <p>The Prātiśākhyas (literally, "belonging to each recension") are the older and more systematic stratum. Each major Vedic recension produced, or was served by, a Prātiśākhya describing in exhaustive technical detail how its own continuous recitation (<em class="skt">saṃhitā-pāṭha</em>) is to be derived from and related to its word-by-word recitation (<em class="skt">pada-pāṭha</em>), and cataloguing every sandhi rule, accentual behavior, and phonetic peculiarity specific to that school's transmission.</p>
+
+  <table>
+    <caption>Principal Prātiśākhya Texts by Vedic Recension</caption>
+    <thead><tr><th>Text</th><th>Associated Recension</th><th>Primary Concern</th></tr></thead>
+    <tbody>
+      <tr><td>Ṛgveda-Prātiśākhya (attributed to Śaunaka)</td><td>Śākala recension of the Ṛgveda</td><td>Sandhi, accent, phonetic classification of the Ṛgvedic saṃhitā</td></tr>
+      <tr><td>Taittirīya Prātiśākhya</td><td>Taittirīya recension of the Kṛṣṇa Yajurveda</td><td>Articulation, sandhi, syllabification rules specific to the Taittirīya school</td></tr>
+      <tr><td>Vājasaneyi Prātiśākhya (attributed to Kātyāyana)</td><td>Śukla Yajurveda</td><td>Detailed accentual notation and phonetic derivation rules</td></tr>
+      <tr><td>Ṛktantra Vyākaraṇa</td><td>Sāmavedic tradition</td><td>Functions as a Prātiśākhya-equivalent for Sāmavedic phonetics</td></tr>
+      <tr><td>Atharva Prātiśākhya (Śaunakīya Caturādhyāyikā)</td><td>Atharvaveda (Śaunaka recension)</td><td>Phonetic and accentual description of the Atharvavedic saṃhitā</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The existence, school-specific attachment, and general technical content of the Prātiśākhya corpus is well documented in the surviving Sanskrit manuscript tradition and has been the subject of critical editions since the nineteenth century.</span>
+  </div>
+
+  <h3 class="section-title">The Independent Śikṣā Treatises</h3>
+
+  <p>Alongside the Prātiśākhyas stands a looser family of shorter texts explicitly titled <em class="skt">Śikṣā</em>, several dozen of which survive in varying states of completeness. These texts are more compressed, often versified for ease of memorization, and tend to present the general theory of articulation (place, effort, and manner) in a form that could be applied across schools rather than being tied to a single recension's sandhi peculiarities.</p>
+
+  <table>
+    <caption>Representative Śikṣā Treatises</caption>
+    <thead><tr><th>Text</th><th>Traditional Association</th><th>Character</th></tr></thead>
+    <tbody>
+      <tr><td>Pāṇinīya Śikṣā</td><td>Associated with the grammatical tradition of Pāṇini</td><td>The most widely cited independent Śikṣā; versified summary of articulatory phonetics</td></tr>
+      <tr><td>Nāradīya Śikṣā</td><td>Sāmavedic tradition</td><td>Strongly music-oriented; connects phonetic categories to the seven svaras of chant</td></tr>
+      <tr><td>Yājñavalkya Śikṣā</td><td>Śukla Yajurveda tradition</td><td>Systematic treatment of varṇa classification</td></tr>
+      <tr><td>Vyāsa Śikṣā</td><td>General Vedic tradition</td><td>Broad treatment of articulatory categories</td></tr>
+      <tr><td>Vasiṣṭha Śikṣā</td><td>General Vedic tradition</td><td>Emphasis on the physiology of sound production</td></tr>
+      <tr><td>Pārāśarī Śikṣā</td><td>General Vedic tradition</td><td>Compact enumerations of phonetic categories</td></tr>
+      <tr><td>Māṇḍūkī Śikṣā</td><td>Sāmavedic-adjacent tradition</td><td>Detailed treatment of accent modulation in chant</td></tr>
+      <tr><td>Śaunakīya Śikṣā</td><td>Associated with the Śaunaka lineage</td><td>Overlaps in content with the Ṛgveda-Prātiśākhya tradition</td></tr>
+      <tr><td>Amoghānandinī Śikṣā</td><td>Later compilation</td><td>Synthesizes categories from earlier Śikṣā texts</td></tr>
+      <tr><td>Kātyāyanī Śikṣā</td><td>Associated with Kātyāyana</td><td>Precision in accentual terminology</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The existence of this plural, overlapping corpus of Śikṣā texts, several transmitted under differing names but sharing substantial content, is documented in traditional catalogues and manuscript collections; scholars have long noted that many of these texts represent regional or lineage-specific redactions of a common core of articulatory doctrine rather than fully independent systems.</span>
+  </div>
+
+  <h3 class="section-title">Dating and Layering</h3>
+
+  <p>The internal history of this literature is genuinely difficult to fix with precision, and the discipline of Śikṣā itself is almost certainly older than any surviving text that bears the name. The Prātiśākhyas, as school-specific technical manuals bound tightly to the recitation practice of a living school, are generally regarded by modern philology as preserving an older analytical layer than the more portable, generalized independent Śikṣā treatises, several of which show signs of later systematization, and in some cases later accretion of material addressing topics — such as the aesthetic or musical qualities of chant — that go beyond strict Prātiśākhya-style phonetic description.</p>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>Comparative philology treats the Prātiśākhyas as substantially earlier and more rigorous than the shorter independent Śikṣā verses, several of which are dated to the common era rather than to the older Vedic period proper, even where they claim ancient authorship. This distinction matters for historical argument: claims about "what the Ṛgvedic reciters believed" should draw primarily on the Prātiśākhya layer, not on later Śikṣā compilations.</span>
+  </div>
+
+  <h3 class="section-title">Why Multiplicity, Not Uniformity, Is the Correct Picture</h3>
+
+  <p>A recurring temptation in popular presentation is to describe "the Śikṣā" as though it were a single unified text with a single fixed doctrine. The manuscript evidence resists this. What existed historically was a distributed, school-anchored science, practiced with local variation, periodically compared and cross-referenced, but never centrally codified into one canonical treatise the way, for instance, Pāṇini's grammar became canonical for Sanskrit morphology. This distributed character is itself methodologically significant: it means that when this monograph speaks of "Śikṣā doctrine" on a given point, it is generally describing a broad consensus visible across multiple independent witnesses, and any claim resting on a single idiosyncratic text is flagged as such rather than presented as the tradition's unanimous position.</p>
+
+  <footer class="chapter-close">
+    Having situated Śikṣā within its textual corpus, the following chapter turns to the analytic categories through which that corpus organizes the phenomenon of correct speech.
+  </footer>
+</section>
+
+<section class="chapter" id="ch3">
+  <div class="chapter-number">Chapter Three</div>
+  <h2 class="chapter-title">The Six-Fold Analytic Grid</h2>
+
+  <p class="lead">Traditional definitions of Śikṣā organize the discipline around six interlocking categories: varṇa, svara, mātrā, bala, sāma, and santāna. Together they constitute a complete descriptive grammar of the spoken sound-event — what it is, at what pitch it is delivered, how long it lasts, with what force it is produced, how evenly it is sustained, and how it connects to what precedes and follows it.</p>
+
+  <table>
+    <caption>The Six Categories at a Glance</caption>
+    <thead><tr><th>Category</th><th>Domain</th><th>Modern Descriptive Analogue</th></tr></thead>
+    <tbody>
+      <tr><td><em class="skt">Varṇa</em></td><td>Identity of the sound unit</td><td>Phoneme / segment</td></tr>
+      <tr><td><em class="skt">Svara</em></td><td>Pitch, tonal accent</td><td>Tone, pitch accent</td></tr>
+      <tr><td><em class="skt">Mātrā</em></td><td>Duration</td><td>Vowel quantity, mora</td></tr>
+      <tr><td><em class="skt">Bala</em></td><td>Articulatory force / emphasis</td><td>Stress intensity, articulatory energy</td></tr>
+      <tr><td><em class="skt">Sāma</em></td><td>Evenness, balance of delivery</td><td>Prosodic regularity, rhythm control</td></tr>
+      <tr><td><em class="skt">Santāna</em></td><td>Continuity of the sound sequence</td><td>Coarticulation, phonetic transition</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">Varṇa: The Sound Unit as a Discrete Category</h3>
+  <p>Varṇa names the basic discrete unit of the phonetic inventory — the individual consonant or vowel considered as a stable, repeatable identity distinguishable from every other such unit. The concept presupposes that the continuous acoustic stream of the human voice, which in principle varies without limit, has been organized by the tradition into a finite, closed inventory of recognizable categories. This is a nontrivial cognitive and pedagogical achievement: it requires that reciters be trained to hear past the natural variation between one speaker's voice and another's, and to recognize the same varṇa regardless of who is producing it.</p>
+  <p>Classical enumerations divide varṇa into <strong class="term">svara</strong> (here used in the narrower sense of "vowel," distinct from svara as pitch-accent) and <strong class="term">vyañjana</strong> (consonant), with a further category of <strong class="term">ayogavāha</strong> for sounds — such as visarga and anusvāra — that do not fit cleanly into either class. The vowel inventory is organized by tongue position and duration (short, long, and the rarer prolated or pluta grade), while the consonantal inventory is organized, as the next chapter details, by place and manner of articulation.</p>
+
+  <h3 class="section-title">Svara: Pitch as a Meaning-Bearing Dimension</h3>
+  <p>Where later Sanskrit grammatical tradition (in Pāṇini, for instance) uses svara narrowly for vowel sounds, the Śikṣā tradition also uses the term, more consequentially, for the tonal or pitch-accent system that governs Vedic recitation — the three-way distinction of udātta, anudātta, and svarita treated fully in Chapter Seven. What matters at this introductory level is the principle that pitch in Vedic Sanskrit is not merely an expressive or emotional overlay on speech, as intonation often is in English, but a feature that can distinguish word identity and grammatical function. A change of accent placement on an otherwise identical sound sequence can, in specific attested cases, change which of two grammatically distinct words is being spoken.</p>
+
+  <h3 class="section-title">Mātrā: Duration as Constitutive, Not Incidental</h3>
+  <p>Mātrā, treated at length in Chapter Eight, establishes that a short vowel and a long vowel are not the same phonetic unit stretched or compressed — they are treated by the tradition as distinct varṇa in their own right, each with an independent identity in the sound inventory. Duration therefore participates in defining what a sound is, not merely in describing how it is delivered.</p>
+
+  <h3 class="section-title">Bala: Force and Emphasis</h3>
+  <p>Bala concerns the intensity or energy with which a sound is articulated — the degree of muscular and respiratory effort invested in its production. The category recognizes that two instances of the same varṇa, at the same pitch and duration, can still differ in the force of their delivery, and that Vedic recitation practice regulated this dimension as carefully as it regulated pitch and duration, since excessive or insufficient force was held to distort the transmitted sound. Bala interacts closely with the classification of consonants into <em class="skt">alpaprāṇa</em> (low-breath, unaspirated) and <em class="skt">mahāprāṇa</em> (high-breath, aspirated) categories described in Chapter Five, since aspiration is itself a specific, regulated deployment of articulatory force and breath.</p>
+
+  <h3 class="section-title">Sāma: Evenness and Balance</h3>
+  <p>Sāma denotes the quality of even, unwavering delivery — the absence of unwanted fluctuation in pitch, tempo, or force across a sustained recitation. This category functions as a kind of quality-control criterion layered over the other five: a reciter might correctly identify every varṇa, apply the correct svara and mātrā to each, and use appropriate bala, yet still fail the standard of sāma if the overall performance wavers, rushes, or drags inconsistently. Sāma is thus best understood not as a seventh independent phonetic parameter but as a meta-level criterion of consistency applied to the other parameters across the span of an utterance.</p>
+
+  <h3 class="section-title">Santāna: Continuity and the Sequence Effect</h3>
+  <p>Santāna addresses the fact that no varṇa is pronounced in true isolation within continuous recitation; each sound is shaped by its neighbors, and the transitions between sounds carry as much phonetic information, and are subject to as much regulation, as the sounds themselves. This category anticipates, in classical terms, what modern phonetics calls coarticulation — the physical reality that the vocal tract does not reset between segments but moves continuously from one articulatory target toward the next, so that adjacent sounds influence one another's realization. The elaborate sandhi rules catalogued in the Prātiśākhyas are, from this angle, the tradition's detailed regulation of santāna: rules governing exactly how one sound is permitted to modify, merge with, or transition into its neighbor at word and syllable boundaries.</p>
+
+  <div class="tag-block tag-synthesis">
+    <span class="tag-label">AI Synthesis</span>
+    <span>Reading the six categories together as forming a coherent descriptive system — identity, pitch, duration, force, evenness, continuity — is an organizing synthesis offered by this monograph rather than a grouping that any single classical source presents in exactly this analytic frame; individual Śikṣā and Prātiśākhya texts enumerate these or closely related categories, sometimes with different groupings or additional terms, and the six-fold presentation here draws them into one integrated descriptive grid for expository clarity.</span>
+  </div>
+
+  <h3 class="section-title">Why Six Categories, and Not Fewer</h3>
+  <p>It is worth pausing on why the tradition required six distinct categories rather than treating pronunciation as a single undifferentiated skill. The answer lies in the diagnostic function of the system: a teacher correcting a student's recitation needed a vocabulary precise enough to locate the exact site of an error. A student might correctly identify the varṇa but apply the wrong svara; might apply the correct svara but hold the mātrā too briefly; might satisfy both pitch and duration yet apply excessive bala; might satisfy all of the preceding yet lack sāma across a longer passage; or might correctly produce each unit in isolation while mishandling santāna at the boundary between units. Six categories generate six distinct, independently diagnosable failure modes — a genuinely practical taxonomy for oral pedagogy rather than an abstract classification exercise.</p>
+
+  <footer class="chapter-close">
+    The next three chapters unpack the physiological and articulatory machinery presupposed by varṇa: where in the vocal tract each sound is produced, with what kind of contact or aperture, and how the full inventory is organized into a systematic grid.
+  </footer>
+</section>
+
+<section class="chapter" id="ch4">
+  <div class="chapter-number">Chapter Four</div>
+  <h2 class="chapter-title">Sthāna and Karaṇa: The Sites of Articulation</h2>
+
+  <p class="lead">Śikṣā and the Prātiśākhya literature analyze every consonant and vowel according to <strong class="term">sthāna</strong>, the fixed place in the vocal tract at which the primary constriction or contact occurs, and <strong class="term">karaṇa</strong>, the mobile articulator — chiefly the tongue — that performs the movement toward that place. This place-and-organ analysis is functionally equivalent to what modern articulatory phonetics calls place of articulation, and it was worked out with comparable precision more than two millennia before the development of the International Phonetic Alphabet.</p>
+
+  <table>
+    <caption>The Five (or Six) Classical Places of Articulation</caption>
+    <thead><tr><th>Sthāna</th><th>Region</th><th>Representative Sounds</th></tr></thead>
+    <tbody>
+      <tr><td><em class="skt">Kaṇṭhya</em></td><td>Throat / velar-glottal region</td><td>a, ā, k, kh, g, gh, ṅ, ha, visarga</td></tr>
+      <tr><td><em class="skt">Tālavya</em></td><td>Hard palate</td><td>i, ī, c, ch, j, jh, ñ, ya, śa</td></tr>
+      <tr><td><em class="skt">Mūrdhanya</em></td><td>Retroflex, curled tongue-tip against the roof of the mouth</td><td>ṛ, ṝ, ṭ, ṭh, ḍ, ḍh, ṇ, ra, ṣa</td></tr>
+      <tr><td><em class="skt">Dantya</em></td><td>Teeth / upper incisors</td><td>ḷ (in some schemes), t, th, d, dh, n, la, sa</td></tr>
+      <tr><td><em class="skt">Oṣṭhya</em></td><td>Lips</td><td>u, ū, p, ph, b, bh, m</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">Compound and Secondary Places</h3>
+  <p>Beyond the five principal sthānas, classical phonetic analysis recognizes compound places for sounds whose production genuinely requires coordination between two of the primary zones. The semivowel <em class="skt">va</em> is generally classified as <em class="skt">dantoṣṭhya</em> (dento-labial), reflecting its articulation at the boundary of the teeth and lips. Diphthongs receive compound designations as well: <em class="skt">e</em> and <em class="skt">ai</em> are classed as <em class="skt">kaṇṭhatālavya</em> (throat-and-palate), reflecting their historical and articulatory derivation from a plus i, while <em class="skt">o</em> and <em class="skt">au</em> are classed as <em class="skt">kaṇṭhoṣṭhya</em> (throat-and-lip), reflecting derivation from a plus u.</p>
+
+  <p>A further secondary category, <em class="skt">nāsikya</em>, marks the involvement of the nasal cavity. The five nasal consonants (ṅa, ña, ṇa, na, ma) are each analyzed as sharing the primary sthāna of their consonantal series (velar, palatal, retroflex, dental, labial respectively) while adding nasal resonance as a secondary feature — an analysis that anticipates, with real precision, the modern phonetic treatment of nasals as sharing oral place of articulation with their corresponding stops while differing in the velum's position.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The five-fold sthāna classification (kaṇṭhya, tālavya, mūrdhanya, dantya, oṣṭhya), together with the compound categories for semivowels and diphthongs, is consistently attested across the Prātiśākhya literature and the independent Śikṣā treatises, and underlies the traditional ordering of the Sanskrit alphabet itself, which proceeds systematically from the back of the vocal tract toward the front (velars, then palatals, then retroflexes, then dentals, then labials).</span>
+  </div>
+
+  <h3 class="section-title">The Alphabet as a Phonetic Map, Not an Arbitrary List</h3>
+  <p>One of the more striking features of this classical system, and a point regularly emphasized in modern linguistic commentary, is that the traditional ordering of the Sanskrit varṇamālā is not an arbitrary sequence to be memorized the way the Latin alphabet's order is arbitrary. It is a phonetic map. Vowels proceed from the most open, back articulation toward diphthongs; the five consonant classes (varga) proceed systematically from velar to labial, moving the point of primary constriction steadily forward through the mouth; and within each five-member class, the ordering itself is phonetically motivated, proceeding from unvoiced unaspirated, to unvoiced aspirated, to voiced unaspirated, to voiced aspirated, to nasal.</p>
+
+  <table>
+    <caption>Internal Structure of a Consonant Varga (Illustrated with the Velar Series)</caption>
+    <thead><tr><th>Position in Varga</th><th>Sound</th><th>Voicing / Aspiration</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>k</td><td>Unvoiced, unaspirated (alpaprāṇa)</td></tr>
+      <tr><td>2</td><td>kh</td><td>Unvoiced, aspirated (mahāprāṇa)</td></tr>
+      <tr><td>3</td><td>g</td><td>Voiced, unaspirated (alpaprāṇa)</td></tr>
+      <tr><td>4</td><td>gh</td><td>Voiced, aspirated (mahāprāṇa)</td></tr>
+      <tr><td>5</td><td>ṅ</td><td>Voiced, nasal</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>Historians of linguistics have repeatedly observed that this systematic, feature-based ordering of the Sanskrit alphabet — organized simultaneously by place of articulation across vargas and by voicing and aspiration within each varga — represents an analytical achievement not matched in the alphabetic traditions of the Mediterranean world until the modern era of descriptive phonetics, and that the Sanskrit grammatical and phonetic tradition is frequently cited in the history of linguistics as an early instance of a fully systematic, non-arbitrary sound inventory.</span>
+  </div>
+
+  <h3 class="section-title">Karaṇa: The Active Articulator</h3>
+  <p>Where sthāna names the site of constriction, karaṇa names the mobile organ that travels to meet it, and in the overwhelming majority of Sanskrit consonants this active articulator is some part of the tongue: its root for velar sounds, its blade for palatals, its tip curled backward for retroflexes, its tip against the upper teeth for dentals. For labial sounds the active articulator shifts to the lower lip, moving to meet the upper lip. The karaṇa analysis therefore supplies the dynamic, muscular half of the description that the static sthāna analysis alone cannot capture: sthāna tells you where the closure happens, karaṇa tells you what moves to produce it.</p>
+
+  <footer class="chapter-close">
+    Sthāna and karaṇa together describe where and by what organ a sound is produced. The next chapter turns to prayatna — the manner and degree of effort involved — completing the three-part classical analysis of articulation.
+  </footer>
+</section>
+
+<section class="chapter" id="ch5">
+  <div class="chapter-number">Chapter Five</div>
+  <h2 class="chapter-title">Prayatna: The Classification of Articulatory Effort</h2>
+
+  <p class="lead">If sthāna answers "where" and karaṇa answers "by what organ," <strong class="term">prayatna</strong> answers "how" — the manner and intensity of the articulatory gesture itself. Classical phonetics divides prayatna into two levels: <em class="skt">bāhya prayatna</em>, external effort, describing the degree of contact between articulators, and <em class="skt">ābhyantara prayatna</em>, internal effort, describing the state of the glottis and the respiratory force involved.</p>
+
+  <h3 class="section-title">Bāhya Prayatna: External Effort and Degree of Contact</h3>
+  <table>
+    <caption>The Principal External Efforts</caption>
+    <thead><tr><th>Term</th><th>Meaning</th><th>Sound Class Produced</th></tr></thead>
+    <tbody>
+      <tr><td><em class="skt">Spṛṣṭa</em></td><td>Full contact / complete closure</td><td>Stop consonants (the five vargas)</td></tr>
+      <tr><td><em class="skt">Īṣatspṛṣṭa</em></td><td>Slight contact</td><td>Semivowels (ya, ra, la, va)</td></tr>
+      <tr><td><em class="skt">Vivṛta</em></td><td>Open, unobstructed passage</td><td>Vowels</td></tr>
+      <tr><td><em class="skt">Īṣadvivṛta</em></td><td>Slightly open, narrowed passage</td><td>Sibilants and the aspirate (śa, ṣa, sa, ha)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">Ābhyantara Prayatna: Internal Effort, Breath, and Voicing</h3>
+  <p>Internal effort concerns two independently variable dimensions of the glottis and breath stream: whether the sound is voiced or voiceless, and whether it is produced with a low or high expenditure of breath.</p>
+
+  <table>
+    <caption>The Voicing and Aspiration Parameters</caption>
+    <thead><tr><th>Parameter</th><th>Two Values</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Voicing (<em class="skt">ghoṣa</em> / <em class="skt">aghoṣa</em>)</td><td>Voiced / Voiceless</td><td>Whether the vocal cords vibrate during production</td></tr>
+      <tr><td>Breath (<em class="skt">alpaprāṇa</em> / <em class="skt">mahāprāṇa</em>)</td><td>Low-breath / High-breath</td><td>Whether the sound is produced with minimal or heightened expenditure of breath (unaspirated / aspirated)</td></tr>
+    </tbody>
+  </table>
+
+  <p>The combination of these two binary parameters generates the four-way division within each stop series that gives Sanskrit its characteristic four-consonant-plus-nasal varga structure: unvoiced unaspirated (k), unvoiced aspirated (kh), voiced unaspirated (g), voiced aspirated (gh), to which the nasal (ṅ) is added as a fifth member sharing the same place but differing in resonance path.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The bāhya/ābhyantara prayatna framework, and the specific terminology of spṛṣṭa, īṣatspṛṣṭa, vivṛta, īṣadvivṛta, ghoṣa, aghoṣa, alpaprāṇa, and mahāprāṇa, is standard across the Prātiśākhya and Śikṣā corpus and is also foundational to Pāṇinian grammatical phonetics, where these same categories are presupposed by the sound-classification sūtras.</span>
+  </div>
+
+  <h3 class="section-title">Prayatna as a Diagnostic Tool for Correction</h3>
+  <p>The practical value of the prayatna framework, like the six-fold grid discussed in Chapter Three, lay in oral pedagogy. A teacher listening to a student's recitation could isolate an error not merely to "the wrong sound" in a general sense but to a specific mismanaged parameter: perhaps the student had achieved correct sthāna and karaṇa but had substituted vivṛta (vowel-like openness) where īṣatspṛṣṭa (semivowel-like slight contact) was required, producing a vowel-glide where a consonant was called for; or had produced the correct spṛṣṭa closure but with aghoṣa (voiceless) breath where ghoṣa (voiced) was required, turning a "g" into a "k." This granularity of diagnosis is a direct consequence of treating articulation as a small set of independently variable parameters rather than as a single undifferentiated act.</p>
+
+  <h3 class="section-title">Comparative Note on Aspiration</h3>
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>The Sanskrit alpaprāṇa/mahāprāṇa distinction, treating aspiration as an independent phonetic parameter crossed systematically with voicing to yield a four-way stop series, is frequently cited in comparative and historical linguistics as a description more fine-grained, at this specific point, than the phoneme inventories of many other classical language-description traditions, including ancient Greek grammatical description, which recognized aspirated stops but did not develop an equivalently systematic crossed voicing-aspiration matrix.</span>
+  </div>
+
+  <footer class="chapter-close">
+    With sthāna, karaṇa, and prayatna established, the full descriptive apparatus for a single sound is complete. The next chapter shows how this apparatus organizes the entire Sanskrit sound inventory into the systematic pratyāhāra structure.
+  </footer>
+</section>
+
+<section class="chapter" id="ch6">
+  <div class="chapter-number">Chapter Six</div>
+  <h2 class="chapter-title">The Pratyāhāra Architecture of the Sound Inventory</h2>
+
+  <p class="lead">The grammatical tradition closely allied with Śikṣā organizes the complete Sanskrit sound inventory into fourteen terse formulae known as the Māheśvara Sūtras or Śiva Sūtras, traditionally said to have been revealed to Pāṇini. These fourteen sūtras arrange every vowel and consonant into a fixed sequence bounded by markers (<em class="skt">it</em>) that allow any contiguous span of sounds to be named by a single compact abbreviation called a <em class="skt">pratyāhāra</em>.</p>
+
+  <table>
+    <caption>The Fourteen Māheśvara Sūtras</caption>
+    <thead><tr><th>#</th><th>Sūtra</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>a i u Ṇ</td></tr>
+      <tr><td>2</td><td>ṛ ḷ K</td></tr>
+      <tr><td>3</td><td>e o Ṅ</td></tr>
+      <tr><td>4</td><td>ai au C</td></tr>
+      <tr><td>5</td><td>ha ya va ra Ṭ</td></tr>
+      <tr><td>6</td><td>la Ṇ</td></tr>
+      <tr><td>7</td><td>ña ma ṅa ṇa na M</td></tr>
+      <tr><td>8</td><td>jha bha Ñ</td></tr>
+      <tr><td>9</td><td>gha ḍha dha Ṣ</td></tr>
+      <tr><td>10</td><td>ja ba ga ḍa da Ś</td></tr>
+      <tr><td>11</td><td>kha pha cha ṭha tha ca ṭa ta V</td></tr>
+      <tr><td>12</td><td>ka pa Y</td></tr>
+      <tr><td>13</td><td>śa ṣa sa R</td></tr>
+      <tr><td>14</td><td>ha L</td></tr>
+    </tbody>
+  </table>
+
+  <p>Each sūtra ends with a marker consonant (capitalized above) that is not itself pronounced as part of the sequence but serves purely as a boundary index. A pratyāhāra is formed by naming the first sound of the sequence and the marker at which the desired span ends: the pratyāhāra <strong class="term">aC</strong>, for instance, names every sound from the first <em class="skt">a</em> in sūtra one through the marker <em class="skt">C</em> at the end of sūtra four — that is, the complete vowel inventory including diphthongs. The pratyāhāra <strong class="term">haL</strong> names the entire consonant inventory, from <em class="skt">ha</em> in sūtra five through the marker <em class="skt">L</em> at the very end of sūtra fourteen.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The Māheśvara Sūtras and the pratyāhāra system built upon them are foundational to Pāṇini's Aṣṭādhyāyī and are presupposed throughout the entire Sanskrit grammatical tradition; while their primary home is grammar (vyākaraṇa) rather than Śikṣā proper, the phonetic classification they encode — the ordering of vowels, semivowels, nasals, and the systematic varga sequence of stops — is the same classification elaborated descriptively within the Śikṣā and Prātiśākhya literature, and the two disciplines share a single underlying phonetic map.</span>
+  </div>
+
+  <h3 class="section-title">Why a Compression System Was Necessary</h3>
+  <p>The pratyāhāra system exists to solve a genuine problem of economy in an entirely oral pedagogical environment. A grammatical or phonetic rule that needs to refer to "all vowels," or "all voiced consonants," or "all nasal sounds" could in principle spell out each member of the relevant class individually every time — but across the thousands of rules that constitute Pāṇinian grammar, this would produce an unmemorizable text. The pratyāhāra compresses any such class reference into a two-syllable label, and because the underlying Māheśvara Sūtra sequence is itself organized by natural phonetic classes (vowels together, semivowels together, nasals together, the varga-ordered stops together, the sibilants together), a very large number of linguistically natural sound classes turn out to be expressible as single contiguous pratyāhāras rather than as arbitrary lists.</p>
+
+  <table>
+    <caption>Selected Pratyāhāras and the Classes They Name</caption>
+    <thead><tr><th>Pratyāhāra</th><th>Sounds Included</th><th>Natural Class</th></tr></thead>
+    <tbody>
+      <tr><td>aC</td><td>a i u ṛ ḷ e o ai au</td><td>All vowels</td></tr>
+      <tr><td>haL</td><td>All consonants through the final ha</td><td>All consonants</td></tr>
+      <tr><td>yaṆ</td><td>ya va ra la</td><td>Semivowels / liquids</td></tr>
+      <tr><td>khaY</td><td>kha pha cha ṭha tha ca ṭa ta ka pa</td><td>Unvoiced stops (both aspirated and unaspirated)</td></tr>
+      <tr><td>jhaŚ</td><td>jha bha... through ja ba ga ḍa da</td><td>Voiced stops</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">The Shared Foundation of Śikṣā and Vyākaraṇa</h3>
+  <p>This chapter's material makes visible a point implicit throughout the discussion so far: Śikṣā and Vyākaraṇa, though counted as separate Vedāṅgas with separate primary concerns, rest on a single shared phonetic map of the Sanskrit sound inventory. The Prātiśākhyas describe that inventory discursively, in prose and mnemonic verse, with attention to how each sound behaves in continuous recitation. The Māheśvara Sūtras encode the same inventory algebraically, as a sequence engineered for maximal compressibility into grammatical rule-formulae. The two are best understood as two functionally distinct interfaces to one underlying phonological analysis of Sanskrit, developed and refined within a single broad intellectual tradition.</p>
+
+  <div class="tag-block tag-synthesis">
+    <span class="tag-label">AI Synthesis</span>
+    <span>Describing Śikṣā's discursive phonetic description and the grammarians' pratyāhāra algebra as "two interfaces to one underlying analysis" is this monograph's interpretive framing, offered to clarify the relationship between the two disciplines; the classical sources themselves simply operate each system within its own textual genre without commenting explicitly on this shared-foundation relationship.</span>
+  </div>
+
+  <footer class="chapter-close">
+    Having mapped the full sound inventory and its organizing logic, the discussion now turns from the identity of sounds (varṇa) to their tonal behavior in recitation — the svara or accent system that gives Vedic chant its distinctive musical-linguistic character.
+  </footer>
+</section>
+
+<section class="chapter" id="ch7">
+  <div class="chapter-number">Chapter Seven</div>
+  <h2 class="chapter-title">Svara: The Vedic Accent System</h2>
+
+  <p class="lead">Vedic Sanskrit is a pitch-accent language: every syllable of a Vedic utterance carries one of a small number of tonal values, and this tonal layer is preserved in recitation with a precision comparable to that applied to the segmental sounds themselves. The core system recognizes three primary accents.</p>
+
+  <table>
+    <caption>The Three Primary Vedic Accents</caption>
+    <thead><tr><th>Accent</th><th>Literal Sense</th><th>Tonal Character</th><th>Traditional Notation</th></tr></thead>
+    <tbody>
+      <tr><td><em class="skt">Udātta</em></td><td>"Raised"</td><td>High, elevated pitch</td><td>Generally unmarked, or marked with a vertical stroke above in some manuscript traditions</td></tr>
+      <tr><td><em class="skt">Anudātta</em></td><td>"Not raised"</td><td>Low pitch, preparatory to the udātta that typically follows</td><td>Marked with a horizontal line beneath the syllable</td></tr>
+      <tr><td><em class="skt">Svarita</em></td><td>"Sounded, resonant"</td><td>A falling movement, historically derived from a high pitch immediately following a low one within the same syllable</td><td>Marked with a vertical stroke above the syllable</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The three-way udātta/anudātta/svarita accent system and its associated manuscript notation conventions are described consistently across the Prātiśākhya literature and are presupposed by Pāṇini's grammar, which contains explicit rules for accent placement and accent-driven derivational processes.</span>
+  </div>
+
+  <h3 class="section-title">The Derivational Logic of Svarita</h3>
+  <p>The svarita accent is analytically the most interesting of the three, because the grammatical tradition treats it not as an independent, freestanding tone but as a derived phenomenon: it arises characteristically when a high-toned (udātta) vowel is immediately followed, within a closely bound phonetic sequence, by a low-toned element that becomes compressed into the same syllable through sandhi, producing a single syllable whose pitch moves from high toward low across its duration. This derivational account explains why svarita is often described as a "falling" or "combined" tone rather than a simple third static pitch level standing independently alongside udātta and anudātta.</p>
+
+  <h3 class="section-title">Refinements Within the Three-Way System</h3>
+  <p>Beyond the three primary accents, the more technical Prātiśākhya and Śikṣā literature recognizes further subdivisions describing finer gradations of tonal behavior, particularly around the svarita and its neighboring anudātta syllables.</p>
+
+  <table>
+    <caption>Selected Secondary Accentual Categories</caption>
+    <thead><tr><th>Term</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><em class="skt">Prācya svarita</em> / <em class="skt">Jātya svarita</em></td><td>A svarita arising through sandhi combination, as opposed to one that is an original, underived part of the word</td></tr>
+      <tr><td><em class="skt">Kaṇṭha svarita / Ekaśruti</em>-adjacent variants</td><td>Terms used across different Śikṣā texts to mark further gradations of svarita realization</td></tr>
+      <tr><td><em class="skt">Pracaya</em></td><td>A sequence of anudātta syllables preceding a udātta, treated with a distinct, comparatively level intonational contour rather than a series of sharp individual drops</td></tr>
+      <tr><td><em class="skt">Ekaśruti</em></td><td>A monotone recitation register, used in certain ritual contexts (such as recitation of the Brāhmaṇa portions) where the fine three-way pitch distinction is deliberately leveled</td></tr>
+      <tr><td><em class="skt">Kampa</em></td><td>An oscillating or "trembling" pitch movement applied to particular accented syllables in specific recitation styles, especially prominent in certain Sāmavedic and other ornamented chant traditions</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>The precise phonetic realization of these secondary accentual categories, and the degree to which their descriptions in different Śikṣā texts refer to genuinely distinct tonal events versus notational variants of the same underlying phenomenon, remains a subject of ongoing philological discussion; modern reconstructions rely on comparing the prescriptive descriptions in the texts against the living oral recitation traditions still practiced by Vedic reciter communities today.</span>
+  </div>
+
+  <h3 class="section-title">Accent as Grammatically Functional</h3>
+  <p>The functional weight carried by Vedic accent is not merely aesthetic. Pāṇinian grammar records numerous cases in which accent placement distinguishes grammatically or semantically distinct forms that are segmentally identical — for example, distinguishing a compound used as a noun from a related verbal or participial formation, or marking the difference between an independent finite verb and the same verb form used in a subordinate clause, where Vedic syntax characteristically de-accents finite verbs in certain subordinate constructions. Because such distinctions can hinge entirely on pitch, the fidelity of accentual transmission was treated by the tradition with a seriousness equal to that given to segmental sound.</p>
+
+  <h3 class="section-title">Comparative Perspective: Accent Systems Beyond Sanskrit</h3>
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>Comparative Indo-European linguistics has long used the Vedic accent system, alongside the independently attested pitch-accent system of Ancient Greek, as primary evidence for reconstructing the accentual system of Proto-Indo-European itself, since correspondences between Vedic and Greek accent placement in cognate words are treated as some of the strongest available evidence for a shared inherited pitch-accent ancestor language; this comparative use of the Vedic accentual data is a cornerstone of historical linguistic reconstruction and stands independently of any of the philosophical or aesthetic interpretations explored later in this series.</span>
+  </div>
+
+  <footer class="chapter-close">
+    Pitch is one axis along which a syllable's identity is regulated. The next chapter turns to the second such axis: duration, or mātrā, the temporal measure that the tradition treats as no less constitutive of a sound's identity than its pitch or its place of articulation.
+  </footer>
+</section>
+
+<section class="chapter" id="ch8">
+  <div class="chapter-number">Chapter Eight</div>
+  <h2 class="chapter-title">Mātrā: Duration as a Phonemic Category</h2>
+
+  <p class="lead">The classical system recognizes three grades of vocalic duration, measured in units called mātrā, literally "measures." A short vowel occupies one mātrā; a long vowel, two; and a rarer, especially prolonged grade called pluta occupies three or more.</p>
+
+  <table>
+    <caption>The Three Grades of Duration</caption>
+    <thead><tr><th>Grade</th><th>Mātrā Value</th><th>Example</th><th>Context of Use</th></tr></thead>
+    <tbody>
+      <tr><td><em class="skt">Hrasva</em></td><td>1 mātrā</td><td>a, i, u</td><td>Default short-vowel grade, the majority case in ordinary speech</td></tr>
+      <tr><td><em class="skt">Dīrgha</em></td><td>2 mātrā</td><td>ā, ī, ū</td><td>Long-vowel grade, phonemically distinct from its short counterpart</td></tr>
+      <tr><td><em class="skt">Pluta</em></td><td>3 or more mātrā</td><td>ā3 (notated with a numeral "3")</td><td>Restricted, marked usage: vocative calling at a distance, certain ritual and grammatical contexts, and specific Vedic recitation phenomena</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">Duration as Identity, Not Mere Delivery Style</h3>
+  <p>The critical theoretical point, already flagged in Chapter Three, deserves elaboration here: hrasva and dīrgha grades of what is loosely "the same vowel quality" are not treated by the tradition as one phoneme pronounced with optional stylistic lengthening, the way an English speaker might stretch a vowel for emphasis without changing the word's identity. In Sanskrit, short <em class="skt">a</em> and long <em class="skt">ā</em> are separate varṇa capable of distinguishing otherwise identical words. Substituting one for the other is not a matter of accent or emphasis; it is capable of producing a different word or an ungrammatical form.</p>
+
+  <h3 class="section-title">Mātrā as the Bridge to Metrics</h3>
+  <p>Because mātrā gives a precise, countable temporal value to every vowel, it supplies the basic unit out of which the entire science of Vedic and classical metrics (Chandas, treated at length in Part Two of this series) is built. A Vedic verse-line is not merely a count of syllables; it is, in the more rigorous metrical traditions, a count of morae — weighted units of time — in which a "heavy" syllable (one that is either long by vowel duration or closed by a following consonant cluster) counts for more temporal weight than a "light" syllable. The mātrā concept developed within Śikṣā for the analysis of individual sound duration is thus the direct conceptual ancestor of the syllable-weight calculus used throughout Sanskrit prosody.</p>
+
+  <h3 class="section-title">Pluta: The Marked Extra-Long Grade</h3>
+  <p>The pluta grade deserves particular attention because its restricted distribution illustrates how precisely the tradition regulated duration as a meaningful category rather than a free stylistic variable. Pluta is not available everywhere hrasva or dīrgha would be; it appears in specific, describable environments — vocative address to a person at a distance, where the extended duration serves the practical acoustic function of a call meant to carry; certain interrogative and citation contexts recognized in the grammatical tradition; and specific phenomena within Vedic recitation itself where a particular ritual or textual context calls for the extended grade. The tradition's willingness to formalize even this marked, situationally restricted duration grade, assigning it a precise numerical mātrā value and explicit rules for its environment, reflects the same underlying commitment visible throughout Śikṣā: that no dimension of the spoken sound-event, however apparently minor, is left to unregulated individual variation.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The three-grade hrasva/dīrgha/pluta duration system, its mātrā measurement, and the restricted grammatical environments licensing pluta are described in Pāṇini's Aṣṭādhyāyī and consistently presupposed throughout the Prātiśākhya and Śikṣā literature.</span>
+  </div>
+
+  <footer class="chapter-close">
+    With varṇa, sthāna, karaṇa, prayatna, svara, and mātrā established, the descriptive apparatus applied to individual sounds and their behavior in sequence is complete. The next chapter turns from the analysis of sound to the practical technology built upon it: the recitation methods, or pāṭha systems, engineered to guarantee the perfect transmission of a text built from these regulated units.
+  </footer>
+</section>
+
+<section class="chapter" id="ch9">
+  <div class="chapter-number">Chapter Nine</div>
+  <h2 class="chapter-title">The Pāṭha Systems: Engineering Redundancy into Memory</h2>
+
+  <p class="lead">The Vedic schools developed a graded sequence of recitation methods, each restructuring the same underlying text into a different pattern of repetition. Far from being alternative "styles" of recitation chosen for variety, these methods form an engineered system of increasing verification complexity, in which each higher method functions as a check upon the fidelity of the methods beneath it.</p>
+
+  <table>
+    <caption>The Pāṭha Hierarchy</caption>
+    <thead><tr><th>Method</th><th>Structural Principle</th><th>Verification Function</th></tr></thead>
+    <tbody>
+      <tr><td><em class="skt">Saṃhitā-pāṭha</em></td><td>Continuous recitation with sandhi fully applied, as the text is naturally spoken</td><td>Baseline: preserves the text as connected speech</td></tr>
+      <tr><td><em class="skt">Pada-pāṭha</em></td><td>Each word isolated, sandhi undone, compounds analyzed into members</td><td>Confirms the underlying word-identity beneath surface sandhi</td></tr>
+      <tr><td><em class="skt">Krama-pāṭha</em></td><td>Words recited in overlapping consecutive pairs: word1-word2, word2-word3, word3-word4...</td><td>Confirms correct sequence and the specific sandhi behavior between each adjacent pair</td></tr>
+      <tr><td><em class="skt">Jaṭā-pāṭha</em></td><td>A more complex forward-backward-forward oscillation across word groups</td><td>Creates a denser cross-checking structure than krama alone</td></tr>
+      <tr><td><em class="skt">Ghana-pāṭha</em></td><td>An elaborate recursive permutation of word sequences, the most complex standard pāṭha</td><td>Maximal redundancy; considered the most secure guarantee against corruption</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">Saṃhitā-pāṭha and Pada-pāṭha: The Foundational Pair</h3>
+  <p>The saṃhitā-pāṭha is the text as it is naturally spoken in connected utterance, with all the phonetic modifications that occur at word boundaries — vowel combination, consonant assimilation, and the other processes catalogued exhaustively in the Prātiśākhyas — fully applied. This is the form in which Vedic verses are actually recited in ritual performance.</p>
+  <p>The pada-pāṭha reverses this process. It presents the identical text with every word restored to its unsandhied, dictionary-citation form, with compounds broken into their constituent members and each word given as an independent unit, generally separated in traditional oral performance by a distinct pause or marker. The pada-pāṭha therefore functions as an analytical decomposition of the saṃhitā-pāṭha: it makes explicit, word by word, exactly what underlying forms have combined to produce the continuous recited text, and it is traditionally regarded as later than the saṃhitā-pāṭha, since it presupposes and analyzes an already-fixed continuous text.</p>
+
+  <h3 class="section-title">Krama-pāṭha: The Overlapping Pair Method</h3>
+  <p>Krama-pāṭha takes the individual words established by the pada-pāṭha and recombines them into overlapping pairs, each pair recited with the sandhi that would naturally apply between exactly those two words in that specific sequence. If a passage consists of words w1, w2, w3, w4, w5, the krama-pāṭha does not simply recite them in a single pass; it recites w1-w2, then w2-w3, then w3-w4, then w4-w5, with each word appearing twice — once as the second member of one pair, once as the first member of the next.</p>
+  <blockquote>The overlap is the mechanism. By requiring each word to be correctly reproduced in two different phonetic environments — once combining with what precedes it, once combining with what follows it — krama-pāṭha doubles the number of independent tests a reciter's memory must pass for every word in the text, and makes an isolated memory slip in a single pass far more likely to surface as a detectable inconsistency.</blockquote>
+
+  <h3 class="section-title">Jaṭā-pāṭha and Ghana-pāṭha: Recursive Verification</h3>
+  <p>Jaṭā-pāṭha extends the krama principle by weaving a forward-and-backward oscillation through groups of words — a schematic pattern that, for a sequence of words such as w1 w2 w3, might proceed as w1-w2-w2-w1-w1-w2, then w2-w3-w3-w2-w2-w3, and so on through the passage, before advancing to the next group. Ghana-pāṭha, the most elaborate standard method, extends this recursive weaving further still, generating an even denser lattice of repeated word combinations across a passage.</p>
+  <p>The cumulative effect of these more elaborate methods is to embed each word of the sacred text within a very large number of distinct, precisely specified phonetic contexts, all derived mechanically and reproducibly from the same fixed underlying sequence. A reciter capable of correctly performing ghana-pāṭha across a passage has, in the course of that performance, demonstrated command of that passage's word sequence and word-boundary sandhi behavior many times over, in patterns too intricate to be faked or approximated by a reciter who has not genuinely internalized the precise underlying text.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The pāṭha hierarchy described here — saṃhitā, pada, krama, jaṭā, ghana, together with further named variants such as mālā, śikhā, rekhā, dhvaja, and daṇḍa pāṭhas recognized in some traditional enumerations — is documented within the traditions of Vedic recitation pedagogy (vikṛti pāṭha, "modified recitations") and continues to be practiced by living communities of Vedic reciters, particularly in South India, where public performances and formal training in krama- and ghana-pāṭha recitation remain active traditions.</span>
+  </div>
+
+  <h3 class="section-title">Why Redundancy, Not Simple Repetition</h3>
+  <p>It is worth being precise about the difference between mere repetition and the structured redundancy these methods actually implement. Simply repeating a passage ten times in its natural saṃhitā form would build fluency but would not, by itself, generate independent checks capable of catching a specific class of error — namely, a consistent misremembering that a reciter reproduces identically on every repetition precisely because the underlying memory itself is faulty. The pāṭha methods solve this problem by systematically varying the combinatorial context in which each word appears, so that a genuine memory error is statistically far more likely to produce an internal inconsistency detectable by a trained listener — a mismatch between the word as it appears in one pāṭha's context and the same word as it appears in another's — than a single memorized but flawed sequence repeated unvaryingly would ever reveal.</p>
+
+  <footer class="chapter-close">
+    The pāṭha systems are a technology built on top of the analytic categories established in earlier chapters; they presuppose fixed varṇa, svara, and mātrā values in order to specify exactly how each word-pair or word-group should sound. The next chapter steps back to consider what kind of cognitive and cultural technology this entire apparatus represents.
+  </footer>
+</section>
+
+<section class="chapter" id="ch10">
+  <div class="chapter-number">Chapter Ten</div>
+  <h2 class="chapter-title">Oral Transmission as Cognitive Technology</h2>
+
+  <p class="lead">Viewed from the perspective of modern memory science, the pāṭha system and the broader apparatus of Śikṣā constitute a genuinely sophisticated technology for the high-fidelity transmission of a large fixed text across generations without reliance on writing.</p>
+
+  <h3 class="section-title">Chunking and Structural Segmentation</h3>
+  <p>Cognitive research on memory consistently finds that the capacity to retain and accurately reproduce information improves dramatically when that information is organized into meaningful, hierarchically structured units rather than treated as an undifferentiated stream. The pada-pāṭha's decomposition of continuous speech into discrete word units, and the further organization of those words into metrical lines (pāda), verses, and hymns, supplies exactly this kind of structural scaffolding, breaking an enormous body of text into nested units small enough to be individually reliable while still connected by a clear, memorizable hierarchy.</p>
+
+  <h3 class="section-title">Distributed Verification and Error Detection</h3>
+  <p>The overlapping-pair logic of krama-pāṭha, and the more elaborate recursive patterns of jaṭā- and ghana-pāṭha, function as a distributed error-correction system in a sense directly analogous to redundancy-based error-detection techniques used in modern information transmission: the same underlying information (a word, a sandhi transition) is encoded multiple times, in varying combinatorial contexts, such that a corruption in any single encoding is likely to be exposed by comparison with the others. This is not a metaphor imposed retrospectively on the tradition; it is a structurally accurate description of what these methods mechanically accomplish, regardless of whether the original architects of the system articulated their achievement in exactly these terms.</p>
+
+  <div class="tag-block tag-synthesis">
+    <span class="tag-label">AI Synthesis</span>
+    <span>The specific framing of pāṭha methods as "distributed error-correction" analogous to redundancy techniques in information theory is an interpretive parallel drawn by this monograph to clarify the functional achievement of the system in terms familiar to a modern reader; the classical sources describe the practical goal as protection of the text from corruption but do not employ or anticipate the vocabulary of modern information theory.</span>
+  </div>
+
+  <h3 class="section-title">Collective Verification Across Reciter Communities</h3>
+  <p>A further layer of fidelity, beyond what any individual reciter's trained memory alone could guarantee, was supplied by the communal and institutional structure within which Vedic transmission operated. Reciters trained within a given school (śākhā) learned from, recited alongside, and were periodically checked against other reciters trained in the same lineage, so that an individual deviation had to survive comparison not merely against that individual's own memory but against a living community of independently trained reciters transmitting what was understood to be the identical text. This social redundancy operated in addition to, not instead of, the internal structural redundancy of the pāṭha methods themselves.</p>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>Modern scholarship on oral tradition and textual transmission — including comparative work examining oral epic traditions in other cultures — generally identifies the combination of rigorous internal structural redundancy (of the kind the pāṭha methods supply) together with distributed communal verification as the two pillars that make high-fidelity oral transmission of very large texts across many centuries a genuinely achievable, rather than merely aspirational, goal; the Vedic tradition is frequently cited in this literature as an unusually well-documented and unusually rigorous instance of such a system.</span>
+  </div>
+
+  <h3 class="section-title">Memory as a Cultivated Discipline, Not a Passive Faculty</h3>
+  <p>It follows from all of the foregoing that memory, within this tradition, was never conceived as a passive storage capacity that a text either does or does not happen to occupy. It was conceived and trained as an active, cultivated discipline requiring sustained attention, precise bodily and auditory coordination, and years of graduated practice — beginning typically with saṃhitā- and pada-pāṭha and only later advancing to the more demanding krama, jaṭā, and ghana methods as a reciter's competence matured. The reciter's memory was, in this sense, itself an instrument requiring the same kind of disciplined training that a musician applies to an instrument or an athlete to a body.</p>
+
+  <footer class="chapter-close">
+    The final chapter of Part One turns directly to that bodily instrument itself: the physiological mechanics of breath and articulation that make the entire preceding apparatus of sound, accent, duration, and recitation method physically realizable.
+  </footer>
+</section>
+
+<section class="chapter" id="ch11">
+  <div class="chapter-number">Chapter Eleven</div>
+  <h2 class="chapter-title">Breath and Body: The Physiology of Vedic Recitation</h2>
+
+  <p class="lead">Every category discussed in this monograph so far — varṇa, svara, mātrā, bala, sāma, santāna, sthāna, karaṇa, prayatna — describes an event that must ultimately be produced by a physical human body, coordinating breath, glottis, tongue, jaw, and lips within precise temporal windows. Śikṣā's analytic categories are, in this sense, a description of a highly disciplined physical skill before they are anything else.</p>
+
+  <h3 class="section-title">Prāṇa as the Motive Force of Speech</h3>
+  <p>Classical Śikṣā texts consistently identify breath (<em class="skt">prāṇa</em>) as the underlying motive force of all articulate sound: without a controlled, sustained exhalation, none of the fine distinctions of place, effort, pitch, or duration catalogued in the preceding chapters could be physically realized. Correct recitation therefore begins, in traditional pedagogy, with training in breath control and breath capacity — the ability to sustain a controlled exhalation across a metrical line or verse of the required length without running short of breath partway through, an outcome that would force an unwanted pause or distort the mātrā and svara values of the concluding syllables.</p>
+
+  <h3 class="section-title">The Coordinated Sequence of Articulation</h3>
+  <p>A single spoken varṇa, from this physiological angle, is the endpoint of a coordinated sequence: breath is initiated from the lungs, shaped by the state of the glottis (open for voiceless sounds, vibrating for voiced ones, per the ghoṣa/aghoṣa distinction of Chapter Five), given resonant color by the position of the soft palate (raised for oral sounds, lowered for nasal ones), and finally shaped into a specific identifiable sound by the precise configuration of tongue, teeth, and lips at the sthāna and via the karaṇa appropriate to that sound. Vedic recitation training breaks this integrated physical sequence down into components that can each be independently practiced and corrected, in a manner directly parallel to how a musician might isolate breath support, embouchure, and fingering as separable components of producing a single correct note.</p>
+
+  <h3 class="section-title">Endurance and the Demands of Extended Recitation</h3>
+  <p>Because Vedic recitation, particularly in the more elaborate krama and ghana pāṭha forms discussed in Chapter Nine, can extend across very long continuous passages, the physiological training involved is not limited to the correct momentary production of individual sounds; it includes the sustained endurance required to maintain that correctness, without degradation of pitch accuracy, duration, or articulatory precision, across an extended performance. This is one further respect in which the category of <em class="skt">sāma</em> — evenness — functions as a physiological achievement as much as an acoustic one: maintaining even, undegraded delivery across a long recitation requires genuine trained physical stamina, not merely correct initial technique.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The identification of prāṇa (breath) as the foundational physical basis of articulate speech, and the association of specific articulatory categories with specific physiological actions of breath, glottis, and vocal-tract configuration, is a consistent theme across the Śikṣā literature, several texts of which open their treatment of phonetics with an account of how breath, initiated in the body, becomes progressively shaped into audible, differentiated sound.</span>
+  </div>
+
+  <h3 class="section-title">The Body as the Site Where Abstract Categories Become Real</h3>
+  <p>This chapter's material clarifies a point that runs through the entire foregoing discussion: every abstract category this monograph has described — sthāna, karaṇa, prayatna, svara, mātrā — is, from a physiological standpoint, a description of the body in disciplined, coordinated motion. Śikṣā's apparent abstraction, its taxonomic precision and technical vocabulary, describes nothing other than a trained bodily skill, refined over years of guided practice, in which breath, glottis, tongue, and lips are brought under a degree of voluntary control precise enough to reproduce, on demand and with minimal variation, the exact acoustic and temporal profile that the tradition has fixed for each unit of the sacred text.</p>
+
+  <footer class="chapter-close">
+    Part One closes with the recognition that Śikṣā is, at its foundation, an embodied discipline: a trained coordination of breath and articulator in the service of exact acoustic reproduction. The closing chapter draws together the position established across Part One as a whole.
+  </footer>
+</section>
+
+<section class="chapter" id="ch12">
+  <div class="chapter-number">Chapter Twelve</div>
+  <h2 class="chapter-title">Sandhi: The Regulated Grammar of Sound in Contact</h2>
+
+  <p class="lead">The category of <em class="skt">santāna</em>, introduced in Chapter Three as continuity between adjacent sounds, receives its most elaborate technical treatment in the tradition's regulation of <strong class="term">sandhi</strong> — the systematic set of rules governing exactly how sounds combine, merge, or transform at the boundaries between morphemes and words. Sandhi is not an occasional irregularity layered onto an otherwise regular language; it is a comprehensive, rule-governed system that the Prātiśākhyas describe with the same exhaustive precision applied to sthāna and prayatna.</p>
+
+  <h3 class="section-title">Svara Sandhi: The Combination of Vowels</h3>
+  <p>When a word ending in a vowel is followed by a word beginning with a vowel, the two vowels do not simply stand adjacent in continuous recitation; they combine according to fixed rules determined by the specific vowels involved. Three broad outcomes are recognized.</p>
+
+  <table>
+    <caption>Principal Patterns of Vowel Sandhi</caption>
+    <thead><tr><th>Input Configuration</th><th>Outcome</th><th>Traditional Term</th></tr></thead>
+    <tbody>
+      <tr><td>Two identical short or long vowels of the same quality (a/ā + a/ā, i/ī + i/ī, u/ū + u/ū)</td><td>Merge into a single long vowel of that quality</td><td><em class="skt">Dīrgha sandhi</em></td></tr>
+      <tr><td>A followed by a dissimilar simple vowel (a/ā + i/ī, u/ū, ṛ)</td><td>Merge into the corresponding guṇa or vṛddhi grade (e + o + ar, etc., depending on length)</td><td><em class="skt">Guṇa</em> / <em class="skt">Vṛddhi sandhi</em></td></tr>
+      <tr><td>i/ī, u/ū, ṛ followed by a dissimilar vowel</td><td>The first vowel is replaced by its corresponding semivowel (y, v, r)</td><td><em class="skt">Yaṇ sandhi</em></td></tr>
+      <tr><td>e, ai, o, au followed by any vowel</td><td>Resolve into their underlying diphthong components before combining further</td><td><em class="skt">Āyādi sandhi</em></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">Visarga Sandhi: The Behavior of the Aspirate Boundary Sound</h3>
+  <p>The <em class="skt">visarga</em>, classed among the ayogavāha sounds mentioned in Chapter Three, is highly unstable at word boundaries and is regulated by an extensive set of rules governing its transformation depending on what sound follows it — becoming a sibilant before certain consonants, disappearing before others, or converting to a vowel-like glide before still others. The Prātiśākhyas devote substantial attention to visarga precisely because its instability at word boundaries makes it a frequent site of potential transmission error, and therefore a category demanding especially rigorous regulation.</p>
+
+  <h3 class="section-title">Consonant Sandhi: Assimilation Across Word Boundaries</h3>
+  <p>Consonant sandhi governs the mutual influence of consonants meeting at word or morpheme boundaries, chiefly along the parameters already established in Chapter Five: voicing and place of articulation. A voiceless consonant at the end of one word, meeting a voiced sound at the start of the next, will characteristically assimilate in voicing; a dental consonant meeting a following retroflex will characteristically shift its own place of articulation to match. These are not exceptions to the phonetic system described in earlier chapters but direct, predictable consequences of it: because santāna treats coarticulation as a regulated phonetic reality rather than free variation, the tradition can state, for any given pair of adjacent consonants, exactly what the resulting combination must be.</p>
+
+  <table>
+    <caption>Illustrative Consonant Sandhi Patterns</caption>
+    <thead><tr><th>Boundary Configuration</th><th>Regulated Outcome</th></tr></thead>
+    <tbody>
+      <tr><td>Voiceless stop + voiced sound</td><td>The voiceless stop assimilates to its voiced counterpart within the same varga</td></tr>
+      <tr><td>Dental consonant + retroflex consonant</td><td>The dental shifts to the corresponding retroflex place of articulation</td></tr>
+      <tr><td>Final <em class="skt">n</em> + following palatal or retroflex</td><td>The nasal assimilates in place to match the following consonant's varga</td></tr>
+      <tr><td>Final <em class="skt">t</em> + following nasal</td><td>The stop assimilates to a nasal at the same place of articulation</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The systematic treatment of svara, visarga, and consonant sandhi, including the specific outcome rules summarized above, is a core subject of the Prātiśākhya literature for each Vedic school and is elaborated further, in a more generalized form applicable beyond Vedic recitation, in Pāṇini's grammar; minor differences in the precise conditioning environments for certain sandhi outcomes are attested between different Prātiśākhyas, reflecting genuine, documented variation between recitation schools rather than error.</span>
+  </div>
+
+  <h3 class="section-title">Sandhi as the Operational Bridge Between Pada-pāṭha and Saṃhitā-pāṭha</h3>
+  <p>The practical significance of this entire apparatus becomes clearest when read back against the pāṭha hierarchy established in Chapter Nine. The pada-pāṭha presents each word in its citation form, prior to any sandhi; the saṃhitā-pāṭha presents the same passage with every applicable sandhi rule already applied. Sandhi doctrine is, precisely, the rule-set that specifies how to derive the one from the other, deterministically and without residual ambiguity. A reciter's ability to move correctly between pada-pāṭha and saṃhitā-pāṭha forms of the identical passage is, in effect, a direct test of internalized sandhi competence, and the krama-pāṭha's overlapping-pair structure, discussed in Chapter Nine, specifically exercises this competence at every word boundary in a text, pairing each word successively with both its phonetic neighbors.</p>
+
+  <footer class="chapter-close">
+    Sandhi doctrine completes the tradition's regulation of santāna, extending the analysis of individual sound production developed in earlier chapters to the behavior of sound in continuous sequence. The next chapter turns from the internal architecture of the discipline to its external, living continuity into the present.
+  </footer>
+</section>
+
+<section class="chapter" id="ch13">
+  <div class="chapter-number">Chapter Thirteen</div>
+  <h2 class="chapter-title">Regional Traditions and the Living Continuity of Recitation</h2>
+
+  <p class="lead">Unlike many ancient technical sciences known only from texts, Śikṣā's core practical achievement — the precise oral transmission of Vedic recitation — continues to be actively practiced by living communities of reciters, chiefly in South India, whose training and performance can be directly observed and studied alongside the textual record.</p>
+
+  <h3 class="section-title">The Nambudiri Tradition of Kerala</h3>
+  <p>Among the most closely studied living traditions is that of the Nambudiri Brahmin community of Kerala, whose preservation of Ṛgvedic and Yajurvedic recitation, including elaborate ritual performances such as the Agnicayana, has been the subject of sustained ethnomusicological and anthropological documentation since the mid-twentieth century. The Nambudiri tradition is frequently cited as preserving recitation practices, including specific pāṭha techniques and ritual performance sequences, whose documented continuity extends back many centuries with comparatively little attested change, making it an unusually valuable living witness to the practical operation of the pāṭha systems described in Chapter Nine.</p>
+
+  <h3 class="section-title">The Ghanapāṭhī Tradition of Tamil Nadu and Andhra</h3>
+  <p>A parallel tradition of formally certified reciters, known as Ghanapāṭhīs, persists across Tamil Nadu, Andhra Pradesh, and neighboring regions, denoting reciters who have completed the full, most demanding tier of the pāṭha hierarchy — ghana-pāṭha itself — for their assigned portion of Vedic text. Attaining this qualification traditionally requires many years of sustained training beginning in childhood, and Ghanapāṭhīs continue to perform public recitations and participate in ritual contexts requiring this highest certified level of phonetic and mnemonic accuracy.</p>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>UNESCO inscribed the tradition of Vedic chanting on its Representative List of the Intangible Cultural Heritage of Humanity in 2008 (having first been proclaimed a Masterpiece of the Oral and Intangible Heritage of Humanity in 2003), explicitly citing the antiquity, structural complexity, and continuing living practice of the recitation methods this monograph has described, including the pāṭha system's role in preserving textual fidelity across an oral rather than written channel of transmission.</span>
+  </div>
+
+  <h3 class="section-title">What the Living Tradition Confirms and What It Cannot Confirm</h3>
+  <p>The existence of a documented, continuously practiced living tradition provides modern scholarship with a genuine methodological advantage largely unavailable for most other ancient technical sciences: claims about how the pāṭha system actually functions in performance, how errors are detected and corrected in real pedagogical practice, and how accentual and durational distinctions are realized acoustically, can be checked directly against observable, recordable contemporary performance rather than relying solely on textual description. It is nonetheless important to state the limits of this evidence honestly: the living tradition demonstrates the continuing operability and demonstrable rigor of the pāṭha system as practiced today, and provides strong circumstantial support for the plausibility of the system's ancient origins and function, but it does not by itself constitute direct proof of precisely how the system operated in the earliest periods for which textual sources exist, since twenty-five hundred or more years of transmission, however carefully safeguarded, remain in principle open to gradual phonetic drift that would not necessarily be detectable within the tradition's own internal frame of reference.</p>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>Comparative linguistic study of Vedic recitation across geographically separated reciter communities has found a notably high degree of convergence in accentual and phonetic detail, a finding generally taken as strong evidence for the effectiveness of the transmission system across at least the historically documentable period, though scholars remain appropriately cautious about extrapolating this finding, without qualification, back to the full span the tradition itself claims.</span>
+  </div>
+
+  <h3 class="section-title">Contemporary Institutional Support</h3>
+  <p>Formal Vedic pāṭhaśālās (traditional schools) continue to operate across India, providing structured, graded training beginning with saṃhitā- and pada-pāṭha and advancing, for the most dedicated students, through krama-, jaṭā-, and ultimately ghana-pāṭha certification, generally requiring a decade or more of sustained study. These institutions represent the direct pedagogical descendants of the training environment presupposed throughout this monograph's discussion of the pāṭha hierarchy, breath discipline, and the diagnostic use of the six-fold analytic grid described in Chapter Three.</p>
+
+  <footer class="chapter-close">
+    Having situated Śikṣā's technical apparatus within both its textual history and its living continuation, the closing chapter of Part One draws together the position established across the monograph as a whole.
+  </footer>
+</section>
+
+<section class="chapter" id="ch14">
+  <div class="chapter-number">Chapter Fourteen</div>
+  <h2 class="chapter-title">The Musical Extension: Śikṣā and Sāmavedic Chant</h2>
+
+  <p class="lead">While the Prātiśākhya tradition treats accent primarily as a linguistic and grammatical phenomenon, one branch of the Śikṣā corpus, most prominently the Nāradīya Śikṣā, develops an explicitly musical elaboration of the same categories, mapping the recitation of the Sāmaveda onto a system of seven melodic tones and treating chant as a distinct, more elaborate register of the same underlying phonetic discipline.</p>
+
+  <h3 class="section-title">From Three Accents to Seven Svaras</h3>
+  <p>Sāmavedic performance elaborates the three-way udātta/anudātta/svarita distinction of ordinary Vedic recitation into a seven-note melodic scale, each note assigned a name that later Indian musicology would inherit and adapt into the foundation of classical rāga theory.</p>
+
+  <table>
+    <caption>The Seven Sāmavedic Svaras and Their Later Musical Names</caption>
+    <thead><tr><th>Sāmavedic Designation</th><th>Relative Position</th><th>Later Classical Name</th></tr></thead>
+    <tbody>
+      <tr><td>Prathama</td><td>First</td><td>Corresponds broadly to <em class="skt">madhyama</em> region in later systems</td></tr>
+      <tr><td>Dvitīya</td><td>Second</td><td>Corresponds broadly to <em class="skt">gāndhāra</em></td></tr>
+      <tr><td>Tṛtīya</td><td>Third</td><td>Corresponds broadly to <em class="skt">ṛṣabha</em></td></tr>
+      <tr><td>Caturtha</td><td>Fourth</td><td>Corresponds broadly to <em class="skt">ṣaḍja</em>, treated as a tonal base in some schemes</td></tr>
+      <tr><td>Mandra</td><td>Lowered</td><td>A lowered register tone</td></tr>
+      <tr><td>Krusta</td><td>Raised / called</td><td>An elevated register tone</td></tr>
+      <tr><td>Atisvārya</td><td>Beyond-tone</td><td>An extreme high register used sparingly</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The Nāradīya Śikṣā's treatment of seven Sāmavedic svaras, and its correlation of these tones with the three primary Vedic accents of ordinary recitation, is a well-documented feature of the text and is widely cited in musicological scholarship as an early stage in the historical development of the later seven-note (saptaka) scale foundational to classical Indian music.</span>
+  </div>
+
+  <h3 class="section-title">Chant as an Ornamented Register of Recitation</h3>
+  <p>Sāmavedic performance (<em class="skt">sāmagāna</em>) takes the underlying textual and accentual material of Ṛgvedic verses — the Sāmaveda draws the substantial majority of its verse content directly from the Ṛgveda — and performs it according to elaborate melodic formulae, involving sustained tones, ornamented pitch movement of the kind noted as <em class="skt">kampa</em> in Chapter Seven, and specific prescribed sequences of the seven svaras. This performance tradition therefore stands in a clear derivational relationship to the categories established earlier in this monograph: it takes the fixed varṇa, svara, and mātrā values of a Ṛgvedic verse as its starting material, and elaborates them according to a further, musically specific layer of prescribed performance convention.</p>
+
+  <h3 class="section-title">Historical Significance for the History of Indian Music</h3>
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>Historians of Indian music generally regard Sāmavedic chant, and the Nāradīya Śikṣā's systematic description of it, as the earliest documented layer in the historical development that eventually produces the fully elaborated svara and rāga theory of classical Indian musicology many centuries later, while cautioning that the specific seven-fold Sāmavedic svara system should not be treated as identical to, or a simple direct ancestor of, any single later classical scale system; the relationship is one of documented historical continuity and influence rather than strict identity.</span>
+  </div>
+
+  <footer class="chapter-close">
+    The musical elaboration of svara demonstrates that Śikṣā's categories were never confined to a single narrow application; the same analytic grid could be extended, within a recognized and regulated branch of the tradition, from spoken recitation into a distinct performance register bordering on music proper. The next chapter turns to a more strictly pedagogical concern: how the tradition named and corrected the specific faults that could arise in a student's recitation.
+  </footer>
+</section>
+
+<section class="chapter" id="ch15">
+  <div class="chapter-number">Chapter Fifteen</div>
+  <h2 class="chapter-title">Error Taxonomy and the Pedagogy of Correction</h2>
+
+  <p class="lead">A discipline this precise in its positive prescriptions necessarily developed an equally precise vocabulary for naming the ways a recitation could go wrong. The Śikṣā and Prātiśākhya literature preserves a body of terminology for recitation faults that functioned, in traditional pedagogy, as a diagnostic checklist against which a teacher could evaluate a student's performance.</p>
+
+  <h3 class="section-title">Faults of Accent</h3>
+  <p>Because accent, as established in Chapter Seven, can carry grammatical and semantic weight, misplacement of udātta, anudātta, or svarita was treated as a serious class of error, distinct from and generally regarded as more consequential than a minor articulatory imprecision that left the segmental identity of a sound intact. Traditional pedagogy accordingly gave accent errors priority in correction, on the reasoning that a segmentally perfect but tonally incorrect recitation could still misrepresent the text's grammatical structure, whereas a minor articulatory softness in an otherwise correctly accented recitation was a lesser fault.</p>
+
+  <h3 class="section-title">Faults of Duration</h3>
+  <p>Given the phonemic status of the hrasva/dīrgha distinction established in Chapter Eight, confusing a short vowel with its long counterpart, or vice versa, was likewise treated as a substantive fault rather than a stylistic variation, since — exactly as with accent — such a substitution could in principle alter which word was being pronounced. Sustained training in breath control, discussed in Chapter Eleven, was understood as the direct physiological remedy for durational faults arising from inadequate breath support, particularly toward the end of longer metrical lines.</p>
+
+  <h3 class="section-title">Faults of Place and Manner</h3>
+  <p>A further class of fault concerns imprecision in sthāna or prayatna — producing a sound at a place adjacent to, but not identical with, its correct articulatory target, or applying the wrong degree of contact or breath force described in Chapters Four and Five. Such faults were correctable through the same diagnostic apparatus discussed in those chapters: because sthāna, karaṇa, and prayatna are independently specifiable parameters, a teacher could isolate exactly which parameter a student had mismanaged rather than simply pronouncing the attempt generically wrong.</p>
+
+  <h3 class="section-title">Faults of Sequence and Continuity</h3>
+  <p>Errors of santāna — misapplied or omitted sandhi, as catalogued in Chapter Twelve, or disruption of the correct word sequence — constituted a further recognized category, and it is precisely this category that the elaborate pāṭha methods of Chapter Nine were engineered to expose, since a sandhi or sequence error, however small, would characteristically produce a detectable inconsistency when the same word was required to appear correctly in multiple different combinatorial contexts across krama-, jaṭā-, or ghana-pāṭha performance.</p>
+
+  <table>
+    <caption>Summary: Fault Categories Mapped to Corrective Mechanism</caption>
+    <thead><tr><th>Fault Category</th><th>Governing Chapter</th><th>Primary Corrective Mechanism</th></tr></thead>
+    <tbody>
+      <tr><td>Accentual misplacement</td><td>Chapter Seven</td><td>Direct teacher correction, prioritized as most consequential</td></tr>
+      <tr><td>Durational error</td><td>Chapter Eight</td><td>Breath training and direct correction</td></tr>
+      <tr><td>Place / manner imprecision</td><td>Chapters Four–Five</td><td>Parameter-isolated diagnostic correction</td></tr>
+      <tr><td>Sequence / sandhi error</td><td>Chapters Nine, Twelve</td><td>Exposure through overlapping pāṭha repetition</td></tr>
+      <tr><td>Uneven delivery (loss of sāma)</td><td>Chapter Three</td><td>Endurance training, extended supervised practice</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The general principle that accentual and durational errors were regarded as more serious than minor articulatory imprecision, given their capacity to alter grammatical or semantic identity, is consistent with the priority Pāṇinian grammar itself gives to accent-sensitive derivational rules, and with the overall emphasis the Prātiśākhya literature places on precise accent notation.</span>
+  </div>
+
+  <h3 class="section-title">Correction as a Communal, Not Merely Individual, Process</h3>
+  <p>As noted already in Chapter Ten, correction was not solely a matter of an individual teacher checking an individual student against personal memory; the layered pāṭha methods themselves, together with comparison against other trained reciters within the same lineage, functioned as an ongoing, distributed correction mechanism operating continuously across a reciter's training and, indeed, across that reciter's entire subsequent participation in communal recitation.</p>
+
+  <footer class="chapter-close">
+    A precise error taxonomy is the necessary counterpart of a precise positive discipline; the tradition could specify correct recitation only because it could equally specify, category by category, exactly how recitation could fail. The next chapter turns to a different kind of engineering achievement embedded in the Śikṣā corpus itself: the versified form in which its own doctrines were composed and transmitted.
+  </footer>
+</section>
+
+<section class="chapter" id="ch16">
+  <div class="chapter-number">Chapter Sixteen</div>
+  <h2 class="chapter-title">Mnemonic Architecture: Versification as Memory Technology</h2>
+
+  <p class="lead">The independent Śikṣā treatises discussed in Chapter Two are, with few exceptions, composed in verse, chiefly in the anuṣṭubh meter that later became the standard vehicle for compact didactic and technical Sanskrit literature generally. This choice of form is itself a further, self-referential instance of the tradition's broader commitment to engineering memory: a treatise describing the discipline required to preserve the Veda is itself constructed according to principles designed to make that treatise memorable.</p>
+
+  <h3 class="section-title">Why Verse for Technical Content</h3>
+  <p>Metrical composition imposes a fixed syllable count and a regulated pattern of light and heavy syllables — the same mātrā-based weight calculus introduced in Chapter Eight — onto every line of a text. This regularity supplies an independent check on transmission accuracy at the level of the treatise itself: a corrupted or misremembered line of a Śikṣā verse will very often violate the meter, producing an audible irregularity that alerts a reciter or listener to the presence of an error even before the semantic content of the line has been separately verified. Versification therefore extends the same logic of structural redundancy examined in Chapter Ten — there applied to the Veda's own transmission — to the transmission of the secondary, explanatory literature that describes how that primary transmission is to be carried out.</p>
+
+  <h3 class="section-title">Compression Through Formulaic Enumeration</h3>
+  <p>Alongside metrical regularity, the Śikṣā treatises rely heavily on compact enumerative formulae — naming a fixed list of categories (the five sthānas, the six-fold grid of Chapter Three, the three grades of mātrā) in a fixed order that itself becomes part of what is memorized. This is directly parallel to the pratyāhāra compression technique examined in Chapter Six: just as the grammatical tradition compressed sound-class references into two-syllable labels, the Śikṣā tradition compressed its taxonomic content into short, fixed-order lists whose very sequence functioned as a retrieval cue, allowing a reciter who could remember the first member of a list to reconstruct the entire list through trained association.</p>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>The use of tight metrical form and formulaic enumeration as memory aids is a well-established finding in the general cross-cultural study of oral literature and technical pedagogy, and Sanskrit didactic literature broadly — not only the Śikṣā corpus specifically — is frequently cited by scholars of orality as an unusually systematic historical instance of this principle, extending from grammar and phonetics through medicine, mathematics, and ritual science.</span>
+  </div>
+
+  <h3 class="section-title">The Treatise as Both Description and Instance</h3>
+  <p>A Śikṣā verse describing, for example, the five sthānas of articulation is therefore simultaneously two things at once: a description of a phonetic fact, and an instance of a mnemonically engineered sound-sequence constructed according to the same durational and rhythmic principles that fact itself concerns. This doubling is not accidental. It reflects a consistent feature of the broader tradition examined throughout this monograph: technical content and the technology of its own preservation are not separated into different registers but are unified within a single disciplined practice of composition, recitation, and transmission.</p>
+
+  <footer class="chapter-close">
+    The final chapter before this Part's close turns to a genuinely comparative question: how the categories described across this monograph align with, anticipate, or differ from the descriptive apparatus of modern acoustic and articulatory phonetics.
+  </footer>
+</section>
+
+<section class="chapter" id="ch17">
+  <div class="chapter-number">Chapter Seventeen</div>
+  <h2 class="chapter-title">Comparative Acoustic Phonetics: Śikṣā and Modern Instrumentation</h2>
+
+  <p class="lead">Modern phonetics, equipped with spectrographic and other acoustic-instrumentation tools unavailable to the ancient tradition, allows scholars to test many of Śikṣā's descriptive claims against directly measurable physical evidence, and the results of this comparison are of considerable interest for assessing the tradition's descriptive accuracy.</p>
+
+  <h3 class="section-title">Place of Articulation Under Instrumental Confirmation</h3>
+  <p>The five-fold sthāna classification described in Chapter Four corresponds closely, sound for sound, to the place-of-articulation categories independently derived by modern articulatory phonetics using techniques such as palatography and, in contemporary research, real-time magnetic resonance imaging of the vocal tract during speech. The correspondence extends to fine detail: the classical distinction between dental and retroflex consonants in Sanskrit, for instance, matches modern instrumental description of genuinely distinct places of tongue contact, confirming that the ancient classification was not a coarse approximation but a phonetically accurate discrimination.</p>
+
+  <h3 class="section-title">Voicing and Aspiration Under Acoustic Measurement</h3>
+  <p>The alpaprāṇa/mahāprāṇa distinction discussed in Chapter Five corresponds to what modern acoustic phonetics measures as voice onset time — the interval between the release of a consonantal closure and the onset of vocal cord vibration in the following vowel. Instrumental measurement of Sanskrit and other Indo-Aryan languages retaining this four-way stop contrast confirms that aspirated and unaspirated members of each pair differ by a measurable, consistent acoustic interval, validating the classical tradition's treatment of aspiration as an independently specifiable parameter rather than a matter of impressionistic auditory judgment.</p>
+
+  <h3 class="section-title">Pitch Accent Under Instrumental Measurement</h3>
+  <p>Where recordings of living Vedic recitation traditions are available for instrumental analysis, fundamental frequency measurement of udātta, anudātta, and svarita syllables in performed recitation generally confirms the relative pitch relationships the classical texts describe, with svarita showing the falling contour predicted by the derivational account given in Chapter Seven, though the precise absolute pitch intervals involved show some variation across different reciter communities and regional traditions, consistent with the expectation that a prescriptive text specifies relative rather than absolute tonal targets.</p>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>Instrumental phonetic studies of living Vedic recitation, conducted using modern acoustic analysis software applied to field recordings of Nambudiri and other reciter communities, form an active area of contemporary linguistic research, and such studies are generally cited as providing strong empirical support for the overall descriptive accuracy of the classical sthāna, prayatna, and svara categories examined throughout this monograph, while also refining understanding of the specific acoustic realization of finer categories such as the secondary accentual distinctions noted in Chapter Seven.</span>
+  </div>
+
+  <h3 class="section-title">Where the Classical and Modern Frameworks Diverge</h3>
+  <p>The comparison is not one of uniform, seamless correspondence, and honest scholarly assessment should register the genuine points of difference alongside the genuine points of convergence. Modern acoustic phonetics organizes its descriptive categories around directly measurable physical correlates — formant frequencies, voice onset time, fundamental frequency contours — determined independently of any pedagogical function, whereas the classical categories, while descriptively accurate, were developed and organized primarily around the practical requirements of correction and transmission examined in Chapters Nine, Ten, and Fifteen. The two frameworks describe substantially the same underlying physical reality, but they were built for different purposes, and neither should be read as a simple, terminology-only variant of the other.</p>
+
+  <div class="tag-block tag-synthesis">
+    <span class="tag-label">AI Synthesis</span>
+    <span>The claim that the classical and modern frameworks "describe substantially the same underlying physical reality" while differing in organizing purpose is this monograph's synthesizing assessment, drawn from comparing the documented content of both traditions; it is not a claim made explicitly within either the classical Śikṣā sources or, typically, within modern phonetic scholarship taken in isolation, each of which generally operates within its own descriptive frame without extended cross-comparison of this kind.</span>
+  </div>
+
+  <footer class="chapter-close">
+    Having tested Śikṣā's descriptive categories against the independent evidence of modern instrumental phonetics and found substantial, though not total, correspondence, this Part now closes with a summary statement of the position established across all seventeen preceding chapters.
+  </footer>
+</section>
+
+<section class="chapter" id="ch18">
+  <div class="chapter-number">Chapter Eighteen</div>
+  <h2 class="chapter-title">Vyañjana Deep Dive: Semivowels, Sibilants, and Ayogavāha Sounds</h2>
+
+  <p class="lead">Chapter Four introduced the five principal sthānas and the varga structure of the stop consonants. A complete account of the Sanskrit consonantal inventory requires attention to three further classes that fall outside the regular five-member varga pattern: the semivowels, the sibilants, and the small residual class the tradition calls ayogavāha.</p>
+
+  <h3 class="section-title">Antaḥstha: The Semivowels</h3>
+  <p>The four sounds ya, ra, la, va are traditionally grouped as <em class="skt">antaḥstha</em>, "standing between," a designation reflecting their intermediate articulatory character between full vowels and full consonants: as established in Chapter Five, their bāhya prayatna is īṣatspṛṣṭa, slight contact, midway between the complete closure (spṛṣṭa) of the stops and the fully open passage (vivṛta) of the vowels.</p>
+
+  <table>
+    <caption>The Four Semivowels and Their Vocalic Correspondences</caption>
+    <thead><tr><th>Semivowel</th><th>Sthāna</th><th>Corresponding Vowel</th></tr></thead>
+    <tbody>
+      <tr><td>ya</td><td>Tālavya (palatal)</td><td>i / ī</td></tr>
+      <tr><td>ra</td><td>Mūrdhanya (retroflex)</td><td>ṛ / ṝ</td></tr>
+      <tr><td>la</td><td>Dantya (dental)</td><td>ḷ</td></tr>
+      <tr><td>va</td><td>Dantoṣṭhya (dento-labial)</td><td>u / ū</td></tr>
+    </tbody>
+  </table>
+
+  <p>This systematic pairing of each semivowel with a corresponding vowel of the same articulatory zone is not incidental; it is the phonetic basis of the yaṇ sandhi rule introduced in Chapter Twelve, whereby a short or long i/ī, u/ū, or ṛ is replaced by its corresponding semivowel when a dissimilar vowel follows. The rule is phonetically natural precisely because each semivowel already occupies the same articulatory position as its vocalic counterpart, differing only in the degree of vocal-tract constriction.</p>
+
+  <h3 class="section-title">Ūṣman: The Sibilants and the Aspirate</h3>
+  <p>A second residual class, termed <em class="skt">ūṣman</em> ("heat" or "steam," reflecting the audible friction of their production), comprises the three sibilants śa, ṣa, sa together with the glottal aspirate ha. These sounds share the īṣadvivṛta bāhya prayatna described in Chapter Five — a narrowed but not fully closed passage — and are distinguished from one another entirely by sthāna: śa is tālavya, ṣa is mūrdhanya, sa is dantya, while ha is kaṇṭhya.</p>
+
+  <table>
+    <caption>The Ūṣman Class</caption>
+    <thead><tr><th>Sound</th><th>Sthāna</th><th>Voicing</th></tr></thead>
+    <tbody>
+      <tr><td>śa</td><td>Tālavya</td><td>Aghoṣa (voiceless)</td></tr>
+      <tr><td>ṣa</td><td>Mūrdhanya</td><td>Aghoṣa (voiceless)</td></tr>
+      <tr><td>sa</td><td>Dantya</td><td>Aghoṣa (voiceless)</td></tr>
+      <tr><td>ha</td><td>Kaṇṭhya</td><td>Ghoṣa (voiced)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">Ayogavāha: The Sounds That Fit No Class</h3>
+  <p>A final small set of sounds — chiefly anusvāra (the pure nasal, ṃ) and visarga (the voiceless aspiration, ḥ), together with certain rarer sounds recognized in specific Prātiśākhya traditions such as the jihvāmūlīya and upadhmānīya, allophonic variants of visarga occurring before velar and labial consonants respectively — are termed <em class="skt">ayogavāha</em>, "carried along without independent classification," because they cannot be assigned a stable place in the regular vowel/semivowel/stop/sibilant grid and instead occur only in specific derived phonetic environments, generally at syllable or word boundaries.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The antaḥstha, ūṣman, and ayogavāha classifications, including the recognition of jihvāmūlīya and upadhmānīya as conditioned allophones of visarga before velar and labial sounds respectively, are standard categories across the Prātiśākhya literature and Pāṇinian grammar, though the precise phonetic conditions under which jihvāmūlīya and upadhmānīya are written or pronounced show some variation between manuscript traditions.</span>
+  </div>
+
+  <h3 class="section-title">Why These Residual Classes Matter</h3>
+  <p>The existence of these three residual categories is not a sign of an incomplete or untidy system; it is evidence of a classification built from genuine phonetic observation rather than from an a priori grid imposed regardless of fit. A four-way varga structure of stop consonants captures the regular pattern shown by twenty of the Sanskrit consonants with full precision, but the semivowels, sibilants, and boundary-conditioned sounds genuinely do not share that pattern, and the tradition's willingness to carve out separate, appropriately structured categories for them — rather than force them into an ill-fitting varga scheme — is itself testimony to the empirical seriousness of the underlying analysis.</p>
+
+  <footer class="chapter-close">
+    With the full consonantal inventory now mapped in detail, the next chapter turns to a question raised but not resolved in Chapter Two: the specific technical points on which different Prātiśākhyas, describing different Vedic schools, are documented to diverge from one another.
+  </footer>
+</section>
+
+<section class="chapter" id="ch19">
+  <div class="chapter-number">Chapter Nineteen</div>
+  <h2 class="chapter-title">Comparative Case Study: Divergences Between the Prātiśākhyas</h2>
+
+  <p class="lead">Chapter Two established that Śikṣā existed historically as a distributed, school-anchored science rather than a single centrally codified doctrine. This chapter makes that point concrete by examining specific, documented points on which the major Prātiśākhyas diverge from one another in their technical descriptions.</p>
+
+  <h3 class="section-title">Divergence in Svarita Sub-Classification</h3>
+  <p>Different Prātiśākhyas recognize differing numbers of svarita sub-varieties, and the terminology applied to these sub-varieties, briefly surveyed in Chapter Seven, is not fully uniform across schools: some traditions distinguish a jātya (inherent) svarita from a nitya (obligatory, non-sandhi-derived) svarita as separate categories requiring separate notation, while others treat these as notational variants of a single underlying phenomenon. Such disagreements are technical rather than doctrinal, reflecting genuine differences in how finely each school's oral performance tradition distinguished tonal nuance, rather than any dispute about the basic three-way udātta/anudātta/svarita framework itself, which is uniform across all schools.</p>
+
+  <h3 class="section-title">Divergence in Sandhi Application at Specific Boundaries</h3>
+  <p>The Ṛgveda-Prātiśākhya and the Taittirīya Prātiśākhya, describing different recensions, are documented to prescribe differing sandhi outcomes in certain specific, narrowly defined phonetic environments, particularly around the behavior of visarga before certain sibilants and around specific vowel-combination cases at word junctures involving particular grammatical categories. These divergences are carefully catalogued in the comparative philological literature and are generally treated as genuine, historically real differences in recitation practice between schools rather than as error in either text.</p>
+
+  <table>
+    <caption>Illustrative Categories of Documented Inter-Prātiśākhya Variation</caption>
+    <thead><tr><th>Domain</th><th>Nature of Variation</th></tr></thead>
+    <tbody>
+      <tr><td>Svarita sub-classification</td><td>Differing number and terminology of recognized svarita subtypes</td></tr>
+      <tr><td>Visarga sandhi before sibilants</td><td>Differing prescribed outcomes in specific boundary environments</td></tr>
+      <tr><td>Treatment of certain vowel-vowel junctures</td><td>Differing application of guṇa versus retention rules in narrowly defined grammatical contexts</td></tr>
+      <tr><td>Pāṭha terminology</td><td>Differing names applied to closely related recitation techniques across schools</td></tr>
+      <tr><td>Numbering and grouping of phonetic categories</td><td>Differing enumerative groupings of the same underlying sound inventory</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>Critical philological editions of the Prātiśākhyas, produced from the nineteenth century onward, have systematically documented these points of inter-school variation, and the general scholarly consensus treats them as evidence of the genuine historical independence of the school-specific transmission lines catalogued in Chapter Two, rather than as evidence of corruption or unreliability in the tradition as a whole; a system with entirely uniform agreement across independently transmitted schools would, if anything, be somewhat more suspicious as evidence of later harmonization than a system showing this pattern of substantial core agreement combined with narrowly bounded, well-documented local variation.</span>
+  </div>
+
+  <h3 class="section-title">What the Pattern of Variation Indicates</h3>
+  <p>The specific character of the documented variation is itself informative. Divergences cluster around genuinely difficult, phonetically marginal cases — boundary phenomena, rare sandhi environments, fine tonal subclassification — rather than around the basic, high-frequency core of the system: the five sthānas, the varga structure, the three primary accents, and the three grades of mātrā are reported with essentially uniform consistency across every surviving Prātiśākhya and independent Śikṣā text. This distribution of agreement and disagreement is consistent with what would be expected of independently but carefully transmitted oral traditions describing a shared underlying reality: broad, high-frequency structure preserved with near-total fidelity, and narrow, low-frequency edge cases showing the kind of small, bounded drift that even a well-engineered transmission system cannot eliminate entirely.</p>
+
+  <footer class="chapter-close">
+    Having examined where the tradition's internal consistency holds and where it shows documented variation, the next chapter turns to a different order of question: why the tradition invested such extraordinary resources in achieving this level of phonetic precision in the first place.
+  </footer>
+</section>
+
+<section class="chapter" id="ch20">
+  <div class="chapter-number">Chapter Twenty</div>
+  <h2 class="chapter-title">The Epistemic Weight of Correct Recitation</h2>
+
+  <p class="lead">This chapter addresses, in strictly historical and descriptive terms, why the fidelity of Vedic recitation mattered enough to the tradition to justify the elaborate apparatus this monograph has surveyed — without extending into the later, more speculative philosophical material on sound and consciousness reserved for the companion volume.</p>
+
+  <h3 class="section-title">The Ritual Stake in Phonetic Accuracy</h3>
+  <p>Within the ritual (Kalpa) sciences, as noted already in Chapter One, an incorrectly pronounced mantra was traditionally held capable of invalidating, or even reversing, the intended effect of a ritual act — a concern reflected in a well-known traditional anecdote, widely cited in later grammatical literature, concerning a sacrifice in which a single accentual misplacement was said to have inverted the intended outcome of the rite. Whatever one's assessment of the ritual claim itself, the anecdote is significant as direct evidence of the seriousness with which the tradition treated the stakes of correct recitation: it frames phonetic error not as a minor aesthetic lapse but as an event with consequences the tradition regarded as real and severe.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The anecdote concerning an accentual error said to have reversed the outcome of a sacrifice is preserved in later grammatical and Nirukta-adjacent literature and is frequently cited in traditional and modern scholarship alike as illustrative of the ritual seriousness attached to correct Vedic recitation; it should be understood as a traditional illustrative example rather than as independently verifiable historical reportage of a specific event.</span>
+  </div>
+
+  <h3 class="section-title">The Mīmāṃsā Position on Vedic Authority</h3>
+  <p>The Pūrva Mīmāṃsā school of Indian philosophy, whose central concern is the interpretation and authority of Vedic injunction, developed an extensive theoretical position holding the Veda to be <em class="skt">apauruṣeya</em>, without personal human authorship, and treating the fixed, eternally correct sound-form of the Veda as integral to its authority as a source of valid knowledge (<em class="skt">śabda pramāṇa</em>) concerning ritual duty. Within this framework, the phonetic fixity that Śikṣā's entire technical apparatus works to guarantee is not a merely practical convenience but the material precondition for the Veda's claimed epistemic status: an eternally authoritative text requires, on this view, a stable, non-arbitrary sound-form, since a text whose wording could drift or vary would not be able to sustain a claim to timeless, author-independent validity.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The Mīmāṃsā doctrine of Vedic apauruṣeyatā and its connection to the authoritative, fixed sound-form of Vedic utterance is a well-documented position within the Mīmāṃsā-sūtra tradition and its later commentarial elaboration, and is treated extensively in the history of Indian philosophy as one of the classical schools' central theses concerning the nature of linguistic authority.</span>
+  </div>
+
+  <h3 class="section-title">Keeping the Historical and the Philosophical Questions Distinct</h3>
+  <p>It is important, in closing this chapter, to hold two distinct questions clearly apart. The historical question — why did the tradition invest such resources in phonetic precision — has a clear, well-documented answer: because ritual efficacy and, in the Mīmāṃsā framework, the very epistemic authority of the Veda were held to depend upon it. The separate philosophical question — whether sound itself possesses some deeper ontological or soteriological significance beyond its role in ritual and epistemic authority — belongs to later Tantric, grammatical-philosophical, and Vedāntic elaborations that this monograph has deliberately deferred to its companion volume, in keeping with the evidentiary discipline announced in Chapter Twelve of the closing material.</p>
+
+  <div class="tag-block tag-synthesis">
+    <span class="tag-label">AI Synthesis</span>
+    <span>The framing of this chapter as isolating a strictly historical "why it mattered" question from a separate, deferred philosophical question is a structural choice made by this monograph to maintain clear evidentiary boundaries; the classical Mīmāṃsā sources themselves engage directly and extensively with the epistemic-authority question surveyed here, but the monograph's explicit separation of this material from the further philosophical material reserved for the companion volume is an organizing decision rather than a distinction drawn by the classical sources themselves.</span>
+  </div>
+
+  <footer class="chapter-close">
+    Having established both the historical stakes of phonetic accuracy and the outer boundary of what this Part will address, the final substantive chapter turns to the practical, lived shape of a reciter's training — the human pathway by which the entire technical apparatus surveyed in this monograph is actually acquired.
+  </footer>
+</section>
+
+<section class="chapter" id="ch21">
+  <div class="chapter-number">Chapter Twenty-One</div>
+  <h2 class="chapter-title">The Pedagogical Sequence: A Reciter's Training from Childhood to Ghanapāṭhī</h2>
+
+  <p class="lead">This closing substantive chapter traces the practical, graduated sequence by which a student traditionally acquires the full technical competence this monograph has described, drawing together material from across the preceding chapters into a single developmental account.</p>
+
+  <table>
+    <caption>Traditional Stages of Vedic Recitation Training</caption>
+    <thead><tr><th>Stage</th><th>Focus</th><th>Governing Chapters</th></tr></thead>
+    <tbody>
+      <tr><td>Foundational listening and imitation</td><td>Basic varṇa production, elementary breath control</td><td>Chapters Three, Eleven</td></tr>
+      <tr><td>Saṃhitā-pāṭha mastery</td><td>Fluent, accurate continuous recitation of assigned text</td><td>Chapter Nine</td></tr>
+      <tr><td>Pada-pāṭha mastery</td><td>Word-level analysis; internalizing sandhi derivation</td><td>Chapters Nine, Twelve</td></tr>
+      <tr><td>Accentual refinement</td><td>Precise, consistent udātta / anudātta / svarita production</td><td>Chapter Seven</td></tr>
+      <tr><td>Krama-pāṭha training</td><td>Overlapping pair recitation; sandhi verification</td><td>Chapter Nine</td></tr>
+      <tr><td>Jaṭā-pāṭha training</td><td>Extended recursive pattern recitation</td><td>Chapter Nine</td></tr>
+      <tr><td>Ghana-pāṭha certification</td><td>Full recursive mastery; formal Ghanapāṭhī status</td><td>Chapters Nine, Thirteen</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">Early Training: Imitation Before Explanation</h3>
+  <p>Traditional pedagogy characteristically begins not with explicit instruction in the analytic categories of Chapters Three through Eight but with direct listening and imitation: a young student repeats short passages after a teacher, developing basic articulatory control and auditory discrimination before the formal vocabulary of sthāna, prayatna, and svara is introduced as a means of naming and refining what the student's ear and voice have already begun to distinguish through practice. The explicit theoretical apparatus this monograph has surveyed functions, in this light, less as a set of instructions a student follows from first principles and more as a precise, shared vocabulary that allows a trained ear to name and correct deviations in a skill that is fundamentally built through imitation and repetition.</p>
+
+  <h3 class="section-title">The Long Middle Period: Consolidation Through Pāṭha</h3>
+  <p>The bulk of a reciter's formal training is occupied by progressive mastery of the pāṭha hierarchy described in Chapter Nine, typically requiring several years to move from confident saṃhitā- and pada-pāṭha performance through krama-pāṭha and, for those continuing to the most advanced level, jaṭā- and ultimately ghana-pāṭha. Progress through these stages is not merely a matter of accumulating memorized text; each stage, as discussed in Chapter Ten, imposes a qualitatively more demanding verification structure on the same underlying material, so that advancement represents a genuine deepening of demonstrated accuracy rather than simple additional coverage.</p>
+
+  <h3 class="section-title">Certification and the Ghanapāṭhī Standard</h3>
+  <p>As discussed in Chapter Thirteen, formal recognition as a Ghanapāṭhī — a reciter certified to have completed ghana-pāṭha for an assigned portion of Vedic text — represents the traditional culmination of this training sequence and continues to be conferred within living reciter communities today. This certification is not merely honorific; because ghana-pāṭha performance embeds each word of a passage within the dense, recursively verified structure described in Chapter Nine, successful ghana-pāṭha performance functions as strong, publicly demonstrable evidence of the specific, high-fidelity competence the entire preceding apparatus of this monograph has been engineered to produce and verify.</p>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>Ethnographic accounts of contemporary Vedic pāṭhaśāla training document a sequence broadly consistent with the stages summarized here, typically beginning in childhood and requiring a decade or more of sustained daily practice to reach ghana-pāṭha competence, with attrition at each successive stage such that only a minority of students who begin training ultimately attain the highest certified levels.</span>
+  </div>
+
+  <p>This chapter's developmental account closes the substantive body of Part One by returning the discussion to its starting point in Chapter One: Śikṣā is, at every level from its most abstract analytic categories to its most concrete daily pedagogical practice, a discipline oriented toward the single, exacting goal announced at the outset — the correct, verifiable, and transmissible production of sacred sound.</p>
+
+  <footer class="chapter-close">
+    With the full developmental arc of a reciter's training now traced, the closing chapter of Part One offers a final summary statement of the position this monograph has established.
+  </footer>
+</section>
+
+<section class="chapter" id="ch22">
+  <div class="chapter-number">Chapter Twenty-Two</div>
+  <h2 class="chapter-title">Counting as Verification: The Anukramaṇī and Numerical Indices</h2>
+
+  <p class="lead">Alongside the pāṭha methods of Chapter Nine, the tradition developed a wholly independent verification technology: exhaustive numerical counting of the very text being preserved, recorded in index texts known as <em class="skt">Anukramaṇī</em> and in numerical statements embedded within the Prātiśākhyas themselves.</p>
+
+  <h3 class="section-title">What the Anukramaṇīs Record</h3>
+  <p>An Anukramaṇī is a systematic index to a Vedic text, recording, hymn by hymn, information such as the traditional seer (ṛṣi) to whom the hymn is attributed, its deity (devatā), and its meter (chandas), together with running totals. The best known example, the Sarvānukramaṇī attributed to Kātyāyana for the Ṛgveda, catalogues every hymn of the collection along these dimensions and additionally preserves aggregate counts for the text as a whole.</p>
+
+  <h3 class="section-title">Numerical Self-Auditing in the Prātiśākhyas</h3>
+  <p>Independently of the Anukramaṇī genre, the Prātiśākhyas themselves record precise counts of the basic units of their associated text — numbers of hymns, verses, words, and in some traditions syllables — functioning as an explicit, checkable numerical fingerprint of the text at the time of counting. A reciter or community possessing an accurate manuscript or memorized text could, in principle, verify gross textual integrity simply by recounting these units and comparing the result against the transmitted figures; a significant insertion, omission, or corruption affecting the overall length of the text would in most cases be detectable through such a count, even without engaging the far more granular pāṭha-based verification of Chapter Nine.</p>
+
+  <table>
+    <caption>Levels of Vedic Textual Verification</caption>
+    <thead><tr><th>Verification Layer</th><th>Unit of Analysis</th><th>Sensitivity to Error</th></tr></thead>
+    <tbody>
+      <tr><td>Numerical counts (Anukramaṇī / Prātiśākhya totals)</td><td>Hymns, verses, words, syllables</td><td>Detects gross additions, omissions, or restructuring</td></tr>
+      <tr><td>Pada-pāṭha</td><td>Individual words</td><td>Detects incorrect word identity or boundary</td></tr>
+      <tr><td>Krama-pāṭha</td><td>Adjacent word pairs</td><td>Detects sequence and local sandhi errors</td></tr>
+      <tr><td>Ghana-pāṭha</td><td>Recursive word clusters</td><td>Detects fine-grained memory drift at high resolution</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The Anukramaṇī genre, including the Sarvānukramaṇī's systematic cataloguing of ṛṣi, devatā, and chandas for every Ṛgvedic hymn, and the practice of recording numerical totals of textual units within the Prātiśākhya literature, are well documented features of the classical Vedic auxiliary literature and are treated in modern philology as important independent witnesses for reconstructing and verifying the received text.</span>
+  </div>
+
+  <h3 class="section-title">A Layered, Not Singular, Verification Architecture</h3>
+  <p>This chapter's material makes clear that the pāṭha system examined at length in Chapter Nine, however elaborate, was never the tradition's sole safeguard against corruption. Numerical indexing operated as a coarser but independent layer of verification, sensitive to a different class of error — large-scale additions, omissions, or restructuring — than the fine-grained, word-and-boundary-level errors the pāṭha methods were engineered to expose. A complete account of Vedic transmission fidelity, this chapter's material suggests, should recognize these as complementary, differently scaled instruments within a single broader verification architecture, rather than treating pāṭha recitation as the tradition's only safeguard.</p>
+
+  <footer class="chapter-close">
+    Having surveyed the full range of the tradition's verification technologies, from individual articulatory parameters through recursive recitation methods to text-wide numerical indexing, the following reference chapter consolidates the specialized vocabulary this monograph has introduced.
+  </footer>
+</section>
+
+<section class="chapter" id="ch23">
+  <div class="chapter-number">Chapter Twenty-Three</div>
+  <h2 class="chapter-title">Glossary of Śikṣā Terminology</h2>
+
+  <p class="lead">The following glossary consolidates the principal technical terms introduced across this monograph, gathered here for reference alongside the chapter in which each is treated at length.</p>
+
+  <table>
+    <caption>Core Terminology</caption>
+    <thead><tr><th>Term</th><th>Definition</th><th>Primary Chapter</th></tr></thead>
+    <tbody>
+      <tr><td><em class="skt">Varṇa</em></td><td>The discrete sound unit; a phoneme in the modern descriptive sense</td><td>Three</td></tr>
+      <tr><td><em class="skt">Svara</em></td><td>Pitch-accent (udātta, anudātta, svarita); also used narrowly for "vowel"</td><td>Three, Seven</td></tr>
+      <tr><td><em class="skt">Mātrā</em></td><td>The unit of durational measure (hrasva, dīrgha, pluta)</td><td>Three, Eight</td></tr>
+      <tr><td><em class="skt">Bala</em></td><td>Articulatory force or emphasis</td><td>Three</td></tr>
+      <tr><td><em class="skt">Sāma</em></td><td>Evenness and consistency of sustained delivery</td><td>Three</td></tr>
+      <tr><td><em class="skt">Santāna</em></td><td>Continuity between adjacent sounds; the basis of sandhi</td><td>Three, Twelve</td></tr>
+      <tr><td><em class="skt">Sthāna</em></td><td>Place of articulation</td><td>Four</td></tr>
+      <tr><td><em class="skt">Karaṇa</em></td><td>The active articulating organ</td><td>Four</td></tr>
+      <tr><td><em class="skt">Prayatna</em></td><td>Manner and degree of articulatory effort</td><td>Five</td></tr>
+      <tr><td><em class="skt">Spṛṣṭa / Īṣatspṛṣṭa / Vivṛta / Īṣadvivṛta</em></td><td>The four grades of external (bāhya) articulatory contact</td><td>Five</td></tr>
+      <tr><td><em class="skt">Ghoṣa / Aghoṣa</em></td><td>Voiced / voiceless</td><td>Five</td></tr>
+      <tr><td><em class="skt">Alpaprāṇa / Mahāprāṇa</em></td><td>Unaspirated / aspirated</td><td>Five</td></tr>
+      <tr><td><em class="skt">Pratyāhāra</em></td><td>A compressed label naming a contiguous class of sounds from the Māheśvara Sūtras</td><td>Six</td></tr>
+      <tr><td><em class="skt">Udātta / Anudātta / Svarita</em></td><td>The three primary Vedic pitch accents</td><td>Seven</td></tr>
+      <tr><td><em class="skt">Hrasva / Dīrgha / Pluta</em></td><td>Short / long / extra-long durational grades</td><td>Eight</td></tr>
+      <tr><td><em class="skt">Saṃhitā-pāṭha</em></td><td>Continuous recitation with sandhi applied</td><td>Nine</td></tr>
+      <tr><td><em class="skt">Pada-pāṭha</em></td><td>Word-isolated recitation, sandhi undone</td><td>Nine</td></tr>
+      <tr><td><em class="skt">Krama-pāṭha</em></td><td>Overlapping word-pair recitation</td><td>Nine</td></tr>
+      <tr><td><em class="skt">Jaṭā-pāṭha / Ghana-pāṭha</em></td><td>Progressively more recursive recitation methods</td><td>Nine</td></tr>
+      <tr><td><em class="skt">Sandhi</em></td><td>Rule-governed combination of sounds at boundaries</td><td>Twelve</td></tr>
+      <tr><td><em class="skt">Ghanapāṭhī</em></td><td>A reciter formally certified in ghana-pāṭha performance</td><td>Thirteen, Twenty-One</td></tr>
+      <tr><td><em class="skt">Sāmagāna</em></td><td>Sāmavedic melodic chant performance</td><td>Fourteen</td></tr>
+      <tr><td><em class="skt">Antaḥstha</em></td><td>The semivowel class (ya, ra, la, va)</td><td>Eighteen</td></tr>
+      <tr><td><em class="skt">Ūṣman</em></td><td>The sibilant-and-aspirate class (śa, ṣa, sa, ha)</td><td>Eighteen</td></tr>
+      <tr><td><em class="skt">Ayogavāha</em></td><td>Boundary sounds outside the regular classification (anusvāra, visarga, and related allophones)</td><td>Eighteen</td></tr>
+      <tr><td><em class="skt">Apauruṣeya</em></td><td>Without personal human authorship, as the Mīmāṃsā tradition holds the Veda to be</td><td>Twenty</td></tr>
+      <tr><td><em class="skt">Śabda Pramāṇa</em></td><td>Verbal testimony as a valid source of knowledge, in Mīmāṃsā epistemology</td><td>Twenty</td></tr>
+      <tr><td><em class="skt">Anukramaṇī</em></td><td>A traditional index text cataloguing hymns by seer, deity, and meter</td><td>Twenty-Two</td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>Referenced Texts and Traditions</caption>
+    <thead><tr><th>Text / Tradition</th><th>Association</th><th>Primary Chapter</th></tr></thead>
+    <tbody>
+      <tr><td>Ṛgveda-Prātiśākhya</td><td>Śākala recension of the Ṛgveda</td><td>Two, Nineteen</td></tr>
+      <tr><td>Taittirīya Prātiśākhya</td><td>Kṛṣṇa Yajurveda</td><td>Two, Nineteen</td></tr>
+      <tr><td>Vājasaneyi Prātiśākhya</td><td>Śukla Yajurveda</td><td>Two</td></tr>
+      <tr><td>Pāṇinīya Śikṣā</td><td>General tradition, versified summary</td><td>Two</td></tr>
+      <tr><td>Nāradīya Śikṣā</td><td>Sāmavedic musical tradition</td><td>Two, Fourteen</td></tr>
+      <tr><td>Māheśvara Sūtras (Śiva Sūtras)</td><td>Pāṇinian grammatical phonetics</td><td>Six</td></tr>
+      <tr><td>Nambudiri tradition</td><td>Kerala Ṛgvedic and Yajurvedic recitation</td><td>Thirteen</td></tr>
+      <tr><td>Ghanapāṭhī tradition</td><td>Tamil Nadu and Andhra Pradesh</td><td>Thirteen</td></tr>
+      <tr><td>Sarvānukramaṇī</td><td>Attributed to Kātyāyana, indexing the Ṛgveda</td><td>Twenty-Two</td></tr>
+    </tbody>
+  </table>
+
+  <footer class="chapter-close">
+    With the full terminological apparatus of Part One now consolidated for reference, the closing chapter offers the monograph's final summary statement.
+  </footer>
+</section>
+
+<section class="chapter" id="ch24">
+  <div class="chapter-number">Chapter Twenty-Four</div>
+  <h2 class="chapter-title">A Worked Analysis: Applying the Full Apparatus to a Single Verse</h2>
+
+  <p class="lead">The preceding chapters have introduced a substantial analytic apparatus in the abstract. This chapter grounds that apparatus in a single worked example, applying the full six-fold grid of Chapter Three to the opening words of the Gāyatrī mantra, among the most widely recited verses in the Vedic corpus and a verse whose meter, Chapter Thirteen of the companion volume will note, gives its name to the Gāyatrī metrical class itself.</p>
+
+  <h3 class="section-title">The Opening Words in Pada-Pāṭha Form</h3>
+  <p>Presented in pada-pāṭha form, prior to sandhi, the opening sequence is <em class="skt">tat savituḥ vareṇyam</em>. In saṃhitā-pāṭha, continuous recitation applies vowel and consonant sandhi across these word boundaries, illustrating directly the rule-sets surveyed in Chapter Twelve.</p>
+
+  <table>
+    <caption>Varṇa-by-Varṇa Articulatory Analysis of "tat"</caption>
+    <thead><tr><th>Sound</th><th>Sthāna</th><th>Prayatna (Bāhya)</th><th>Ghoṣa/Aghoṣa</th><th>Prāṇa</th></tr></thead>
+    <tbody>
+      <tr><td>t</td><td>Dantya</td><td>Spṛṣṭa</td><td>Aghoṣa</td><td>Alpaprāṇa</td></tr>
+      <tr><td>a</td><td>Kaṇṭhya</td><td>Vivṛta</td><td>Ghoṣa</td><td>—</td></tr>
+      <tr><td>t</td><td>Dantya</td><td>Spṛṣṭa</td><td>Aghoṣa</td><td>Alpaprāṇa</td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>Varṇa-by-Varṇa Articulatory Analysis of "savituḥ"</caption>
+    <thead><tr><th>Sound</th><th>Sthāna</th><th>Prayatna (Bāhya)</th><th>Ghoṣa/Aghoṣa</th><th>Prāṇa</th></tr></thead>
+    <tbody>
+      <tr><td>s</td><td>Dantya</td><td>Īṣadvivṛta</td><td>Aghoṣa</td><td>—</td></tr>
+      <tr><td>a</td><td>Kaṇṭhya</td><td>Vivṛta</td><td>Ghoṣa</td><td>—</td></tr>
+      <tr><td>v</td><td>Dantoṣṭhya</td><td>Īṣatspṛṣṭa</td><td>Ghoṣa</td><td>—</td></tr>
+      <tr><td>i</td><td>Tālavya</td><td>Vivṛta</td><td>Ghoṣa</td><td>—</td></tr>
+      <tr><td>t</td><td>Dantya</td><td>Spṛṣṭa</td><td>Aghoṣa</td><td>Alpaprāṇa</td></tr>
+      <tr><td>u</td><td>Oṣṭhya</td><td>Vivṛta</td><td>Ghoṣa</td><td>—</td></tr>
+      <tr><td>ḥ (visarga)</td><td>Kaṇṭhya (context-dependent)</td><td>Īṣadvivṛta</td><td>Aghoṣa</td><td>Mahāprāṇa</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">Mātrā Analysis</h3>
+  <p>Applying the durational grid of Chapter Eight: every vowel in this sequence — the two occurrences of <em class="skt">a</em> in <em class="skt">tat</em> and <em class="skt">savituḥ</em>, the <em class="skt">i</em> and <em class="skt">u</em> of <em class="skt">savituḥ</em> — is hrasva, one mātrā, with no dīrgha or pluta grade present in this particular opening sequence; the metrical weight (guru/laghu, heavy/light) of each syllable for chandas purposes depends additionally on syllable closure, since a short vowel closed by a following consonant cluster counts as metrically heavy even though its vowel is durationally hrasva — a further illustration of how the mātrā category developed in Śikṣā feeds directly into the metrical calculus of Chandas as noted in Chapter Eight.</p>
+
+  <h3 class="section-title">Accentual Analysis</h3>
+  <p>Traditional accentual notation marks specific syllables of this sequence as udātta, with the remainder anudātta according to the general Vedic pattern in which accentuation is sparse relative to the total syllable count, the majority of syllables in any given Vedic pāda characteristically carrying anudātta or an accent derived by rule from an adjacent udātta rather than each syllable carrying an independently specified tone; this pattern is consistent with the broader observation, made in Chapter Seven, that Vedic pitch accent operates as a word-level and phrase-level phenomenon governed by systematic derivational rules rather than as an arbitrary syllable-by-syllable assignment.</p>
+
+  <h3 class="section-title">Sandhi Analysis Across the Boundary</h3>
+  <p>The transition from <em class="skt">savituḥ</em> to <em class="skt">vareṇyam</em> illustrates visarga sandhi directly as surveyed in Chapter Twelve: the final visarga of <em class="skt">savituḥ</em>, meeting the voiced <em class="skt">v</em> that opens the following word, is regulated according to the specific visarga-before-voiced-consonant rules catalogued in the Prātiśākhya literature, rather than being pronounced in unmodified isolation as it would appear in pure pada-pāṭha citation form.</p>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The specific articulatory values assigned to each sound in this worked analysis follow directly and uncontroversially from the sthāna, prayatna, and voicing categories established across the Prātiśākhya and Śikṣā literature surveyed in Chapters Four, Five, and Eighteen; the selection of the Gāyatrī mantra's opening words as the specific illustrative example is an expository choice made for this monograph rather than a traditional pedagogical convention, though the verse itself is among the most extensively discussed in traditional Śikṣā-adjacent commentary given its ritual prominence.</span>
+  </div>
+
+  <footer class="chapter-close">
+    This worked analysis demonstrates concretely how the abstract categories developed across this monograph combine, in practice, to produce a complete phonetic specification of even a short sequence of Vedic text. The next chapter consolidates the full sound inventory into a single comprehensive reference table.
+  </footer>
+</section>
+
+<section class="chapter" id="ch25">
+  <div class="chapter-number">Chapter Twenty-Five</div>
+  <h2 class="chapter-title">Reference Table: The Complete Sanskrit Sound Inventory</h2>
+
+  <p class="lead">This chapter gathers the complete Sanskrit sound inventory into a single consolidated reference, drawing together the sthāna, prayatna, and prāṇa values distributed across Chapters Four, Five, and Eighteen.</p>
+
+  <table>
+    <caption>Vowels (Svara in the Narrow Sense)</caption>
+    <thead><tr><th>Sound</th><th>Sthāna</th><th>Mātrā Grade</th></tr></thead>
+    <tbody>
+      <tr><td>a</td><td>Kaṇṭhya</td><td>Hrasva</td></tr>
+      <tr><td>ā</td><td>Kaṇṭhya</td><td>Dīrgha</td></tr>
+      <tr><td>i</td><td>Tālavya</td><td>Hrasva</td></tr>
+      <tr><td>ī</td><td>Tālavya</td><td>Dīrgha</td></tr>
+      <tr><td>u</td><td>Oṣṭhya</td><td>Hrasva</td></tr>
+      <tr><td>ū</td><td>Oṣṭhya</td><td>Dīrgha</td></tr>
+      <tr><td>ṛ</td><td>Mūrdhanya</td><td>Hrasva</td></tr>
+      <tr><td>ṝ</td><td>Mūrdhanya</td><td>Dīrgha</td></tr>
+      <tr><td>ḷ</td><td>Dantya</td><td>Hrasva</td></tr>
+      <tr><td>e</td><td>Kaṇṭhatālavya</td><td>Dīrgha</td></tr>
+      <tr><td>ai</td><td>Kaṇṭhatālavya</td><td>Dīrgha (diphthong)</td></tr>
+      <tr><td>o</td><td>Kaṇṭhoṣṭhya</td><td>Dīrgha</td></tr>
+      <tr><td>au</td><td>Kaṇṭhoṣṭhya</td><td>Dīrgha (diphthong)</td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>Stop Consonants by Varga</caption>
+    <thead><tr><th>Varga</th><th>Unvoiced Unaspirated</th><th>Unvoiced Aspirated</th><th>Voiced Unaspirated</th><th>Voiced Aspirated</th><th>Nasal</th></tr></thead>
+    <tbody>
+      <tr><td>Kaṇṭhya (velar)</td><td>k</td><td>kh</td><td>g</td><td>gh</td><td>ṅ</td></tr>
+      <tr><td>Tālavya (palatal)</td><td>c</td><td>ch</td><td>j</td><td>jh</td><td>ñ</td></tr>
+      <tr><td>Mūrdhanya (retroflex)</td><td>ṭ</td><td>ṭh</td><td>ḍ</td><td>ḍh</td><td>ṇ</td></tr>
+      <tr><td>Dantya (dental)</td><td>t</td><td>th</td><td>d</td><td>dh</td><td>n</td></tr>
+      <tr><td>Oṣṭhya (labial)</td><td>p</td><td>ph</td><td>b</td><td>bh</td><td>m</td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>Semivowels, Sibilants, and Ayogavāha</caption>
+    <thead><tr><th>Class</th><th>Members</th><th>Sthāna</th></tr></thead>
+    <tbody>
+      <tr><td>Antaḥstha (semivowel)</td><td>ya</td><td>Tālavya</td></tr>
+      <tr><td>Antaḥstha (semivowel)</td><td>ra</td><td>Mūrdhanya</td></tr>
+      <tr><td>Antaḥstha (semivowel)</td><td>la</td><td>Dantya</td></tr>
+      <tr><td>Antaḥstha (semivowel)</td><td>va</td><td>Dantoṣṭhya</td></tr>
+      <tr><td>Ūṣman (sibilant)</td><td>śa</td><td>Tālavya</td></tr>
+      <tr><td>Ūṣman (sibilant)</td><td>ṣa</td><td>Mūrdhanya</td></tr>
+      <tr><td>Ūṣman (sibilant)</td><td>sa</td><td>Dantya</td></tr>
+      <tr><td>Ūṣman (aspirate)</td><td>ha</td><td>Kaṇṭhya</td></tr>
+      <tr><td>Ayogavāha</td><td>Anusvāra (ṃ)</td><td>Nāsikya (context-dependent)</td></tr>
+      <tr><td>Ayogavāha</td><td>Visarga (ḥ)</td><td>Context-dependent, generally following the preceding vowel's zone</td></tr>
+      <tr><td>Ayogavāha</td><td>Jihvāmūlīya</td><td>Kaṇṭhya (before velars, as an allophone of visarga)</td></tr>
+      <tr><td>Ayogavāha</td><td>Upadhmānīya</td><td>Oṣṭhya (before labials, as an allophone of visarga)</td></tr>
+    </tbody>
+  </table>
+
+  <p>This consolidated inventory represents the complete sound-object that every category discussed across this monograph — varṇa identity, sthāna, karaṇa, prayatna, svara, mātrā, sāma, and santāna — was developed to describe, regulate, and transmit with precision. Every worked example, every pāṭha method, and every diagnostic error category surveyed in the preceding chapters operates upon exactly this inventory and no other.</p>
+
+  <footer class="chapter-close">
+    With the complete sound inventory now tabulated in a single reference, Part One's substantive content is complete. The final chapter offers the monograph's closing statement.
+  </footer>
+</section>
+
+<section class="chapter" id="ch26">
+  <div class="chapter-number">Chapter Twenty-Six</div>
+  <h2 class="chapter-title">The Extended Corpus: Further Named Śikṣā Texts</h2>
+
+  <p class="lead">Chapter Two surveyed the principal Śikṣā treatises and Prātiśākhyas most frequently cited in secondary scholarship. This chapter extends that survey to a wider circle of named texts attested within the manuscript tradition, offered here as a fuller reference picture of the corpus's genuine plurality.</p>
+
+  <table>
+    <caption>Additional Named Śikṣā Texts</caption>
+    <thead><tr><th>Text</th><th>Traditional Association</th><th>Notable Characteristic</th></tr></thead>
+    <tbody>
+      <tr><td>Vasiṣṭha Śikṣā (extended recension)</td><td>General Vedic tradition</td><td>A longer variant transmitted alongside the shorter Vasiṣṭha Śikṣā noted in Chapter Two</td></tr>
+      <tr><td>Śaunakīya Caturādhyāyikā</td><td>Atharvaveda</td><td>Functions as the Atharvavedic Prātiśākhya, in four chapters</td></tr>
+      <tr><td>Lomaśī Śikṣā</td><td>General Vedic tradition</td><td>Attributed to the sage Lomaśa; compact enumerative style</td></tr>
+      <tr><td>Cāṇḍvala Śikṣā</td><td>General Vedic tradition</td><td>Preserved in regional manuscript collections with variant readings</td></tr>
+      <tr><td>Kauhalīya Śikṣā</td><td>General Vedic tradition</td><td>Attributed to the authority Kuhala; overlaps substantially with Pāṇinīya Śikṣā material</td></tr>
+      <tr><td>Śikṣāsaṅgraha compilations</td><td>Later synthetic anthologies</td><td>Multi-text compilations gathering several independent Śikṣā treatises into a single manuscript volume, valuable for comparative study though themselves late in the tradition's history</td></tr>
+      <tr><td>Bhāradvāja Śikṣā</td><td>General Vedic tradition</td><td>Attributed to the Bhāradvāja lineage; brief versified treatment</td></tr>
+      <tr><td>Śāṅkhāyana Śikṣā</td><td>Associated with the Śāṅkhāyana school of the Ṛgveda</td><td>School-specific supplementary phonetic material</td></tr>
+      <tr><td>Vyāli Śikṣā</td><td>General Vedic tradition</td><td>Attributed to the grammarian Vyāḍi in some manuscript colophons</td></tr>
+      <tr><td>Gautamī Śikṣā</td><td>General Vedic tradition</td><td>Preserved primarily in South Indian manuscript collections</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-classical">
+    <span class="tag-label">Classical Attested</span>
+    <span>The existence of this wider circle of named Śikṣā texts, several surviving only in regional manuscript collections and not yet available in easily accessible critical editions, is documented in traditional manuscript catalogues; the degree of genuine independence versus substantial content-overlap between many of these texts and the better-known treatises surveyed in Chapter Two remains, for several of them, a matter that would require dedicated comparative manuscript study to resolve with confidence.</span>
+  </div>
+
+  <h3 class="section-title">The Practical Implication of This Plurality for Any Synthesis</h3>
+  <p>A monograph of this kind, surveying Śikṣā's categories in a unified expository sequence, necessarily draws on the broad consensus visible across this plural corpus rather than treating any single named text as uniquely authoritative. Where this monograph has stated a category or rule as "the tradition's position," that statement should be understood as describing the substantial common ground shared across the better-attested texts surveyed in Chapters Two and Twenty-Six, a common ground that, as Chapter Nineteen's comparative case study demonstrated, is genuinely extensive even where specific narrow points of technical detail show documented variation between schools.</p>
+
+  <footer class="chapter-close">
+    Having widened the textual picture, the next chapter turns to the more difficult question of how this extended corpus is layered chronologically relative to one another.
+  </footer>
+</section>
+
+<section class="chapter" id="ch27">
+  <div class="chapter-number">Chapter Twenty-Seven</div>
+  <h2 class="chapter-title">Relative Chronology: Layering the Śikṣā Textual Tradition</h2>
+
+  <p class="lead">Chapter Two flagged, in general terms, that the Prātiśākhyas are generally regarded as an older analytical layer than the shorter independent Śikṣā treatises. This chapter sets out that relative layering in more explicit terms, while maintaining appropriate caution about absolute dating.</p>
+
+  <table>
+    <caption>Approximate Relative Layers of the Śikṣā-Adjacent Corpus</caption>
+    <thead><tr><th>Layer</th><th>Representative Texts</th><th>General Character</th></tr></thead>
+    <tbody>
+      <tr><td>Earliest: embedded phonetic observation</td><td>Phonetic remarks embedded within Brāhmaṇa-period ritual and exegetical literature</td><td>Not yet systematized into an independent discipline; scattered observational remarks in the course of ritual exposition</td></tr>
+      <tr><td>Systematization: the Prātiśākhyas</td><td>Ṛgveda-Prātiśākhya, Taittirīya Prātiśākhya, Vājasaneyi Prātiśākhya, Ṛktantra</td><td>Rigorous, school-specific, comprehensive phonetic and sandhi description tied to a single recension</td></tr>
+      <tr><td>Generalization: the independent Śikṣā treatises</td><td>Pāṇinīya Śikṣā, Yājñavalkya Śikṣā, and the majority of the texts surveyed in Chapters Two and Twenty-Six</td><td>Shorter, versified, portable across schools; generalize categories established in the Prātiśākhya layer</td></tr>
+      <tr><td>Later synthesis and compilation</td><td>Śikṣāsaṅgraha-type anthologies, later commentarial elaboration</td><td>Gather, compare, and sometimes harmonize material from earlier layers; some incorporate material extending toward musical and philosophical elaboration</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tag-block tag-modern">
+    <span class="tag-label">Modern Scholarship</span>
+    <span>This four-layer relative chronology reflects the general working consensus of modern philological scholarship on the Prātiśākhya and Śikṣā corpus, though scholars caution that relative layering of this kind is considerably more secure than any attempt at fixing absolute dates, and that individual texts within each layer may themselves contain material of differing age, since Sanskrit technical texts were frequently subject to gradual accretion and later editorial revision even after their core content had stabilized.</span>
+  </div>
+
+  <h3 class="section-title">Why Absolute Dating Remains Difficult</h3>
+  <p>The difficulty of assigning firm absolute dates to this literature stems from several compounding factors: the texts themselves rarely contain explicit internal dating information of the kind found in some other ancient literatures; traditional attributions to named sages often reflect lineage or school affiliation rather than literal individual authorship in the modern sense; and the oral transmission methods this monograph has surveyed at length, while extraordinarily effective at preserving phonetic content with fidelity, were not primarily designed to preserve information about a text's date or place of composition. Modern philology therefore relies on indirect evidence — linguistic archaism, cross-reference patterns between texts, and citation in datable external sources — to establish the relative layering summarized in the table above, while generally declining to assign confident absolute dates to individual texts within the independent Śikṣā treatise layer.</p>
+
+  <h3 class="section-title">Layering as a Aid to, Not a Substitute for, Content Analysis</h3>
+  <p>This chapter's chronological material is offered as a supplement to, not a replacement for, the content-based analysis pursued throughout the rest of this monograph. Knowing that the Prātiśākhya layer is generally older than the independent Śikṣā treatise layer helps a reader calibrate expectations about which texts are likely to preserve the more conservative, school-specific detail examined in Chapter Nineteen's comparative case study, and which are more likely to reflect later generalization or, in some cases as noted in Chapter Fourteen, extension into adjacent domains such as Sāmavedic music. It does not, by itself, settle any specific technical question about articulation, accent, or duration, each of which must be assessed on the specific textual evidence examined in the relevant chapter.</p>
+
+  <footer class="chapter-close">
+    With the corpus now situated both in its full textual breadth and in its relative chronological layering, the monograph turns to its final closing statement.
+  </footer>
+</section>
+
+<section class="chapter" id="ch28">
+  <div class="chapter-number">Chapter Twenty-Eight</div>
+  <h2 class="chapter-title">Closing Position of Part I</h2>
+
+  <p class="lead">Part One of this monograph has treated Śikṣā strictly as what the textual record shows it to be: a technical discipline of articulatory and prosodic phonetics, developed across a plural, school-anchored textual corpus, organized around a compact set of analytic categories, realized through a demanding, physically embodied training regimen, extended into a musical register in Sāmavedic chant, supported by an engineered system of recitation methods designed to guarantee transmission fidelity across generations, and confirmed to a substantial degree by both the discipline's own living continuation and by independent modern instrumental phonetics.</p>
+
+  <div class="diagram-flow">
+    <span class="node">Varṇa · Svara · Mātrā</span>
+    <span class="arrow">→</span>
+    <span class="node">Sthāna · Karaṇa · Prayatna</span>
+    <span class="arrow">→</span>
+    <span class="node">Pāṭha Systems</span>
+    <span class="arrow">→</span>
+    <span class="node">Verified Oral Transmission</span>
+  </div>
+
+  <p>Nothing in the preceding twenty-five chapters has required, or depended upon, any claim about the metaphysical status of sound, the nature of consciousness, or the theological significance of correct recitation. Those questions belong to a different, later stratum of Indian intellectual history — one that draws on Śikṣā's categories and its achieved technology of embodied, verified transmission, but that asks a different order of question, moving from "how is sound correctly produced and preserved" to "what does it mean that sound can be produced and preserved with such precision, and what is the relationship between the articulated word and the understanding it eventually gives rise to."</p>
+
+  <div class="tag-block tag-synthesis">
+    <span class="tag-label">AI Synthesis</span>
+    <span>The decision to treat Part One as strictly technical and to reserve philosophical, aesthetic, and Tantric material for a separate companion volume is a methodological choice made by this monograph, intended to keep established philology clearly distinguished from interpretive synthesis; it reflects the same evidentiary discipline announced at the outset of the source material this series expands, namely that historical description of Śikṣā literature should not be silently merged with later philosophical elaboration.</span>
+  </div>
+
+  <p>The companion volume to this monograph, Śikṣā II — From Articulated Sound to Aesthetic Revelation, takes up precisely that further question: it follows the trajectory from the fixed, verified phonetic object that Part One has described, through the philosophical elaboration of speech into the four-level Vāk doctrine, through the concept of nāda as resonance across musical and contemplative traditions, and onward toward the aesthetic theories of dhvani and rasa in which classical Indian thought asks how articulate expression becomes lived experience.</p>
+
+  <div class="divider">◆ ◆ ◆</div>
+
+  <p>What Part One has established, and what should be carried forward as a stable foundation into any of that later, more speculative material, is this: the precision with which later traditions could speak about sound as a vehicle of revelation, resonance, or aesthetic suggestion was made possible only because an earlier, rigorously technical tradition had already done the harder and less celebrated work of fixing, analyzing, and reliably transmitting the sound itself. Śikṣā is not a mystical doctrine dressed in technical language. It is a technical achievement — comparable in its rigor and its historical consequence to any of the great classificatory sciences of the ancient world — upon which later, more speculative structures were subsequently built.</p>
+
+  <footer class="chapter-close">
+    End of Part One. Continue to Śikṣā II — From Articulated Sound to Aesthetic Revelation for the philosophical and aesthetic extension of this material.
+  </footer>
+</section>
+
+</div>
+</body>
+</html>
