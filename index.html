@@ -1538,5 +1538,1244 @@
 </section>
 
 </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part III — From Śabda-Brahman to the Threshold of Nāṭya</title>
+<style>
+  :root{
+    --ink:#211a15;
+    --ink-soft:#4a3f36;
+    --page:#f2ead9;
+    --page-panel:#e8dec7;
+    --rule:#c9b98f;
+    --vermilion:#9c3b2e;
+    --ochre:#a9761f;
+    --teal:#33564f;
+    --gold:#8a6a1f;
+    --shadow: rgba(33,26,21,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top left, rgba(156,59,46,0.05), transparent 45%),
+      radial-gradient(ellipse at bottom right, rgba(51,86,79,0.06), transparent 50%),
+      var(--page);
+    color:var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    line-height:1.75;
+    font-size:18px;
+  }
+  .frame{
+    max-width:840px;
+    margin:0 auto;
+    padding:72px 34px 140px;
+  }
+  header.masthead{
+    text-align:center;
+    margin-bottom:64px;
+    padding-bottom:38px;
+    border-bottom:2px solid var(--rule);
+    position:relative;
+  }
+  header.masthead::after{
+    content:"";
+    position:absolute;
+    bottom:-9px; left:50%;
+    transform:translateX(-50%);
+    width:120px; height:16px;
+    background:
+      repeating-linear-gradient(90deg,
+        var(--vermilion) 0 8px,
+        transparent 8px 16px);
+    opacity:0.55;
+  }
+  .eyebrow{
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    font-size:12.5px;
+    color:var(--vermilion);
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    margin-bottom:18px;
+  }
+  h1.title{
+    font-size:2.55rem;
+    margin:0 0 14px;
+    color:var(--ink);
+    font-weight:normal;
+    letter-spacing:0.01em;
+  }
+  .subtitle{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:1.08rem;
+    max-width:600px;
+    margin:0 auto;
+  }
+  .devanagari-strip{
+    font-size:1.4rem;
+    color:var(--ochre);
+    margin-top:22px;
+    letter-spacing:0.06em;
+  }
+
+  nav.contents{
+    background:var(--page-panel);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:26px 30px;
+    margin-bottom:70px;
+  }
+  nav.contents h2{
+    font-size:0.82rem;
+    text-transform:uppercase;
+    letter-spacing:0.24em;
+    color:var(--vermilion);
+    margin:0 0 16px;
+    font-family:"Trebuchet MS", Verdana, sans-serif;
+    font-weight:normal;
+  }
+  nav.contents ol{
+    columns:2;
+    column-gap:36px;
+    margin:0;
+    padding-left:20px;
+    font-size:0.95rem;
+  }
+  nav.contents li{margin-bottom:7px;}
+  nav.contents a{color:var(--ink-soft); text-decoration:none; border-bottom:1px dotted var(--rule);}
+  nav.contents a:hover{color:var(--vermilion);}
+
+  section.topic{
+    margin-bottom:78px;
+    scroll-margin-top:30px;
+  }
+  .topic-number{
+    display:inline-block;
+    font-family:"Trebuchet MS", Verdana, sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.2em;
+    color:#fff;
+    background:var(--vermilion);
+    padding:4px 12px;
+    border-radius:2px;
+    margin-bottom:16px;
+  }
+  h2.topic-title{
+    font-size:1.72rem;
+    margin:0 0 26px;
+    font-weight:normal;
+    color:var(--ink);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:14px;
+  }
+  h3.sub-title{
+    font-size:1.18rem;
+    color:var(--teal);
+    font-weight:normal;
+    font-style:italic;
+    margin:34px 0 14px;
+  }
+  p{margin:0 0 18px;}
+  .lede{
+    font-size:1.08rem;
+    color:var(--ink-soft);
+  }
+  .lede::first-letter{
+    font-size:3.1rem;
+    float:left;
+    line-height:0.82;
+    padding-right:10px;
+    padding-top:4px;
+    color:var(--vermilion);
+    font-family: Georgia, serif;
+  }
+
+  blockquote.sanskrit{
+    margin:26px 0;
+    padding:18px 26px;
+    background:var(--page-panel);
+    border-left:4px solid var(--ochre);
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+  blockquote.sanskrit cite{
+    display:block;
+    margin-top:8px;
+    font-style:normal;
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+
+  .callout{
+    margin:28px 0;
+    padding:22px 28px;
+    border:1px solid var(--rule);
+    background:rgba(51,86,79,0.05);
+    border-left:4px solid var(--teal);
+  }
+  .callout h4{
+    margin:0 0 10px;
+    font-size:0.98rem;
+    color:var(--teal);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-family:"Trebuchet MS", Verdana, sans-serif;
+    font-weight:normal;
+  }
+  .callout.caution{border-left-color:var(--vermilion); background:rgba(156,59,46,0.05);}
+  .callout.caution h4{color:var(--vermilion);}
+  .callout.etym{border-left-color:var(--ochre); background:rgba(169,118,31,0.06);}
+  .callout.etym h4{color:var(--ochre);}
+  .callout.compare-phil{border-left-color:#5b3a8a; background:rgba(91,58,138,0.06);}
+  .callout.compare-phil h4{color:#5b3a8a;}
+  .callout.historiog{border-left-color:#2e5c7a; background:rgba(46,92,122,0.06);}
+  .callout.historiog h4{color:#2e5c7a;}
+  .callout.west{border-left-color:#7a5c2e; background:rgba(122,92,46,0.06);}
+  .callout.west h4{color:#7a5c2e;}
+
+  table.compare{
+    width:100%;
+    border-collapse:collapse;
+    margin:28px 0;
+    font-size:0.96rem;
+  }
+  table.compare th{
+    text-align:left;
+    background:var(--ink);
+    color:var(--page);
+    padding:10px 14px;
+    font-weight:normal;
+    letter-spacing:0.04em;
+  }
+  table.compare td{
+    padding:10px 14px;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  table.compare tr:nth-child(even) td{background:rgba(201,185,143,0.18);}
+
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin:56px 0;
+    color:var(--ochre);
+  }
+  .divider span{font-size:1.1rem;}
+  .divider::before, .divider::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:var(--rule);
+  }
+
+  footer.colophon{
+    text-align:center;
+    margin-top:90px;
+    padding-top:30px;
+    border-top:2px solid var(--rule);
+    color:var(--ink-soft);
+    font-size:0.9rem;
+    font-style:italic;
+  }
+
+  @media (max-width:640px){
+    body{font-size:16.5px;}
+    .frame{padding:44px 18px 100px;}
+    h1.title{font-size:1.9rem;}
+    nav.contents ol{columns:1;}
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+<header class="masthead">
+  <div class="eyebrow">Part III · Section C — Continued</div>
+  <h1 class="title">From Śabda-Brahman to the Threshold of Nāṭya</h1>
+  <p class="subtitle">Language, aesthetic suggestion, and the philosophical passage from grammar to embodied performance, read through Bhartṛhari, Ānandavardhana, and Abhinavagupta.</p>
+  <div class="devanagari-strip">शब्द · स्फोट · ध्वनि · रस · अभिनय</div>
+</header>
+
+<nav class="contents">
+  <h2>Contents of this Part</h2>
+  <ol>
+    <li><a href="#s24">24 — The Concept of Śabda-Brahman</a></li>
+    <li><a href="#s25">25 — Language as Creative Power</a></li>
+    <li><a href="#s26">26 — From Language to Aesthetic Experience</a></li>
+    <li><a href="#s27">27 — Abhinavagupta and the Expansion of Consciousness</a></li>
+    <li><a href="#s28">28 — The Aesthetic Subject</a></li>
+    <li><a href="#s29">29 — Revelation and Recognition</a></li>
+    <li><a href="#s30">30 — Dhvani and the Invisible Dimension of Art</a></li>
+    <li><a href="#s31">31 — The Philosophical Movement Toward Nāṭya</a></li>
+    <li><a href="#s32">32 — Toward the Karaṇa Register</a></li>
+    <li><a href="#s33">33 — Closing Reflection: From Sound to Movement</a></li>
+    <li><a href="#s34">34 — The Buddhist Apoha Challenge to Sphoṭa</a></li>
+    <li><a href="#s35">35 — Key Verses of the Vākyapadīya and Dhvanyāloka Revisited</a></li>
+    <li><a href="#s36">36 — Colonial and Post-Colonial Historiography of Sanskrit Poetics</a></li>
+    <li><a href="#s37">37 — The Twentieth-Century Comparative Turn</a></li>
+    <li><a href="#s38">38 — Saussure, Peirce, and the Semiotics of Sphoṭa</a></li>
+    <li><a href="#s39">39 — Merleau-Ponty and the Phenomenology of Embodied Meaning</a></li>
+    <li><a href="#s40">40 — Concluding Synthesis: Convergences and Divergences</a></li>
+    <li><a href="#trans">Transition to Part IV</a></li>
+  </ol>
+</nav>
+
+<section class="topic" id="s24">
+  <span class="topic-number">Section 24</span>
+  <h2 class="topic-title">The Concept of Śabda-Brahman</h2>
+
+  <p class="lede">No concept in the grammarian tradition of India has been more persistently misread, in both directions, than śabda-brahman — the proposition, most fully articulated by Bhartṛhari in the opening verses of the Vākyapadīya, that the linguistic principle (śabda-tattva) is not merely an instrument of communication appended to a prior, wordless reality, but is itself continuous with brahman, the undivided ground of being. To call śabda "brahman" is not, in Bhartṛhari's usage, a devotional flourish. It is a precise ontological claim: that the capacity for differentiation, for the arising of one thing as distinct from another, is inseparable from the capacity for naming, and that both are expressions of a single underlying reality that discloses itself as much through language as through form.</p>
+
+  <p>The claim has a technical shape that is easy to lose beneath its mystical resonance. Bhartṛhari inherits from the earlier grammarians, and especially from the tradition running through Pāṇini and the Mahābhāṣya of Patañjali, a conviction that the word is not secondary to the object it names. Where the Naiyāyika treats the relation between word and meaning (śabda and artha) as a conventional link established by human agreement or divine stipulation (saṃketa), and where the Mīmāṃsaka treats the Veda's authority as resting on the eternal, uncreated, and impersonal fixity of word-meaning relations without needing to invoke a metaphysical ground of consciousness, Bhartṛhari goes further. For him, the very possibility of cognition (pratyaya) arriving at a determinate object is already linguistically structured — there is no pre-verbal, pre-conceptual layer of experience that language subsequently labels. This thesis, sometimes rendered as "there is no cognition in the world that does not proceed by the interweaving of word" (na so 'sti pratyayo loke yaḥ śabdānugamād ṛte), is the philosophical engine that makes śabda-brahman coherent: if all determinate awareness is already word-permeated, then the ground of awareness and the ground of word cannot be metaphysically distinct.</p>
+
+  <p>It is important to see what this does and does not commit Bhartṛhari to. It does not commit him to the claim that ordinary spoken words, in their gross phonetic sequence, are themselves brahman. The gross utterance (vaikharī vāk) is only the outermost, most differentiated stage of a process that Bhartṛhari and later commentators describe as unfolding through subtler levels — paśyantī, the "seeing" or undifferentiated level at which meaning is grasped as an integral flash prior to sequence, and madhyamā, an intermediate mental stage — before it externalizes as audible speech. Śabda-brahman properly names the principle at the paśyantī level and beyond: the linguistic capacity of consciousness itself, prior to its fragmentation into the sequential, temporally extended sounds of ordinary speech. The sphoṭa, the indivisible meaning-bearing unit discussed in the monograph's earlier sections, is best understood as the point at which this deeper linguistic reality becomes cognitively available to an ordinary hearer, even though the hearer experiences it only through the mediation of successive phonemes.</p>
+
+  <div class="callout">
+    <h4>Why this matters philosophically</h4>
+    <p>Śabda-brahman reframes the classical Indian debate about the relation of language to reality. It is not a theory that language merely mirrors a mind-independent world (a correspondence theory), nor a theory that language is arbitrary convention with no purchase on reality (a strict conventionalism). It proposes instead that differentiation itself — the very condition for there being a "this" as opposed to a "that" — is linguistic in structure, and that this structuring principle is ontologically continuous with ultimate reality. This is why later readers so easily, and so problematically, assimilated Bhartṛhari's grammar to non-dual metaphysics.</p>
+  </div>
+
+  <h3 class="sub-title">Historical Distinction</h3>
+  <p>The temptation to collapse śabda-brahman into every later Indian doctrine of sacred or mystical sound is one that a careful history of ideas must resist. Bhartṛhari's śabda-brahman is a grammarian's metaphysics, argued through close analysis of sentence-meaning, the unity of the sphoṭa, and the relation between temporal sequence and non-sequential apprehension. It is not, in its fifth-century context, a theory of mantra-śakti, nor a doctrine of nāda-brahman as later articulated in Tantric and Śākta sources, nor identical with the Upaniṣadic identification of speech (vāc) with brahman in texts such as the Bṛhadāraṇyaka. Each of these traditions concerns itself with sound and ultimacy, and each engaged with, absorbed, or reinterpreted Bhartṛhari's vocabulary at different historical moments — but engagement is not identity. The Kashmir Śaiva reception of Bhartṛhari, mediated through Utpaladeva and later through Abhinavagupta himself, explicitly reworks paśyantī and śabda-brahman within a theology of Śiva as vimarśa, self-referential consciousness — a genuinely new synthesis, not a restatement. To flatten these into "the Indian theory of sacred sound" erases exactly the kind of intellectual labor — argument, disagreement, selective borrowing — that a serious historiography of Indian philosophy is obligated to preserve.</p>
+
+  <p>The scholarly stakes of this distinction are not merely pedantic. Twentieth-century comparative philosophy, eager to find in Indian thought a counterpart to Western logos-theology, frequently used "śabda-brahman" as a catch-all gloss for any Indian claim that sound is sacred or creative, from Vedic cosmogony to Tantric japa practice to devotional kīrtana. This flattening obscures the fact that Bhartṛhari's argument is answerable to specific opponents — the Mīmāṃsā theory of eternal but non-conscious word-meaning relations, the Buddhist apoha theory of meaning as exclusion, the Naiyāyika theory of convention — and that its force depends on engaging those opponents on their own terms. A monograph that moves from grammar to aesthetics to embodied performance, as this one does, must therefore treat śabda-brahman as a specific station in an argument, not as a free-floating symbol of "the mystical power of sound in India" that can be invoked wherever convenient.</p>
+
+  <div class="callout etym">
+    <h4>Etymological Note — śabda, brahman, sphoṭa</h4>
+    <p>The word śabda derives from a root generally connected with the idea of sound as such (śabd-, "to make a sound"), and in the grammarian tradition it carries a technical range running from raw acoustic phenomenon to fully formed linguistic unit — a range the Vākyapadīya is largely occupied with sorting into levels. Brahman, from the root bṛh, "to grow, to expand, to make great," names in Upaniṣadic usage the principle of unlimited expansion or plenitude underlying the cosmos; joining śabda to brahman is therefore not a casual pairing of "word" with "the divine" but a claim that the expansive, all-encompassing principle named brahman elsewhere in Vedāntic literature is, in Bhartṛhari's grammar, specifically the linguistic principle. Sphoṭa, in turn, comes from the root sphuṭ, "to burst forth, to become manifest," and names the moment at which meaning "bursts open" or becomes manifest to a hearer out of the otherwise meaning-inert sequence of phonemes — an etymology that itself encodes the theory's central claim, that meaning is not built up additively from parts but disclosed as a sudden, non-sequential unity.</p>
+  </div>
+
+  <div class="callout compare-phil">
+    <h4>Comparative Philosophy — The Naiyāyika and Mīmāṃsaka Alternatives</h4>
+    <p>Bhartṛhari's position becomes sharper when set directly against its two principal rivals. The Naiyāyika, working within a realist ontology of discrete substances, qualities, and relations, treats the word-meaning relation as established by śakti, a capacity conferred on a word by the will of Īśvara (God) or by settled human convention (saṃketa) — a view that keeps language and world metaphysically separate, with language functioning as an external labeling system applied to an already fully differentiated reality. The Mīmāṃsaka, by contrast, denies any need for a conscious agent behind word-meaning relations at all: for the Bhāṭṭa and Prābhākara schools of Mīmāṃsā, the connection between word and meaning is autpattika, "inherent from the beginning," eternal and impersonal, which is precisely what secures the Veda's authority independent of any human or divine author. Both positions, for all their disagreement with each other, agree that word-meaning relations can be specified without recourse to a metaphysics of consciousness. Bhartṛhari's innovation is to insist that this shared assumption is exactly what fails: because all determinate cognition is already word-permeated, no account of language that treats meaning-relations as external stipulations layered onto a pre-linguistic world can be complete. This is the specific philosophical work that śabda-brahman is doing — not asserting a vague mysticism of sound, but closing a gap that Bhartṛhari believed both of his major rivals left open.</p>
+  </div>
+
+  <div class="callout historiog">
+    <h4>Historiographical Note</h4>
+    <p>The modern scholarly recovery of Bhartṛhari owes a great deal to the critical editions and translations produced across the twentieth century by scholars including K. A. Subramania Iyer, whose edition and translation of the Vākyapadīya remains a standard reference point, and to the interpretive work of philosophers such as Bimal Krishna Matilal, who situated Bhartṛhari's sphoṭa theory within the broader landscape of classical Indian philosophy of language and logic for an Anglophone academic audience. Earlier colonial-era Orientalist scholarship, working with more limited manuscript access and often filtered through comparisons to Neoplatonist or Christian logos-theology, tended to read śabda-brahman as a piece of "Hindu mysticism" rather than as a technically argued position answerable to identifiable rival schools — a reading that later, more philologically grounded scholarship has substantially revised by reconstructing the specific polemical context in which Bhartṛhari wrote.</p>
+  </div>
+</section>
+
+<section class="topic" id="s25">
+  <span class="topic-number">Section 25</span>
+  <h2 class="topic-title">Language as Creative Power</h2>
+
+  <p class="lede">If śabda-brahman establishes that language is ontologically fundamental rather than derivative, the next claim follows with a certain inevitability: speech (vāc) cannot be a passive mirror held up to a world that is already fully formed prior to its naming. Speech has a productive dimension. This is not a claim that words magically conjure physical objects into existence — Bhartṛhari is not proposing that saying "jar" creates a jar. The claim is narrower and more defensible: that the very individuation of experience into discrete, communicable, cognitively stable units — the organization of a continuous perceptual flux into "this pot," "that tree," "this action, now completed" — is accomplished through the categories that language supplies.</p>
+
+  <p>This productive or "creative" dimension of language operates at several levels simultaneously. At the level of everyday cognition, language supplies the universals (jāti, sāmānya) under which particulars are recognized as instances of a kind; without the linguistic category "cow," the recurring perceptual pattern that we call a cow would not organize itself into a stable, re-identifiable object of knowledge. At the level of temporal experience, language supplies the grammatical categories — tense, aspect, agency — through which an undifferentiated flow of sensation is parsed into events with beginnings, middles, and ends: an action becomes narratable, and therefore thinkable as an action, only once it has been organized by verbal categories. At the level of shared knowledge, language is what allows a cognition arising privately in one mind to become communicable, transferable, and cumulative — the condition for tradition (āgama, śāstra) itself. Each of these is a sense in which speech "organizes experience," "creates conceptual worlds," and "allows knowledge to become communicable," without requiring the far stronger and philosophically implausible claim that language creates matter.</p>
+
+  <h3 class="sub-title">Interpretive Parallel: Language and Movement</h3>
+  <p>The monograph's larger argument depends on drawing out a structural analogy between this linguistic thesis and a parallel question in the theory of dance: does bodily movement merely illustrate a meaning that exists independently of it — a kind of semaphore, translating a prior thought into gesture for an audience that could, in principle, receive the same content some other way — or does movement itself generate meaning that could not exist, or could not exist in the same form, without the movement? The karaṇa tradition, examined at length in Part IV of this monograph, answers this question in terms structurally continuous with Bhartṛhari's answer about speech. A karaṇa is not the illustration of an idea that pre-exists it in some more basic, non-kinetic form; the coordinated combination of hand, foot, and body that constitutes a karaṇa is the very medium through which certain ideas — rhythm, dramatic tension, the qualities of a mythological figure's movement through space — become perceptible at all. Just as there is, for Bhartṛhari, no pre-verbal cognition that language subsequently packages, there is, on this reading, no pre-kinetic dramatic meaning that movement subsequently illustrates.</p>
+
+  <div class="callout">
+    <h4>Scope of the analogy</h4>
+    <p>This parallel is offered by the monograph as an interpretive framework for organizing the relationship between two independently developed traditions — grammatical philosophy and dance theory — that share a structural problem (does a medium represent or generate meaning?) without sharing a lineage of direct historical transmission. It is not a historical claim that the authors or compilers of the karaṇa tradition read the Vākyapadīya, consciously modeled their theory of movement on sphoṭa theory, or intended any such correspondence. The value of the analogy is heuristic: it allows the vocabulary developed with great rigor in the linguistic tradition — the distinction between instrumental and constitutive relations between medium and meaning — to illuminate a genuinely parallel problem in a different expressive domain.</p>
+  </div>
+
+  <p>Reading the two traditions side by side also exposes a asymmetry worth registering. Bhartṛhari's argument proceeds through centuries of formal philosophical elaboration — commentaries, sub-commentaries, polemical exchanges with Mīmāṃsakas, Naiyāyikas, and Buddhist logicians, each testing the coherence of sphoṭa and śabda-brahman against rival theories of meaning. The karaṇa tradition, by contrast, survives to us largely through prescriptive and descriptive textual accounts (principally the Nāṭyaśāstra and its commentaries), through sculptural representation, and through living performance lineages that have reconstructed, rather than continuously preserved, much of the original kinetic vocabulary. The interpretive parallel therefore operates across traditions of very different evidentiary density, and a rigorous reading must keep that asymmetry visible rather than letting the elegance of the analogy paper over the different kinds and quantities of evidence available for each side of the comparison.</p>
+
+  <div class="callout west">
+    <h4>Western Parallel — Saussure and the Question of the Arbitrary Sign</h4>
+    <p>Ferdinand de Saussure's Cours de linguistique générale, foundational for twentieth-century structuralism, opens from a premise that appears superficially similar to Bhartṛhari's — that the linguistic sign is not a label attached to a pre-existing thing but a relation between a signifier (signifiant) and a signified concept (signifié) that only jointly constitute the sign — yet the two theories diverge sharply once pressed. Saussure's arbitrariness thesis holds that the bond between signifier and signified is unmotivated and fixed only by social convention within a given langue, a position closer in spirit to the Naiyāyika's saṃketa than to Bhartṛhari's sphoṭa. Bhartṛhari's sphoṭa, unlike Saussure's signifier, is not one term in a two-term relational structure external to consciousness; it is itself a mode of cognition's own linguistic structuring, continuous with śabda-brahman. Where Saussurean structuralism locates meaning in a system of differences among signs (a view later radicalized by post-structuralist critique), Bhartṛhari locates meaning in a non-sequential unity (sphoṭa) that is subsequently, and only for the purpose of communication, unpacked into a sequence of differentiated sounds. The comparison is instructive precisely at the point where it breaks down: both theories deny that language is a simple nomenclature for pre-existing things, but they diverge fundamentally on whether the alternative structure is conventional-relational (Saussure) or cognitive-ontological (Bhartṛhari).</p>
+  </div>
+</section>
+
+<section class="topic" id="s26">
+  <span class="topic-number">Section 26</span>
+  <h2 class="topic-title">The Transition from Language to Aesthetic Experience</h2>
+
+  <p class="lede">The movement from sphoṭa to dhvani — from a theory of how linguistic units cohere into determinate meaning, to a theory of how poetic and dramatic works generate meaning that exceeds their determinate content — marks one of the genuine hinge-points in the history of Indian intellectual culture. It is a shift from a philosophy of linguistic structure to a philosophy of aesthetic experience, and the shift is not merely thematic; it is a shift in the very object under analysis.</p>
+
+  <p>Grammatical philosophy, even at its most metaphysically ambitious in Bhartṛhari, is fundamentally concerned with the conditions under which an utterance succeeds in conveying a determinate cognition (śābda-bodha) to a competent hearer. Its central question is epistemic: how does understanding happen, and what must be true of language for it to happen reliably? Dhvani theory, developed most influentially by Ānandavardhana in the ninth-century Dhvanyāloka and elaborated by Abhinavagupta in his commentary the Locana, begins precisely where this question has already been answered. It takes for granted that the literal, denotative meaning of a poetic utterance (vācyārtha) is grasped without special difficulty, and asks a different question entirely: what happens after that meaning has been understood? Why does a well-formed poetic line do something to a competent reader that a semantically equivalent prose statement of the "same" content manifestly does not do?</p>
+
+  <p>Ānandavardhana's answer is that poetic language possesses a further semantic function beyond denotation (abhidhā) and the secondary, metaphor-licensing function of indication (lakṣaṇā): a suggestive function (vyañjanā) through which a further sense — an emotion, a scene, an implication, a figure of speech recognized as such — is evoked (dhvanita) without being stated. This suggested sense, dhvani, is held by its theorists to be the very soul (ātman) of poetry: a poem whose suggested content is negligible or merely ornamental is judged aesthetically inferior to one in which the suggested sense is the primary object of appreciation, however faint or indirect its verbal triggering. The transition from sphoṭa to dhvani is thus a transition from asking how words mean to asking how much more than their stated meaning a well-made utterance can be made to carry, and how that "more" becomes an object of aesthetic, rather than merely propositional, appreciation.</p>
+
+  <div class="callout">
+    <h4>The recurring question</h4>
+    <p>What happens after meaning is understood? Dhvani theory's entire apparatus — its taxonomy of suggestion-types, its account of rasa-dhvani as the highest form of suggestion, its polemics against rival theories that tried to reduce suggestion to a species of metaphor or logical implicature — exists to answer this single question with the precision that Bhartṛhari brought to the prior question of how meaning is understood at all.</p>
+  </div>
+
+  <div class="callout etym">
+    <h4>Etymological Note — dhvani and vyañjanā</h4>
+    <p>Dhvani, from the root dhvan, "to sound, to reverberate," carries its acoustic sense directly into its technical aesthetic usage: the suggested meaning of a poem is conceived as a resonance that continues after the literal utterance has ceased to sound, exactly as a struck bell's overtone lingers after the strike itself. Vyañjanā, from vi + añj, "to anoint, to make manifest, to reveal by a kind of illuminating touch," names the semantic operation by which this resonant sense is brought forth — a verb whose root sense of anointing or illuminating is worth holding onto against the more clinical English gloss "suggestion," since it implies a manifesting or bringing-to-light rather than a merely probabilistic hint.</p>
+  </div>
+
+  <div class="callout historiog">
+    <h4>Historiographical Note — The Modern Rediscovery of Dhvani</h4>
+    <p>Dhvani theory's centrality to classical Indian aesthetics is in some measure a modern scholarly achievement as much as an ancient one. Sushil Kumar De's early twentieth-century History of Sanskrit Poetics did much to establish dhvani theory's historical importance for an Anglophone readership, but it was the monumental annotated translation of the Dhvanyāloka and Locana by Daniel H. H. Ingalls, Jeffrey Moussaieff Masson, and M. V. Patwardhan, published by the Harvard Oriental Series in 1990, that made Ānandavardhana's and Abhinavagupta's arguments accessible in their full technical density to a global scholarly audience, complete with the polemical exchanges against rival theories (such as the anumitivāda, or "inference theory," of suggestion) that earlier, more summary accounts had often flattened. Comparable foundational work in Sanskrit-medium scholarship, by figures such as P. V. Kane in his History of Sanskrit Poetics, established the philological groundwork on which this later interpretive synthesis could build. The tradition's prominence in contemporary comparative aesthetics is thus inseparable from this specific, datable twentieth-century scholarly labor of edition, translation, and annotation.</p>
+  </div>
+</section>
+
+<section class="topic" id="s27">
+  <span class="topic-number">Section 27</span>
+  <h2 class="topic-title">Abhinavagupta and the Expansion of Consciousness</h2>
+
+  <p class="lede">Abhinavagupta's reading of rasa theory, articulated principally in his Abhinavabhāratī commentary on Bharata's Nāṭyaśāstra and in the Locana on Ānandavardhana's Dhvanyāloka, is the point at which dhvani theory's account of poetic suggestion is fused with a considerably more ambitious philosophy of consciousness drawn from non-dual Kashmir Śaivism. For Abhinavagupta, the encounter with rasa — the "flavor" or aesthetic sentiment of a dramatic or poetic work, such as the erotic (śṛṅgāra), the heroic (vīra), or the tranquil (śānta) — cannot be adequately explained as an ordinary emotional reaction, of the kind one has upon witnessing an event in one's own life.</p>
+
+  <p>The reason is structural. An ordinary emotion is tied to a particular subject, a particular object, and a particular set of practical stakes: my grief is grief for my loss, entangled with my history, my desires, my vulnerability to further loss. Rasa, by contrast, is experienced by a spectator who knows, at every moment, that the events on stage are not really happening to them and involve no practical stakes of their own — and yet the aesthetic emotion generated is not therefore weaker or more superficial than ordinary emotion; competent theorists insist it is, if anything, more intensely and more purely savored (āsvādyate) precisely because it has been detached from personal entanglement. Abhinavagupta's philosophical contribution is to explain this detachment not as a deficiency of rasa (a merely "as-if" emotion) but as a form of universalization (sādhāraṇīkaraṇa): the represented emotion, freed of its tie to any particular agent's biography, becomes an occasion through which the spectator's own capacity for that emotional coloring — a capacity understood, in Abhinavagupta's non-dual framework, as always already latently present within consciousness itself — is activated and tasted in a generalized, depersonalized form.</p>
+
+  <p>This is why Abhinavagupta insists that aesthetic experience involves a transformation of ordinary awareness rather than a mere addition of one more mental content to an unchanged subject. In witnessing rasa, the spectator's habitual identification with the narrow, biographically bound "I" (which Kashmir Śaiva philosophy treats as itself a kind of contraction, saṅkoca, of a more fundamental and universal consciousness, prakāśa-vimarśa) is momentarily loosened. The spectator moves, in Abhinavagupta's account, from a condition of personal limitation toward a condition that mirrors — without permanently achieving — the non-dual, universal awareness that his metaphysics takes to be the ultimate nature of consciousness as such. Aesthetic experience, on this reading, is a controlled and temporary rehearsal of liberation (mokṣa), which is why later tradition sometimes speaks of rasa as "brahmāsvāda sahodara," a sibling to the taste of the absolute.</p>
+
+  <div class="callout caution">
+    <h4>A scholarly caution</h4>
+    <p>It is worth flagging, in the interest of historical precision, that this identification of aesthetic experience with a rehearsal of spiritual liberation is Abhinavagupta's own synthesis, developed at the confluence of dramaturgical theory (Bharata), poetics (Ānandavardhana), and Kashmir Śaiva non-dualism (Utpaladeva and the Pratyabhijñā school), and should not be projected backward onto Bharata's original rasa-sūtra, which does not itself invoke a metaphysics of consciousness at all. The theological expansion of rasa theory is a specific, datable, ninth-to-eleventh-century intellectual achievement, not a timeless or self-evident feature of "Indian aesthetics" as a monolith.</p>
+  </div>
+
+  <div class="callout etym">
+    <h4>Etymological Note — rasa and sādhāraṇīkaraṇa</h4>
+    <p>Rasa, before it becomes a technical aesthetic term, names literal taste or flavor — the sensation on the tongue produced when many separate ingredients are combined and cooked into a single dish whose flavor is not simply the sum or list of its ingredients but a new, integrated quality. Bharata's choice of this culinary metaphor is doing real theoretical work: just as a dish's rasa emerges from the coordinated combination of separately identifiable ingredients (a point that resonates with the samāyoga, "coordination," discussed in the following Part in connection with the karaṇa), aesthetic rasa emerges from the coordinated combination of vibhāva, anubhāva, and vyabhicāribhāva, and is not reducible to any one of them considered in isolation. Sādhāraṇīkaraṇa, "the making common or general," is built from sādhāraṇa ("common, shared, general") with the causative -karaṇa ("making"); it names the process by which a particular emotional content is stripped of its tie to a specific biographical subject and rendered available as a shared, generalized object of aesthetic savoring — the technical process underlying the "universalization" described above.</p>
+  </div>
+
+  <div class="callout compare-phil">
+    <h4>Comparative Philosophy — A Buddhist Challenge to the Kashmir Śaiva Reading</h4>
+    <p>Abhinavagupta's account of aesthetic universalization as a rehearsal of non-dual, universal consciousness rests on a substantive metaphysical commitment — the Pratyabhijñā school's doctrine of an underlying, universal, self-luminous consciousness (prakāśa) of which individual selves are contracted manifestations — that Buddhist philosophy, and in particular the various schools committed to a doctrine of no-self (anātman), would reject at the root. A Buddhist critic could grant everything Abhinavagupta says about the phenomenology of aesthetic experience — its detachment from personal stakes, its felt universality, its distinctive intensity — while denying that this phenomenology requires, or is best explained by, the metaphysical postulate of a universal consciousness underlying and connecting all individual perceivers. Such a critic might instead explain sādhāraṇīkaraṇa in terms of the temporary suspension of the graspings (upādāna) and self-referential craving that ordinarily structure emotional experience, without any commitment to a positive metaphysics of consciousness as universal ground. This comparative tension is worth registering because it shows that Abhinavagupta's synthesis, however internally coherent, is not the only philosophically serious way of accounting for the phenomenology of aesthetic universalization that Bharata's rasa theory and Ānandavardhana's dhvani theory jointly describe.</p>
+  </div>
+</section>
+
+<section class="topic" id="s28">
+  <span class="topic-number">Section 28</span>
+  <h2 class="topic-title">The Aesthetic Subject</h2>
+
+  <p class="lede">If the spectator (sahṛdaya, literally "one of shared heart," the aesthetically competent perceiver) undergoes the transformation Abhinavagupta describes, then the theoretical account of who or what an artwork is for must itself change. Classical Indian aesthetics is notably resistant to treating the artwork as a self-sufficient object whose meaning is fixed independently of its reception — a position that would locate the whole of aesthetic value in the artifact considered in isolation from any perceiver. Instead, the tradition treats the aesthetic event as a three-term relation in which none of the three terms is dispensable.</p>
+
+  <table class="compare">
+    <tr><th>Artist</th><th>Artwork</th><th>Spectator</th></tr>
+    <tr><td>Creates expression</td><td>Carries potential meaning</td><td>Realizes aesthetic experience</td></tr>
+  </table>
+
+  <p>The artist's role is to encode, through technical mastery of a medium's formal resources (metrical device, dramatic situation, gestural vocabulary), the conditions under which rasa can arise — the "determinants" (vibhāva), "consequents" (anubhāva), and "transitory states" (vyabhicāribhāva) that Bharata's rasa-sūtra identifies as the compositional ingredients of aesthetic emotion. But these ingredients, however skillfully assembled, remain only potential meaning until they are taken up by a spectator whose own aesthetic capacity — cultivated through prior exposure, sensitivity, and what the tradition calls sahṛdayatva, a trained and sympathetic responsiveness — is equal to the task of realizing what the work makes available. The artwork is therefore, on this account, neither a mere trigger for a subjective response that could equally have been produced by anything else, nor a self-sufficient container of meaning that would remain the same aesthetic fact whether or not it was ever perceived. It is, rather, structured potential: an arrangement whose aesthetic actuality is completed only in the event of a qualified reception.</p>
+
+  <p>This has a consequence that the monograph will return to repeatedly in its treatment of sculpture and dance: the spectator is not passive. Where a naive theory of representation might treat the perceiver as a mere recipient — someone to whom a finished meaning is delivered, as a package is delivered to an address — classical Indian aesthetics treats the spectator's participation as constitutive of the aesthetic event, not merely incidental to it. The same danced sequence, the same painted or sculpted figure, yields aesthetic actuality in the presence of a sahṛdaya and yields, at best, mere information — historical fact, iconographic data, technical description — in the presence of a perceiver without the requisite cultivated sensitivity. This is not an elitist claim that only some people are permitted to enjoy art; it is a structural claim about what aesthetic experience, as this tradition defines it, consists in.</p>
+
+  <div class="callout west">
+    <h4>Western Parallel — Reader-Response Theory</h4>
+    <p>The structural claim that a work's meaning is completed only in reception finds a notable, independently developed counterpart in twentieth-century Western reader-response criticism, particularly in Wolfgang Iser's account of the literary text as containing "gaps" (Leerstellen) that the reader's imagination must actively fill, and in Stanley Fish's more radical claim that meaning is produced by "interpretive communities" whose reading conventions constitute what a text can be taken to mean. Iser's gap-filling reader bears a real structural resemblance to the sahṛdaya completing a sculpture's implied motion, discussed below; both accounts refuse to treat the artifact as containing a determinate meaning fully independent of an active, competently prepared perceiver. The traditions differ importantly in emphasis, however: reader-response theory typically foregrounds the variability and indeterminacy that different readers or interpretive communities introduce, sometimes verging on a relativism about meaning, whereas classical Indian aesthetics, through its insistence on the trained, normatively qualified sahṛdaya, is more concerned with specifying the conditions for a correct or fully realized reception than with celebrating interpretive plurality as such. The comparison illuminates a shared structural insight — reception is constitutive, not incidental — while also making visible two different cultural attitudes toward interpretive authority and normativity.</p>
+  </div>
+</section>
+
+<section class="topic" id="s29">
+  <span class="topic-number">Section 29</span>
+  <h2 class="topic-title">Revelation and Recognition</h2>
+
+  <p class="lede">The vocabulary that Indian aesthetic theory reaches for, again and again, to describe the moment at which rasa is realized is not the vocabulary of discovery — of encountering something wholly new — but the vocabulary of recognition (pratyabhijñā, a term whose theological weight in Kashmir Śaivism is not accidental to its aesthetic usage). The spectator encounters something represented externally, on a stage, a page, or a temple wall, and yet what occurs internally is described as a form of recognizing, rather than merely receiving, that external presentation.</p>
+
+  <p>This vocabulary of recognition creates a dense relational structure binding together appearance, memory, emotion, and consciousness. The externally presented figure (the actor's gesture, the poem's described scene, the sculpted pose) is the occasion of appearance; the spectator's own prior experience of similar emotional colorings, sedimented as latent impressions (vāsanā, saṃskāra), is what memory contributes to the event; the emotional resonance activated by the meeting of appearance and memory is what makes the experience affectively textured rather than merely cognitive; and the transformation of ordinary, self-bound awareness into the universalized savoring described under Abhinavagupta above is the dimension contributed by consciousness as such. Recognition, in this technical sense, is the name for the way these four elements come together in a single, integrated aesthetic act rather than remaining separate cognitive events strung together in sequence.</p>
+
+  <h3 class="sub-title">Temple Sculpture as Aesthetic Recognition</h3>
+  <p>This framework carries direct consequences for how a viewer's encounter with a sculpted karaṇa on a temple wall should be understood. If the sculpture functioned only as documentation — a visual record analogous to a diagram in a manual, whose purpose is exhausted once the position it depicts has been correctly identified — then its aesthetic dimension would be incidental to its informational content. But the framework of recognition suggests a stronger reading, one this monograph adopts as its interpretive stance: the sculpture invites imaginative reconstruction. Confronted with a single carved moment of a body caught mid-motion, the viewer's engagement does not stop at identifying "this is such-and-such karaṇa." The viewer mentally completes what stone cannot physically perform — supplying, through imaginative and kinesthetic memory, the movement that precedes and follows the captured instant, and thereby participating in exactly the kind of completion-through-reception that the three-term structure of artist, artwork, and spectator requires.</p>
+
+  <div class="callout">
+    <h4>An interpretive commitment, stated plainly</h4>
+    <p>This reading of temple sculpture as an occasion for aesthetic recognition, rather than as static documentation, belongs to the interdisciplinary framework developed within this monograph. It is a philosophically motivated interpretive choice, built on the aesthetic theory surveyed above, and it should be distinguished from claims that could be verified or falsified by art-historical or epigraphic evidence alone. A reader is entitled to find the interpretation persuasive, or to resist it in favor of a more restrained documentary reading of the sculptural record; the monograph's argument depends on making that interpretive commitment explicit rather than presenting it as an uncontested historical fact.</p>
+  </div>
+
+  <div class="callout etym">
+    <h4>Etymological Note — pratyabhijñā</h4>
+    <p>Pratyabhijñā is built from prati ("toward, again, back") plus abhijñā ("knowing, recognizing," itself from abhi, "toward," plus jñā, "to know"). The compound therefore literally means something like "knowing again" or "re-cognizing" — and it is exactly this doubled structure, a knowing that is also a re-knowing, that the term is meant to capture: aesthetic recognition is not a first encounter with wholly new information but a re-cognition of something the perceiver, in some sense, already carried within their own capacity for feeling. The term's prominence as the name of Utpaladeva's and Abhinavagupta's own school of Kashmir Śaiva philosophy (Pratyabhijñā-darśana) is not incidental: the school's central soteriological claim is that liberation itself is a recognition of one's own always-already-present divine nature (Śiva-hood), rather than the acquisition of some new state, and the aesthetic theory of recognition discussed here is a direct application of this same structural logic to the more limited domain of art.</p>
+  </div>
+
+  <div class="callout west">
+    <h4>Comparative Note — Phenomenology and the Structure of Recognition</h4>
+    <p>Edmund Husserl's phenomenological account of recollection and recognition (Wiedererkennung) offers a further, independently developed point of comparison. For Husserl, recognizing an object as "the same again" involves a synthesis between a present perceptual act and a retained trace of a prior act — a structure that, at a purely formal level, mirrors the Indian account of aesthetic recognition as a synthesis of present appearance with sedimented past impression (vāsanā). The traditions part ways, however, in what they take recognition to disclose. Husserlian recognition is primarily an epistemic achievement, securing the identity of an object across separate acts of perception; Indian aesthetic recognition, by contrast, is valued precisely for its capacity to disclose something about the perceiver's own affective and, in Abhinavagupta's expansion, metaphysical nature — a difference in orientation (outward toward object-identity versus inward toward self-disclosure) that should qualify any temptation to treat the formal parallel as evidence of a deeper convergence between the two philosophical projects.</p>
+  </div>
+</section>
+
+<section class="topic" id="s30">
+  <span class="topic-number">Section 30</span>
+  <h2 class="topic-title">Dhvani and the Invisible Dimension of Art</h2>
+
+  <p class="lede">Dhvani theory's deepest contribution to the philosophy of art, considered independently of its origin in the analysis of Sanskrit poetry, is the vocabulary it provides for explaining why any well-made artistic form exceeds the sum of its material or denotative components. A poem is more than its words considered as a semantic inventory. A melody is more than its notes considered as a sequence of pitches and durations. A gesture is more than the physical displacement of a limb through space. A sculpture is more than the stone or bronze considered as inert material shaped into a contour.</p>
+
+  <p>In each case, dhvani theory locates the "more" not in some additional physical ingredient smuggled into the object, but in the relation between the object's determinate, denotable features and a further sense that those features are structured so as to suggest without stating. A poetic line's dhvani is not a hidden second meaning encoded like a cipher, requiring only the right key to be extracted as a further piece of determinate content; it is, rather, a resonance (a literal sense of the word dhvani, "sound" or "reverberation") that continues to unfold in the reader's sensibility after the literal sense has been grasped, the way a struck bell continues to sound after the initial impact. This is why dhvani theorists insist that the suggested sense of the finest poetry cannot be exhaustively paraphrased without loss: to state explicitly what a masterful line only suggests is to trade a resonance for a fact, and the fact, however accurate, does not do what the resonance did.</p>
+
+  <p>Extending this vocabulary across artistic media — as this monograph does in moving from poetry to music, gesture, and sculpture — is itself an act of theoretical extension beyond dhvani theory's original textual scope, and its justification lies in the structural similarity of the problem each medium poses: in every case, a materially or verbally finite artifact is experienced by a qualified perceiver as exceeding its finite material or semantic inventory, and in every case that excess becomes meaningful through something the tradition calls resonance rather than through the addition of further explicit content. Each medium's artifact becomes meaningful, in other words, through resonance rather than through exhaustive specification — and this is the single thread that the monograph will trace from the invisible dimension of poetic suggestion through to the "possibility of reconstructing movement through perception" discussed above in connection with temple sculpture.</p>
+
+  <div class="callout west">
+    <h4>Western Parallel — Russian Formalism and the Irreducibility of Poetic Form</h4>
+    <p>Dhvani theory's claim that a poem's suggested sense cannot be exhaustively paraphrased without loss has a notable structural echo in the Russian Formalist critic Viktor Shklovsky's concept of ostranenie, "defamiliarization" or "estrangement" — the idea that literary language achieves its distinctive effect not by conveying information more efficiently than ordinary language but by making the object of description unfamiliar, prolonging and complicating perception in a way that resists paraphrase into ordinary informational content. Both traditions converge on the claim that a central function of literary art is precisely what a prose paraphrase discards; both are, in this sense, arguments against what later Anglo-American New Criticism (in W. K. Wimsatt and Monroe Beardsley's polemic against "the heresy of paraphrase") would independently formulate as the irreducibility of a poem's form to its restatable propositional content. The traditions differ in their positive account of what the irreducible remainder consists in: dhvani theory grounds it in a specific semantic function (vyañjanā) operating alongside denotation, giving the "remainder" a determinate theoretical shape and a taxonomy of types, while Formalist and New Critical accounts tend to locate the remainder more diffusely in the work's formal devices as such, without dhvani theory's fine-grained semantic apparatus.</p>
+  </div>
+</section>
+
+<section class="topic" id="s31">
+  <span class="topic-number">Section 31</span>
+  <h2 class="topic-title">The Philosophical Movement Toward Nāṭya</h2>
+
+  <p class="lede">The theories surveyed across this section of the monograph — grammatical philosophy running from Pāṇini through Bhartṛhari, and aesthetic philosophy running from Bharata's original rasa-sūtra through Ānandavardhana's dhvani theory to Abhinavagupta's non-dual synthesis — together prepare the conceptual foundation on which the monograph's central subject, Bharata's Nāṭyaśāstra and its 108 karaṇas, can be examined with appropriate philosophical seriousness rather than as a merely technical manual of dramaturgical positions.</p>
+
+  <p>Two distinct intellectual streams converge at this threshold, each contributing a different vocabulary that the study of embodied performance will need. From the linguistic and grammatical tradition come the concepts of structure — the recognition that meaningful units are built from smaller coordinated elements according to describable rules of combination; meaning — the recognition that determinate content can be conveyed through a structured medium according to principles that admit of philosophical analysis rather than being brute or inexplicable; suggestion — the recognition that a well-formed expressive act can convey more than its overt, literal content specifies; and transformation — the recognition, most fully developed in Bhartṛhari's account of the movement from paśyantī to vaikharī, that a single underlying content can pass through successive stages of differentiation without losing its essential unity. From the aesthetic tradition come the concepts of rasa — the specific, culturally elaborated vocabulary of aesthetic sentiment that Indian performance theory takes as its central object; experience — the recognition that the object of aesthetic theory is not the artifact alone but the artifact-as-realized-by-a-qualified-perceiver; participation — the recognition, developed above under the three-term structure of artist, artwork, and spectator, that reception is constitutive rather than incidental; and revelation — the recognition that the highest aesthetic experiences involve not merely information transfer but a disclosure that touches the perceiver's own capacities for feeling and awareness.</p>
+
+  <p>The Nāṭyaśāstra, as the monograph's next part will show in detail, is the text in which these two streams — one primarily epistemological and linguistic, the other primarily affective and aesthetic — are brought together within the single domain of embodied performance. Where grammatical philosophy asks how meaning is structured in sound, and aesthetic philosophy asks how meaning becomes resonant in a perceiver, Bharata's theory of nāṭya asks how both structure and resonance can be achieved through the coordinated resources of the human body: gesture, movement, facial expression, spatial position, and their synthesis with speech, music, and costume. The passage from grammar and poetics to dramaturgy is therefore not a mere change of subject matter within a stable set of concepts; it is the point at which those concepts are tested against a new and more demanding medium — one in which meaning must be conveyed and dissolved in real time, before a live audience, through a body that is simultaneously a physical object and an expressive instrument.</p>
+
+  <div class="callout historiog">
+    <h4>Historiographical Note — Is This Synthesis a Modern Construct?</h4>
+    <p>It is worth registering an honest methodological worry before proceeding: the tidy convergence described above, in which grammatical philosophy and aesthetic theory are shown to "prepare the foundation" for the study of nāṭya, is itself a retrospective narrative construction, and a chronologically inconvenient one at that, since the Nāṭyaśāstra's core rasa-sūtra substantially predates both Bhartṛhari's developed sphoṭa theory and, by many centuries, Ānandavardhana's dhvani theory. Scholars including Sheldon Pollock have cautioned against reading later Sanskrit intellectual history teleologically, as though earlier texts were unconsciously building toward later syntheses that in fact reflect the specific concerns of later commentators reading backward into earlier material. The four-stream convergence traced across this Part of the monograph is best understood, in light of this caution, not as a claim about the actual chronological order of textual composition and influence, but as a retrospective conceptual reconstruction — one that reorganizes genuinely related but not linearly sequential materials into a coherent argument for the purposes of this monograph's own interpretive project. Readers should hold the elegance of the "grammar to aesthetics to embodiment" narrative and the chronological untidiness of its sources in view simultaneously.</p>
+  </div>
+</section>
+
+<section class="topic" id="s32">
+  <span class="topic-number">Section 32</span>
+  <h2 class="topic-title">Toward the Karaṇa Register</h2>
+
+  <p class="lede">The study of the 108 karaṇas, understood in light of everything established above, cannot be reduced to the task of identifying and cataloguing physical positions — treating each karaṇa as though it were simply an entry in a visual dictionary, to be looked up, matched against a sculptural or performed instance, and checked off. Such an approach would repeat, in the domain of dance, precisely the error that grammatical philosophy spent centuries correcting in the domain of language: the assumption that a medium's units are self-sufficient markers whose meaning is external to, and independent of, the structured act of combination and reception that brings them to life. The karaṇa tradition instead requires understanding movement as a system of meaning — an approach that treats each karaṇa as meaningful precisely in the way that Bhartṛhari's sphoṭa and Ānandavardhana's dhvani are meaningful: through structured relation, suggestive resonance, and completion in a qualified perceiver, rather than through isolated denotation.</p>
+
+  <table class="compare">
+    <tr><th>Dimension</th><th>Question</th></tr>
+    <tr><td>Textual</td><td>How are movements described?</td></tr>
+    <tr><td>Kinetic</td><td>How are movements performed?</td></tr>
+    <tr><td>Sculptural</td><td>How are movements preserved in stone?</td></tr>
+    <tr><td>Aesthetic</td><td>How do movements create experience?</td></tr>
+    <tr><td>Philosophical</td><td>How does movement reveal meaning?</td></tr>
+  </table>
+
+  <p>Each of these five dimensions corresponds to a distinct methodological demand, and a full account of any single karaṇa requires moving across all five without collapsing them into one another. The textual dimension asks what Bharata's verses, and the commentarial tradition surrounding them, actually specify — a question of philology and close reading. The kinetic dimension asks how a described sequence of hand, foot, and body coordination is realized as embodied action — a question that living performance traditions, however historically discontinuous with Bharata's own era, are uniquely positioned to illuminate through practical reconstruction. The sculptural dimension asks how a temporally extended movement has been rendered by an artist into a single spatial configuration in stone — a question of art-historical and iconographic analysis. The aesthetic dimension asks how the coordinated movement, whether performed live or contemplated in stone, generates rasa in a qualified spectator — a question inherited directly from the aesthetic theory surveyed in this section. And the philosophical dimension, the most speculative of the five, asks how movement participates in the larger structure of revelation and recognition that this monograph has argued characterizes Indian aesthetic experience as such.</p>
+
+  <div class="callout etym">
+    <h4>Etymological Note — karaṇa</h4>
+    <p>Karaṇa derives from the root kṛ, "to do, to make, to act" — the same root that yields karman ("action," and by extension the entire theological apparatus of karma) and kāraka (the grammatical term for the semantic roles, such as agent and instrument, that Pāṇinian grammar assigns to nouns in relation to a verb's action). That a term for a unit of dance derives from the most general Sanskrit root for doing or making is itself significant: it signals that the karaṇa is conceived, from its very naming, as an instance of action as such — a "doing" — rather than as a shape, position, or picture. This etymological fact provides independent linguistic support for the process-not-position reading of karaṇa developed in Section 8 below: the term's root sense actively resists the static, pose-based interpretation that sculptural evidence alone might otherwise encourage.</p>
+  </div>
+
+  <div class="callout compare-phil">
+    <h4>Comparative Note — Aristotelian Mimesis and Indian Abhinaya</h4>
+    <p>A comparison with Aristotle's Poetics is instructive here, precisely for the differences it reveals. Aristotle treats dramatic representation (mimēsis) as fundamentally an imitation of an action (praxis) — a mimetic relation in which the performance stands in a representational relation to an action that could, in principle, be specified independently of its dramatic imitation. The karaṇa tradition, by contrast, and consistent with the process-oriented, action-rooted etymology just discussed, does not treat movement as an imitation of some prior, independently specifiable action; the karaṇa is not a copy of an action existing elsewhere, but is itself constitutively the action in question, in the same strong sense already established for abhinaya in the preceding sections. This is a substantive philosophical difference, not merely a terminological one: Aristotelian mimetic theory retains a gap between representation and represented that Indian performance theory, on the reading developed throughout this Part, is at pains to close.</p>
+  </div>
+</section>
+
+<section class="topic" id="s33">
+  <span class="topic-number">Section 33</span>
+  <h2 class="topic-title">Closing Reflection — From Sound to Movement</h2>
+
+  <p class="lede">Tracing the intellectual journey from Pāṇinian phonology and the auxiliary science of Śikṣā, through Bhartṛhari's sphoṭa theory and śabda-brahman, to Ānandavardhana's dhvani and Abhinavagupta's rasa-theoretic non-dualism, reveals a single recurring intellectual concern beneath the surface variety of technical vocabularies: how does an invisible principle become a perceivable experience?</p>
+
+  <p>The pattern that emerges, restated in its most compressed form, moves through four transformations. Sound becomes language: the raw acoustic material of phonemes, analyzed with extraordinary precision by the Śikṣā and Vyākaraṇa traditions, is organized by the sphoṭa principle into stable units capable of bearing determinate meaning. Language becomes suggestion: the determinate meanings that grammatical analysis explains are shown, by dhvani theory, to be only the surface layer of what a well-composed utterance conveys, opening onto a further register of implication and resonance. Suggestion becomes emotion: the suggested content of poetic and dramatic composition, structured through the vibhāva-anubhāva apparatus of rasa theory, is realized by a qualified spectator not as an additional piece of information but as an aesthetically savored feeling-state. And emotion becomes aesthetic realization: in Abhinavagupta's expansion of rasa theory, this savored feeling-state is understood as a universalizing, self-transformative event that momentarily loosens the spectator's ordinary, contracted sense of self.</p>
+
+  <p>This four-stage pattern is not merely a convenient organizing device for the preceding chapters; it is the argument for why the monograph now turns from sound and language to the human body in motion. If each stage in the pattern names a transformation through which an invisible principle becomes progressively more concretely perceivable — sound organized into meaning, meaning opening into suggestion, suggestion condensing into felt emotion, emotion expanding into transformed awareness — then the movement of the monograph's own argument, from Pāṇini to Bharata, retraces this same trajectory at the level of its overall structure. The Nāṭyaśāstra, and above all its treatment of the 108 karaṇas, represents the point at which this recurring concern is pursued through a medium that no longer relies on sound at all: the complete human body, in which meaning must be made perceivable not through the ear but through coordinated visible motion.</p>
+
+  <div class="callout west">
+    <h4>Western Parallel — The Shape of the Argument and the Hegelian Dialectic</h4>
+    <p>Readers familiar with Western philosophy may notice a formal resemblance between the four-stage pattern just summarized and the dialectical structure of Hegel's Phenomenology of Spirit, in which consciousness passes through successive, progressively more adequate stages of self-relation, each retaining and transforming what came before it (Aufhebung) on the way toward a fuller self-disclosure. The resemblance is worth naming precisely in order to bound it: the pattern traced here — sound to language, language to suggestion, suggestion to emotion, emotion to aesthetic realization — is not offered as a claim about the self-unfolding of a single metaphysical Subject across history, as Hegel's dialectic is, but as a retrospective summary of four genuinely distinct intellectual projects (phonetics, grammar, poetics, and dramaturgy) that this monograph has organized into a sequence for expository and interpretive purposes. The formal resemblance to a dialectical progression is a feature of how the material has been arranged for this monograph's argument, not evidence of an actual historical teleology inherent in the Sanskrit intellectual tradition itself.</p>
+  </div>
+
+  <div class="callout historiog">
+    <h4>Closing Historiographical Caution</h4>
+    <p>Every synthesis of this kind — and this closing reflection is no exception — risks imposing a narrative of progressive refinement onto a body of material that in fact developed through argument, controversy, regional variation, and centuries of discontinuous transmission rather than through a single continuous unfolding toward embodiment as its destined culmination. The four-stage pattern offered here should be read as this monograph's own interpretive scaffolding, useful for organizing an otherwise unwieldy body of material into a legible argument, and not as a historical claim that Pāṇini, Bhartṛhari, Ānandavardhana, Abhinavagupta, and Bharata's compilers understood themselves to be collaborators in a single unfolding project culminating in the Nāṭyaśāstra's theory of movement. Holding the interpretive usefulness of the pattern and its historiographical constructedness together, rather than resolving the tension in either direction, is the intellectually honest way to carry this reflection forward into Part IV.</p>
+  </div>
+</section>
+
+<div class="divider"><span>❖</span></div>
+
+<section class="topic" id="s34">
+  <span class="topic-number">Section 34</span>
+  <h2 class="topic-title">The Buddhist Apoha Challenge to Sphoṭa</h2>
+
+  <p class="lede">No rival theory pressed Bhartṛhari's grammarian tradition harder than the Buddhist apoha doctrine, developed by Dignāga and refined by Dharmakīrti, and a proper understanding of sphoṭa theory's philosophical seriousness requires seeing exactly what this challenge consisted in and how the grammarian tradition attempted to answer it.</p>
+
+  <p>The apoha theorist begins from a strict nominalist and momentarist metaphysics: reality consists only of unique particulars (svalakṣaṇa), each existing for a single instant, with no real, mind-independent universals binding particulars into kinds. If this is correct, then a word such as "cow" cannot denote a real universal "cowness" shared by all cows, because no such universal exists to be denoted. Dignāga's solution is that a word's meaning is exclusion (apoha): "cow" means, strictly, "not-non-cow" — the word functions by excluding its referent from the class of things that are not cows, rather than by positively picking out a shared essence. Meaning, on this view, is a negative, differential operation, arising through the exclusion of contraries rather than through positive reference to a shared universal or to a metaphysically robust linguistic principle such as sphoṭa.</p>
+
+  <p>The grammarian response, elaborated across generations of Vākyapadīya commentary, is to argue that the apoha theory cannot, in the end, avoid smuggling in exactly the kind of positive, unifying cognitive content it claims to dispense with: to cognize "not-non-cow" coherently, a cognizer must already grasp some positive respect in which the excluded class is being excluded, and this positive respect is functionally indistinguishable from the universal, or the sphoṭa-grounded meaning-unit, that the apoha theory was designed to eliminate. Later Naiyāyika critics, for independent reasons of their own, pressed a structurally similar objection. Whether or not this response fully succeeds against the most sophisticated versions of Dharmakīrti's theory remains a live question in the modern scholarly literature on Buddhist epistemology, and the exchange should be read as a genuine, unresolved philosophical disagreement rather than as a dispute in which the grammarian side simply prevailed.</p>
+
+  <div class="callout compare-phil">
+    <h4>Why this matters for the monograph's larger argument</h4>
+    <p>The apoha controversy sharpens the stakes of śabda-brahman considerably. If Dignāga and Dharmakīrti are right that all meaning is exclusion operating over a world of bare, disconnected particulars, then there is no metaphysically robust linguistic principle for śabda-brahman to name, and Bhartṛhari's entire project — along with its later extension into aesthetic theory via dhvani and rasa, both of which presuppose meaning-bearing units richer than mere exclusion-relations — loses its foundation. The stakes of this technical dispute in Buddhist epistemology are therefore not confined to the philosophy of language narrowly construed; they reach all the way to the aesthetic theory examined earlier in this Part.</p>
+  </div>
+</section>
+
+<section class="topic" id="s35">
+  <span class="topic-number">Section 35</span>
+  <h2 class="topic-title">Key Verses of the Vākyapadīya and Dhvanyāloka Revisited</h2>
+
+  <p class="lede">A closer textual engagement with the specific verses underlying the theories surveyed in this Part rewards the effort, since much of the philosophical weight these theories carry is compressed into individual, densely argued verses whose full implications are unpacked only across generations of commentary.</p>
+
+  <blockquote class="sanskrit">
+    anādinidhanaṁ brahma śabdatattvaṁ yad akṣaram / vivartate 'rthabhāvena prakriyā jagato yataḥ
+    <cite>Vākyapadīya 1.1 — "Brahman is without beginning or end, its essence is the imperishable principle of word, which evolves in the form of meaning-bearing objects, from which proceeds the unfolding of the world."</cite>
+  </blockquote>
+
+  <p>This opening verse of the Vākyapadīya is the textual anchor for the entire discussion of śabda-brahman in Section 24 above, and its precise vocabulary repays attention. The verse describes brahman as vivartamāna, "evolving" or "appearing as" (from vi + vṛt, "to turn, to unfold"), into the form of meaning-bearing objects (arthabhāvena) — a term later Advaita Vedānta would develop, in a partly overlapping but not identical sense, as vivarta, "apparent transformation" without real change in the underlying substrate. The verse's causal claim — that the unfolding of the phenomenal world (jagataḥ prakriyā) itself proceeds from this linguistic evolution of brahman — is the textual basis for the strong reading of śabda-brahman discussed above, and it is precisely this cosmogonic dimension of the verse, taken at full strength, that later interpreters have most often either overstated (assimilating it uncritically to Vedāntic cosmology) or underread (reducing it to a mere grammarian's technical flourish).</p>
+
+  <blockquote class="sanskrit">
+    kāvyasyātmā dhvanir iti budhaiḥ yaḥ samāmnātapūrvaḥ
+    <cite>Dhvanyāloka, opening kārikā (paraphrased in sense) — poetic tradition's learned predecessors have declared suggestion to be the soul of poetry</cite>
+  </blockquote>
+
+  <p>Ānandavardhana's opening declaration that dhvani is the ātman, the "soul" or essential self, of kāvya (poetry), is a deliberately provocative claim, framed from the outset as continuous with an older tradition of learned opinion (budhaiḥ samāmnātapūrvaḥ) rather than as an entirely novel invention — a rhetorical strategy that itself became a subject of later historiographical debate, examined further in Section 36, over how much of dhvani theory was genuinely inherited and how much was Ānandavardhana's own systematizing innovation dressed in the rhetoric of tradition.</p>
+</section>
+
+<section class="topic" id="s36">
+  <span class="topic-number">Section 36</span>
+  <h2 class="topic-title">Colonial and Post-Colonial Historiography of Sanskrit Poetics</h2>
+
+  <p class="lede">The modern academic study of Bhartṛhari, Ānandavardhana, and Abhinavagupta cannot be separated from the institutional history of Indology as a discipline, a history that has itself become an object of critical scrutiny since the late twentieth century.</p>
+
+  <p>Nineteenth-century European Sanskrit scholarship, developing within the broader intellectual context that Edward Said's Orientalism (1978) subjected to influential critique, frequently approached Indian philosophical texts through comparative frameworks drawn from European categories — reading Bhartṛhari against Platonic or Neoplatonic logos-theology, or reading rasa theory against Aristotelian catharsis — in ways that could illuminate genuine structural parallels but could equally distort the specific, internally argued shape of the Indian material by pressing it into pre-formed European philosophical molds. The institutional structures of colonial-era Indology, moreover, often privileged textual philology over the living interpretive traditions of Sanskrit paṇḍitas, whose own commentarial engagement with these texts continued largely independent of, and sometimes in productive tension with, European academic scholarship.</p>
+
+  <p>Post-colonial and post-Orientalist scholarship since the 1980s, associated with figures such as Sheldon Pollock, has sought a more historically grounded approach — situating texts like the Vākyapadīya and Dhvanyāloka within their specific regional, institutional, and intellectual-historical contexts (Pollock's broader work on the "Sanskrit cosmopolis" is representative of this turn), rather than treating them as timeless repositories of "Indian wisdom" to be mined for comparison with Western philosophy. This historicizing turn has had a direct effect on how śabda-brahman, dhvani, and rasa are now read in the academic literature: less as freestanding mystical or aesthetic doctrines, and more as specific interventions within datable, reconstructable intellectual controversies — the very approach this monograph has tried to model throughout Sections 24 through 33.</p>
+
+  <div class="callout historiog">
+    <h4>A balanced historiographical stance</h4>
+    <p>Neither wholesale acceptance of earlier Orientalist scholarship's comparative frameworks, nor a reflexive rejection of all comparison with Western thought as inherently distorting, serves careful scholarship well. The comparative callouts distributed throughout this Part — with Saussure, with reader-response theory, with Husserl, with Hegel — are offered in the post-Orientalist spirit of explicit, bounded, and self-critical comparison: naming genuine structural parallels while explicitly marking where the traditions diverge, rather than assimilating one tradition's vocabulary wholesale into the other's.</p>
+  </div>
+</section>
+
+<section class="topic" id="s37">
+  <span class="topic-number">Section 37</span>
+  <h2 class="topic-title">The Twentieth-Century Comparative Turn — Sanskrit Aesthetics in Dialogue with Western Theory</h2>
+
+  <p class="lede">Across the several Western-parallel callouts distributed through this Part — Saussurean structuralism, reader-response theory, Husserlian phenomenology, Hegelian dialectic, Russian Formalism — a recognizable pattern of twentieth-century comparative scholarship emerges, and it is worth stepping back to characterize that pattern explicitly rather than leaving it implicit in each individual comparison.</p>
+
+  <p>The pattern has three recurring stages. First, a genuine structural parallel is identified between an Indian theoretical concept and a Western one developed independently — the sphoṭa and the Saussurean sign; aesthetic recognition and Husserlian Wiedererkennung; the completion of a work in reception, found on both sides of the world in Abhinavagupta's sahṛdaya and Iser's implied reader. Second, the parallel is used to render the less familiar tradition legible to readers trained primarily in Western categories, a genuine pedagogical service given the very different technical vocabularies involved. Third — and this is the stage most often skipped in less careful comparative work — the parallel's limits must be specified with the same rigor as its scope, since the two traditions typically diverge in their underlying metaphysical commitments (dualist versus non-dualist, individualist versus communally normative, momentarist versus principle-realist) even where their formal or structural claims align.</p>
+
+  <p>This monograph's comparative callouts have attempted to honor all three stages of this pattern rather than stopping at the second, more immediately satisfying stage of parallel-drawing. The value of this discipline is not merely academic scrupulousness for its own sake: a comparison that stops at structural parallel risks license for exactly the kind of assimilative reading — "Bhartṛhari is basically Saussure," "Abhinavagupta is basically Hegel" — that erases the specific philosophical commitments each tradition brought to bear on questions the other tradition may not have asked in the same terms at all.</p>
+</section>
+
+<section class="topic" id="s38">
+  <span class="topic-number">Section 38</span>
+  <h2 class="topic-title">Saussure, Peirce, and the Semiotics of Sphoṭa</h2>
+
+  <p class="lede">Extending the Saussurean comparison introduced in Section 25, it is worth bringing a second major strand of Western semiotic theory into view: the American philosopher Charles Sanders Peirce's triadic theory of the sign, which divides every sign into a representamen (the sign-vehicle itself), an object (what the sign stands for), and an interpretant (the further sign or cognitive effect the sign produces in an interpreter) — a three-term structure, notably, rather than Saussure's two-term signifier-signified pairing.</p>
+
+  <p>Peirce's interpretant is, of the two major Western semiotic frameworks, the one that comes closest to accommodating something like the karaṇa tradition's insistence on reception as constitutive of meaning, discussed at length in Sections 28 and 29 above: for Peirce, a sign's meaning is not fully specified by a static dyadic relation between sign and object but unfolds through the further interpretive effects it generates in a mind — a potentially unending chain of interpretants, each itself a further sign. This is structurally closer to the completion-in-reception model of Indian aesthetics than Saussure's more static, system-internal account of signification, though Peirce's semiotics remains, like Saussure's, fundamentally a general theory of signs as such, without the specific ontological claim — that the sign-bearing principle is continuous with ultimate reality — that gives Bhartṛhari's sphoṭa and śabda-brahman their distinctive metaphysical charge.</p>
+
+  <p>Setting sphoṭa theory beside both Saussure and Peirce in this way clarifies precisely where the Indian tradition's originality lies: not in recognizing that meaning involves relation and process (both Western semioticians recognize this too, in their different ways) but in grounding that relational, processual structure in a metaphysics of consciousness that neither Saussure's structural linguistics nor Peirce's pragmatist semiotics attempts, or needs, to supply.</p>
+</section>
+
+<section class="topic" id="s39">
+  <span class="topic-number">Section 39</span>
+  <h2 class="topic-title">Merleau-Ponty and the Phenomenology of Embodied Meaning</h2>
+
+  <p class="lede">Of all Western philosophical resources available for illuminating the interpretive parallel drawn in Section 25 between language and movement, Maurice Merleau-Ponty's phenomenology of the body, developed principally in the Phenomenology of Perception, offers perhaps the closest structural companion, precisely because Merleau-Ponty, like Bhartṛhari on language and like this monograph's reading of the karaṇa tradition on movement, rejects the idea that the body is a mere instrument carrying out intentions formed independently of it in a separate, purely mental realm.</p>
+
+  <p>Merleau-Ponty's central claim is that the body is not an object among other objects that a disembodied consciousness happens to control, but is itself a mode of access to the world — "the body is our general medium for having a world," in his own formulation — such that bodily gesture does not represent a pre-formed thought so much as it is the very taking-shape of thought in the world. This is remarkably close, in its structural logic, to the claim this monograph has argued the karaṇa tradition implies: that a karaṇa does not illustrate a dramatic or emotional content formed independently of it, but is the medium through which that content becomes perceptible at all. Merleau-Ponty's famous discussion of the way a skilled typist's fingers "know" the keyboard without conscious, deliberate calculation, or a skilled musician's hands finding a familiar passage, offers a Western phenomenological vocabulary for exactly the kind of coordinated, non-decomposable bodily knowledge that samāyoga names in the karaṇa tradition, examined at length in Part IV.</p>
+
+  <div class="callout west">
+    <h4>Where the comparison should stop</h4>
+    <p>Merleau-Ponty's phenomenology is developed within a broadly secular, post-Husserlian framework concerned with the structure of perceptual and motor intentionality as such, without the aesthetic vocabulary of rasa, the theological framework of Kashmir Śaivism, or the specific dramaturgical apparatus of vibhāva and anubhāva that gives the Indian tradition's account of embodied meaning its particular cultural and religious texture. The comparison illuminates a shared rejection of body-mind dualism regarding expressive action; it does not extend to a shared account of what embodied meaning is ultimately for, or what larger metaphysical or soteriological stakes it carries — questions on which the Kashmir Śaiva-inflected Indian tradition has a great deal to say that Merleau-Ponty's phenomenology, on its own terms, does not attempt to address.</p>
+  </div>
+</section>
+
+<section class="topic" id="s40">
+  <span class="topic-number">Section 40</span>
+  <h2 class="topic-title">Concluding Synthesis — Convergences and Divergences Across Traditions</h2>
+
+  <p class="lede">Bringing together the comparative material introduced across Sections 34 through 39, a final synthesis is possible — one that neither overstates the convergence between Indian and Western theoretical traditions nor dismisses the value of holding them side by side.</p>
+
+  <p>Three genuine convergences recur across every comparison examined in this Part. First, both traditions, in their most sophisticated formulations, reject a simple instrumentalist picture in which a medium (word, sign, gesture) merely transports a meaning formed prior to and independently of it — this is true of Bhartṛhari against strict conventionalism, of Peirce against a static dyadic semiotics, and of Merleau-Ponty against Cartesian body-mind dualism. Second, both traditions recognize that reception is not incidental to meaning but constitutive of it — true of Abhinavagupta's sahṛdaya, of Iser's implied reader, and, in its own register, of Peirce's potentially unending chain of interpretants. Third, both traditions grapple with the fact that well-formed expressive artifacts exceed exhaustive paraphrase or restatement — true of dhvani theory, of Russian Formalist ostranenie, and of New Critical resistance to "the heresy of paraphrase."</p>
+
+  <p>Against these convergences stand equally persistent divergences. Where the Indian traditions surveyed in this Part typically ground their claims in an explicit metaphysics — the ontological continuity of śabda and brahman, the non-dual universalization of consciousness in Abhinavagupta's rasa theory — the Western traditions compared here are, for the most part, considerably more agnostic about, or actively opposed to, comparable metaphysical commitments, preferring structural, phenomenological, or pragmatist accounts that bracket or reject questions about an underlying ultimate reality. And where the Indian traditions are elaborated within, and largely in service of, a continuous tradition of textual commentary stretching across many centuries and explicitly answerable to named rival schools (Mīmāṃsā, Nyāya, Buddhist epistemology), the Western comparanda are typically products of distinct, historically separated intellectual movements (structuralist linguistics, Russian Formalism, phenomenology, American pragmatism) that did not develop in direct dialogue with one another, let alone with the Sanskrit material examined here.</p>
+
+  <div class="callout">
+    <h4>The value of the comparative exercise, honestly stated</h4>
+    <p>The comparisons offered throughout this Part are not offered as evidence that Bhartṛhari, Ānandavardhana, and Abhinavagupta "anticipated" or "already knew" what Saussure, Peirce, Husserl, Hegel, Iser, or Merleau-Ponty would later formulate — a claim that would flatten centuries of independent intellectual labor on both sides into a single undifferentiated "theory of meaning." Their value is heuristic and pedagogical: each comparison gives a reader already equipped with one vocabulary a foothold into an unfamiliar one, while the explicit marking of divergence in every case preserves what a serious history of ideas cannot responsibly surrender — the specificity, internal coherence, and genuine philosophical difference of each tradition examined on its own terms. This is the same discipline the monograph has insisted on since Section 24's treatment of śabda-brahman, and it is the discipline that will govern the remainder of this study as it turns, in Part IV, from language and aesthetics to the embodied register of the karaṇa.</p>
+  </div>
+</section>
+
+<div class="divider"><span>❖</span></div>
+
+<section class="topic" id="trans">
+  <span class="topic-number">Transition</span>
+  <h2 class="topic-title">Transition to Part IV</h2>
+  <p class="lede">The next movement of this monograph enters the world of Bharata's Nāṭyaśāstra, where meaning is no longer carried only through sound but through the complete human body. Part IV will examine, in sequence: Bharata's Nāṭyaśāstra as a theory of embodied expression; the theory of nāṭya as the integration of speech, movement, costume, and inner feeling; the classical definitions of the karaṇa as the fundamental unit of coordinated movement; the expansion of karaṇas into aṅgahāra sequences; the status of dance as an embodied language structurally comparable to, yet historically independent of, spoken grammar; and the historical and sculptural register of the 108 karaṇas as it survives in text, in commentarial tradition, in living performance lineages, and above all in the stone archive of South Indian temple architecture, most famously at Chidambaram.</p>
+</section>
+
+<footer class="colophon">
+  Part III of IV, Expanded Edition (Sections 24–40) · A Study of Sphoṭa, Dhvani, and the Karaṇa Tradition
+</footer>
+
+</div>
 </body>
 </html>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part IV — Nāṭyaśāstra and the 108 Karaṇa Register</title>
+<style>
+  :root{
+    --ink:#211a15;
+    --ink-soft:#4a3f36;
+    --page:#f2ead9;
+    --page-panel:#e8dec7;
+    --rule:#c9b98f;
+    --vermilion:#9c3b2e;
+    --ochre:#a9761f;
+    --teal:#33564f;
+    --gold:#8a6a1f;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top left, rgba(156,59,46,0.05), transparent 45%),
+      radial-gradient(ellipse at bottom right, rgba(51,86,79,0.06), transparent 50%),
+      var(--page);
+    color:var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    line-height:1.75;
+    font-size:18px;
+  }
+  .frame{
+    max-width:840px;
+    margin:0 auto;
+    padding:72px 34px 140px;
+  }
+  header.masthead{
+    text-align:center;
+    margin-bottom:64px;
+    padding-bottom:38px;
+    border-bottom:2px solid var(--rule);
+    position:relative;
+  }
+  header.masthead::after{
+    content:"";
+    position:absolute;
+    bottom:-9px; left:50%;
+    transform:translateX(-50%);
+    width:120px; height:16px;
+    background:
+      repeating-linear-gradient(90deg,
+        var(--teal) 0 8px,
+        transparent 8px 16px);
+    opacity:0.55;
+  }
+  .eyebrow{
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    font-size:12.5px;
+    color:var(--teal);
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    margin-bottom:18px;
+  }
+  h1.title{
+    font-size:2.55rem;
+    margin:0 0 14px;
+    color:var(--ink);
+    font-weight:normal;
+    letter-spacing:0.01em;
+  }
+  .subtitle{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:1.08rem;
+    max-width:620px;
+    margin:0 auto;
+  }
+  .devanagari-strip{
+    font-size:1.4rem;
+    color:var(--ochre);
+    margin-top:22px;
+    letter-spacing:0.06em;
+  }
+
+  nav.contents{
+    background:var(--page-panel);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:26px 30px;
+    margin-bottom:70px;
+  }
+  nav.contents h2{
+    font-size:0.82rem;
+    text-transform:uppercase;
+    letter-spacing:0.24em;
+    color:var(--teal);
+    margin:0 0 16px;
+    font-family:"Trebuchet MS", Verdana, sans-serif;
+    font-weight:normal;
+  }
+  nav.contents ol{
+    columns:2;
+    column-gap:36px;
+    margin:0;
+    padding-left:20px;
+    font-size:0.94rem;
+  }
+  nav.contents li{margin-bottom:7px;}
+  nav.contents a{color:var(--ink-soft); text-decoration:none; border-bottom:1px dotted var(--rule);}
+  nav.contents a:hover{color:var(--teal);}
+
+  section.topic{margin-bottom:78px;}
+  .topic-number{
+    display:inline-block;
+    font-family:"Trebuchet MS", Verdana, sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.2em;
+    color:#fff;
+    background:var(--teal);
+    padding:4px 12px;
+    border-radius:2px;
+    margin-bottom:16px;
+  }
+  h2.topic-title{
+    font-size:1.72rem;
+    margin:0 0 26px;
+    font-weight:normal;
+    color:var(--ink);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:14px;
+  }
+  h3.sub-title{
+    font-size:1.18rem;
+    color:var(--vermilion);
+    font-weight:normal;
+    font-style:italic;
+    margin:34px 0 14px;
+  }
+  p{margin:0 0 18px;}
+  .lede{font-size:1.08rem; color:var(--ink-soft);}
+  .lede::first-letter{
+    font-size:3.1rem;
+    float:left;
+    line-height:0.82;
+    padding-right:10px;
+    padding-top:4px;
+    color:var(--teal);
+    font-family: Georgia, serif;
+  }
+
+  blockquote.sanskrit{
+    margin:26px 0;
+    padding:18px 26px;
+    background:var(--page-panel);
+    border-left:4px solid var(--ochre);
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+  blockquote.sanskrit cite{
+    display:block;
+    margin-top:8px;
+    font-style:normal;
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+
+  .callout{
+    margin:28px 0;
+    padding:22px 28px;
+    border:1px solid var(--rule);
+    background:rgba(51,86,79,0.05);
+    border-left:4px solid var(--teal);
+  }
+  .callout h4{
+    margin:0 0 10px;
+    font-size:0.98rem;
+    color:var(--teal);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-family:"Trebuchet MS", Verdana, sans-serif;
+    font-weight:normal;
+  }
+  .callout.caution{border-left-color:var(--vermilion); background:rgba(156,59,46,0.05);}
+  .callout.caution h4{color:var(--vermilion);}
+
+  table.compare{
+    width:100%;
+    border-collapse:collapse;
+    margin:28px 0;
+    font-size:0.96rem;
+  }
+  table.compare th{
+    text-align:left;
+    background:var(--ink);
+    color:var(--page);
+    padding:10px 14px;
+    font-weight:normal;
+    letter-spacing:0.04em;
+  }
+  table.compare td{
+    padding:10px 14px;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  table.compare tr:nth-child(even) td{background:rgba(201,185,143,0.18);}
+
+  .divider{
+    display:flex; align-items:center; justify-content:center;
+    gap:12px; margin:56px 0; color:var(--ochre);
+  }
+  .divider span{font-size:1.1rem;}
+  .divider::before, .divider::after{content:""; height:1px; flex:1; background:var(--rule);}
+
+  footer.colophon{
+    text-align:center; margin-top:90px; padding-top:30px;
+    border-top:2px solid var(--rule); color:var(--ink-soft);
+    font-size:0.9rem; font-style:italic;
+  }
+
+  @media (max-width:640px){
+    body{font-size:16.5px;}
+    .frame{padding:44px 18px 100px;}
+    h1.title{font-size:1.9rem;}
+    nav.contents ol{columns:1;}
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+<header class="masthead">
+  <div class="eyebrow">Part IV — Nāṭyaśāstra and the 108 Karaṇa Register</div>
+  <h1 class="title">Movement as Embodied Knowledge</h1>
+  <p class="subtitle">Bharata's theory of nāṭya, the karaṇa as kinetic unit, and the historical passage of the 108 karaṇas from text into stone at Chidambaram and beyond.</p>
+  <div class="devanagari-strip">नाट्य · करण · अङ्गहार · अभिनय · नटराज</div>
+</header>
+
+<nav class="contents">
+  <h2>Contents of this Part</h2>
+  <ol>
+    <li><a href="#s1">1 — Nāṭya as a Theory of Human Expression</a></li>
+    <li><a href="#s2">2 — The Historical Position of the Nāṭyaśāstra</a></li>
+    <li><a href="#s3">3 — Nāṭya as Integration of Human Capacities</a></li>
+    <li><a href="#s4">4 — Abhinaya: Carrying Meaning Forward</a></li>
+    <li><a href="#s5">5 — The Karaṇa: Fundamental Unit of Movement</a></li>
+    <li><a href="#s6">6 — The Classical Definition of Karaṇa</a></li>
+    <li><a href="#s7">7 — The 108 Karaṇas: A Kinetic Vocabulary</a></li>
+    <li><a href="#s8">8 — Karaṇa as Process, Not Position</a></li>
+    <li><a href="#s9">9 — From Textual Description to Sculptural Form</a></li>
+    <li><a href="#s10">10 — Preparing the Temple Register</a></li>
+    <li><a href="#s11">11 — The 108 Karaṇas as Kinetic Knowledge</a></li>
+    <li><a href="#s12">12 — The Internal Structure of a Karaṇa</a></li>
+    <li><a href="#s13">13 — Karaṇa and the Principle of Combination</a></li>
+    <li><a href="#s14">14 — Aṅgahāra: The Expansion of Movement</a></li>
+    <li><a href="#s15">15 — The Temporal Nature of Karaṇa</a></li>
+    <li><a href="#s16">16 — Chidambaram: The Temple as Dance Archive</a></li>
+    <li><a href="#s17">17 — Naṭarāja and the Cosmic Interpretation</a></li>
+    <li><a href="#s18">18 — The Chidambaram Karaṇa Panels</a></li>
+    <li><a href="#s19">19 — Sculpture as Frozen Time</a></li>
+    <li><a href="#s20">20 — The Epigraphic Dimension</a></li>
+    <li><a href="#s21">21 — Karaṇa as a Meeting Point of Disciplines</a></li>
+    <li><a href="#s22">22 — Transition Toward the Complete Register</a></li>
+    <li><a href="#s23">23 — Methodology of the Karaṇa Register</a></li>
+    <li><a href="#s24b">24 — The Naming of Karaṇas</a></li>
+    <li><a href="#s25b">25 — Movement Names as Conceptual Images</a></li>
+  </ol>
+</nav>
+
+<section class="topic" id="s1">
+  <span class="topic-number">Section 1</span>
+  <h2 class="topic-title">Entering Bharata's World — Nāṭya as a Theory of Human Expression</h2>
+  <p class="lede">The Nāṭyaśāstra occupies a genuinely unusual position within Indian intellectual history, and indeed within the comparative history of dramaturgical theory as such, because it refuses from its opening chapters to treat performance as mere entertainment (krīḍā) subordinate to more serious pursuits such as ritual, ethical instruction, or philosophical inquiry. Bharata's mythological frame-narrative — in which the text is said to have been composed at the request of the gods, as a "fifth Veda" accessible to all classes of persons regardless of the restrictions governing access to the four traditional Vedas — is itself a claim about status: nāṭya is presented not as a diversion but as a comprehensive discipline of human expression, commensurate in seriousness with the most authoritative bodies of traditional knowledge.</p>
+  <p>What justifies this elevated status, on the text's own terms, is the sheer comprehensiveness of what the Nāṭyaśāstra undertakes to systematize. It examines theatre and dance as a complex, integrated system involving movement, gesture, speech, music, emotion, visual design, and audience experience — treating each of these not as a separate craft to be mastered independently, but as interlocking components of a single expressive event whose success depends on their coordination. This comprehensiveness is what allows the text to function, across the roughly two millennia of its influence, as the foundational reference not only for classical Sanskrit drama but for the entire subsequent tradition of Indian classical dance, several of whose contemporary forms trace their technical vocabulary directly to Bharata's categories.</p>
+  <p>The work's ambition, in short, is to present performance as a complete field of human expression — one in which the body, the voice, the emotions, and the visual environment of the stage are treated as a unified instrument for the communication of experience, rather than as accessories to a text that could, in principle, be equally well delivered by other means. This is the foundational premise that the remainder of Part IV will unpack in detail, moving from the theory's historical context through its central technical concept, the karaṇa, and finally to its extraordinary afterlife in stone.</p>
+</section>
+
+<section class="topic" id="s2">
+  <span class="topic-number">Section 2</span>
+  <h2 class="topic-title">The Historical Position of the Nāṭyaśāstra</h2>
+  <p class="lede">Any serious engagement with the Nāṭyaśāstra must begin by setting aside the fiction of a single author working at a single moment. The composition history of the text remains a genuine subject of scholarly discussion rather than a settled matter of record, and the text is generally regarded by philologists as a work compiled over an extended period, reaching something close to its presently known form somewhere between the early centuries BCE and the early centuries CE — a range spanning several hundred years, within which more precise dating remains actively debated and is unlikely ever to be resolved with certainty given the absence of external, independently datable references fixing any single stratum of the text.</p>
+  <div class="callout">
+    <h4>Established Scholarly Understanding</h4>
+    <p>The Nāṭyaśāstra represents a layered textual tradition rather than a simple composition produced at one historical moment. Different sections may reflect different stages of development, a conclusion supported by internal inconsistencies of terminology, by variation in the sophistication of technical treatment across chapters, and by the accretion of material in the manuscript tradition itself, which survives in recensions of differing length and content.</p>
+  </div>
+  <p>This layered-composition thesis has real consequences for how the karaṇa chapters in particular should be read. If different sections of the text reflect different stages of development, then the systematic, numerically closed presentation of "108 karaṇas" that later tradition treats as canonical may itself represent a moment of editorial consolidation — an attempt to render a more fluid or regionally variable practice into the tidy, symbolically resonant figure of 108 — rather than a description that was stable from the earliest layer of the text's composition. A philologically responsible reading of the karaṇa register, developed later in this Part, must hold this possibility in view rather than treating the number and sequence of karaṇas as though they had descended unchanged from a single originary moment of dramaturgical revelation.</p>
+</section>
+
+<section class="topic" id="s3">
+  <span class="topic-number">Section 3</span>
+  <h2 class="topic-title">Nāṭya as the Integration of Human Capacities</h2>
+  <p class="lede">Bharata's theory of nāṭya achieves its comprehensiveness through a formal division of the actor's expressive resources into four categories of abhinaya (a term examined more closely below), each corresponding to a distinct human capacity harnessed for dramatic communication.</p>
+  <table class="compare">
+    <tr><th>Element</th><th>Function</th></tr>
+    <tr><td>Vācika Abhinaya</td><td>Expression through speech and sound</td></tr>
+    <tr><td>Āṅgika Abhinaya</td><td>Expression through body movement</td></tr>
+    <tr><td>Āhārya Abhinaya</td><td>Expression through costume and visual elements</td></tr>
+    <tr><td>Sāttvika Abhinaya</td><td>Expression through internal emotional states</td></tr>
+  </table>
+  <p>The significance of this four-fold division lies less in the individual categories, each of which received extensive independent treatment in subsequent chapters of the Nāṭyaśāstra (the treatment of vācika abhinaya, for instance, absorbs a substantial portion of the text's discussion of dramatic language, meter, and dialects appropriate to different characters), than in the theoretical claim implicit in treating them as a single, coordinated system. Bharata does not present speech, movement, costume, and inner feeling as four separate technical crafts to be independently mastered and merely juxtaposed in performance. He presents them as jointly necessary components of a single expressive act, in which a failure of coordination between, say, vācika and sāttvika abhinaya — words spoken without a supporting internal emotional state, or an internal state not adequately externalized through voice — constitutes a failure of the performance as such, not merely a deficiency in one department of it.</p>
+  <p>Performance therefore becomes, on this account, a synthesis of external action and inner experience: a demand that recurs throughout the Nāṭyaśāstra's treatment of the actor's training and that finds its most philosophically resonant echo in Abhinavagupta's later insistence, discussed in the preceding Part, that rasa is realized only through the coordinated presentation of vibhāva, anubhāva, and sāttvika states, none of which is sufficient in isolation.</p>
+</section>
+
+<section class="topic" id="s4">
+  <span class="topic-number">Section 4</span>
+  <h2 class="topic-title">The Concept of Abhinaya — Carrying Meaning Forward</h2>
+  <p class="lede">The term abhinaya, built from the verbal root nī ("to lead" or "to carry") with the prefix abhi ("toward"), etymologically names the act of carrying something toward the audience — a directional, transitive act of conveyance rather than a static display. This etymology is not merely decorative; it encodes the theory's central claim about what performance does. Performance does not simply display movement, the way an exhibit displays an artifact for inspection. It transports meaning, actively closing the distance between the performer's inner intention and the audience's apprehension of it.</p>
+  <h3 class="sub-title">Interpretive Connection: Abhinaya and Dhvani</h3>
+  <p>This concept provides a significant point of contact with the discussion of dhvani in the preceding Part of the monograph. Just as dhvani theory holds that a poem's suggested sense exceeds its literal, denotative content, abhinaya theory holds that a performed gesture's expressive content exceeds its literal, physical description as a displacement of the limbs through space. A gesture becomes meaningful through intention, context, and reception — the same triad of factors (a determinate compositional structure, a framing context that licenses a particular suggestive reading, and a qualified perceiver capable of realizing that reading) that dhvani theory identifies as jointly necessary for poetic suggestion to succeed.</p>
+  <div class="callout caution">
+    <h4>A necessary qualification</h4>
+    <p>This is a philosophical parallel, not a historical claim that Bharata borrowed from Ānandavardhana or later aesthetic theory. The chronological relationship in fact runs the other direction in crucial respects: Bharata's rasa-sūtra long predates Ānandavardhana's ninth-century dhvani theory, and it was Ānandavardhana and Abhinavagupta who drew on and reinterpreted Bharata's dramaturgical vocabulary in constructing their theory of poetic suggestion, not Bharata anticipating a theory that would not be formulated for centuries. The parallel drawn here is a structural and interpretive one, useful for understanding both theories in relation to each other, and should not be mistaken for a claim about lines of textual influence running from dhvani theory back into the Nāṭyaśāstra.</p>
+  </div>
+</section>
+
+<section class="topic" id="s5">
+  <span class="topic-number">Section 5</span>
+  <h2 class="topic-title">The Karaṇa — The Fundamental Unit of Movement</h2>
+  <p class="lede">Among the Nāṭyaśāstra's most significant and technically distinctive contributions is its detailed treatment of karaṇas, the coordinated units of movement that form the basic vocabulary of āṅgika abhinaya. Bharata defines a karaṇa as a coordinated combination of hand movement (hasta), foot placement (pāda), body movement (śarīra), and spatial orientation — a definition whose insistence on coordination across multiple simultaneously engaged parts of the body is the single most important interpretive key to everything that follows in the karaṇa chapters.</p>
+  <p>The karaṇa is therefore not simply a static posture, of the kind that could be adequately captured by a single photograph or a single sculptural image without residue. It is a movement event: a unit defined by the relation between a starting configuration, a transitional action, and a resulting configuration, unfolding through a determinate span of time even though its textual description and its sculptural representation both necessarily compress that span into a finite verbal or visual statement. This distinction between karaṇa-as-position and karaṇa-as-event will recur, with increasing consequence, throughout the remainder of this Part, especially in the discussion of sculptural representation and the "paradox of the stone dancer" examined below.</p>
+</section>
+
+<section class="topic" id="s6">
+  <span class="topic-number">Section 6</span>
+  <h2 class="topic-title">The Classical Definition of Karaṇa</h2>
+  <p class="lede">The traditional explanation of karaṇa, preserved in a frequently cited verse, describes it as the combination of hand, foot, and bodily actions.</p>
+  <blockquote class="sanskrit">
+    Hasta pāda samāyogaḥ karaṇaṃ parikīrtitam
+    <cite>Traditional definitional verse — "karaṇa is proclaimed as the union of hand and foot"</cite>
+  </blockquote>
+  <p>The verse's chosen vocabulary rewards close attention. The operative term is samāyoga, "union" or "coordination" — not mere sequence, adjacency, or simultaneity considered as brute co-occurrence, but a relational binding in which the hand's action and the foot's action are constituted as a single event precisely by virtue of their coordination with one another. A karaṇa exists through relationship: remove the coordinating relation, and one is left not with a diminished karaṇa but with no karaṇa at all — merely an isolated hand gesture and an isolated foot placement occurring, as it happens, at the same moment, which is a categorically different thing.</p>
+  <h3 class="sub-title">Karaṇa as Kinetic Grammar</h3>
+  <table class="compare">
+    <tr><th>Language</th><th>Dance</th></tr>
+    <tr><td>Phoneme</td><td>Movement element</td></tr>
+    <tr><td>Word</td><td>Karaṇa</td></tr>
+    <tr><td>Sentence</td><td>Aṅgahāra sequence</td></tr>
+    <tr><td>Meaning</td><td>Rasa experience</td></tr>
+  </table>
+  <p>The force of this comparison lies precisely in the analogy between samāyoga and the grammatical principle of combination that governs how phonemes cohere into a word incapable of decomposition without loss of meaning — the same principle that underwrites the sphoṭa theory examined in the preceding Part. A karaṇa, like a sphoṭa-bearing word, is a unit below which further decomposition yields only meaningless residue; the hand-gesture-in-isolation and the foot-placement-in-isolation stand to the karaṇa roughly as an isolated phoneme stands to a word whose meaning is not distributed additively across its constituent sounds.</p>
+  <div class="callout">
+    <h4>Scope of the comparison</h4>
+    <p>This comparison is an interpretive framework, offered to illuminate the internal logic of karaṇa-formation by analogy with a rigorously developed theory from an adjacent discipline. It does not claim that Bharata consciously created a linguistic model, or that the karaṇa chapters of the Nāṭyaśāstra were composed with grammatical theory as a deliberate template. The two systems arose to solve structurally similar problems — how do minimal meaningful units combine into larger meaningful wholes without simply concatenating — within traditions that developed largely independently of one another.</p>
+  </div>
+</section>
+
+<section class="topic" id="s7">
+  <span class="topic-number">Section 7</span>
+  <h2 class="topic-title">The 108 Karaṇas — A Complete Kinetic Vocabulary</h2>
+  <p class="lede">The Nāṭyaśāstra traditionally describes 108 karaṇas, and together they constitute one of the most extensive theoretical catalogues of human movement preserved anywhere in classical performance literature — a systematic ambition that has no close parallel in the dramaturgical or choreographic writing of most other premodern traditions, which typically transmit technique through apprenticeship and demonstration rather than through an attempt at exhaustive verbal enumeration.</p>
+  <p>The number 108 itself carries recognized cultural significance across a wide range of Indian traditions — in the count of beads on a japamālā, in numerological schemes found in astronomical and astrological literature, and in various other symbolically closed enumerations. This broader cultural resonance should be registered without allowing it to substitute for analysis of the number's specific function within dance theory: whatever numerological significance 108 carries elsewhere, its role within the Nāṭyaśāstra is as the closing figure of a taxonomic project, organizing the kinetic vocabulary of āṅgika abhinaya into a bounded, memorizable, and transmissible set.</p>
+  <table class="compare">
+    <tr><th>Movement Category</th><th>Function</th></tr>
+    <tr><td>Standing actions</td><td>Foundation and balance</td></tr>
+    <tr><td>Leg movements</td><td>Spatial dynamics</td></tr>
+    <tr><td>Hand gestures</td><td>Expressive articulation</td></tr>
+    <tr><td>Body movements</td><td>Kinetic transformation</td></tr>
+  </table>
+  <p>These four functional categories, cutting across the numerical taxonomy of 108, indicate that the register was not organized as an arbitrary list but according to a working typology of what different classes of movement contribute to the overall expressive economy of performance — a distinction between movements that establish a stable base, movements that traverse and organize stage space, movements whose primary contribution is expressive articulation of the hands, and movements whose primary contribution is the transformation of the body's overall configuration.</p>
+</section>
+
+<section class="topic" id="s8">
+  <span class="topic-number">Section 8</span>
+  <h2 class="topic-title">Karaṇa as Process Rather Than Position</h2>
+  <p class="lede">A major interpretive challenge in the modern study of karaṇas concerns the strong and persistent tendency, encouraged by the very sculptural evidence that has made the tradition famous, to understand karaṇas as frozen images — as though the tradition consisted, at bottom, of a set of 108 poses, each fully specified by a single configuration of limbs. This tendency is understandable given that a great deal of surviving evidence is itself static (stone relief, painted image), but it inverts the textual tradition's own emphasis. Textual descriptions of karaṇas, read closely, indicate dynamic sequences: a described transition from one configuration through a specified action to another, not a single configuration held in isolation.</p>
+  <div class="callout">
+    <h4>Stone and Time</h4>
+    <p>The temple image represents a meeting point between movement and stillness, time and permanence, performance and memory. The stone figure is not the dance itself. It is a visual memory of kinetic knowledge — a compressed trace of a temporally extended event, preserved in a medium whose defining property is the very absence of temporal extension that characterized the original event.</p>
+  </div>
+  <p>This distinction between karaṇa-as-position and karaṇa-as-process is not a merely academic nicety; it governs how the sculptural record ought to be read at every subsequent stage of this Part's argument, and it is the conceptual seed from which the "paradox of the stone dancer," developed fully in Section 19 below, grows.</p>
+</section>
+
+<section class="topic" id="s9">
+  <span class="topic-number">Section 9</span>
+  <h2 class="topic-title">From Textual Description to Sculptural Form</h2>
+  <p class="lede">The appearance of karaṇa-related imagery in South Indian temples reflects a genuinely complex historical interaction between textual knowledge transmitted through Sanskrit learning, artistic practice transmitted through guild and workshop traditions, and religious architecture shaped by ritual, theological, and dynastic patronage requirements — three distinct institutional streams whose confluence in the temple sculptural programmes of the Chola period and after cannot be reduced to a simple, one-directional transmission from text to stone.</p>
+  <p>The relationship between text and sculpture is, accordingly, complex rather than direct. Sculptors interpreted movement traditions through their own artistic languages — languages governed by the material constraints of stone carving, by regional stylistic conventions, by the compositional demands of temple wall space, and by iconographic requirements that had nothing to do with dramaturgical accuracy as such (a sculpted karaṇa on a temple wall must also function as devotional imagery, as part of a larger decorative and theological programme, and as a legible visual statement to worshippers who may have had no technical training in dance).</p>
+  <div class="callout caution">
+    <h4>Historical Caution</h4>
+    <p>Temple sculptures should not automatically be treated as direct copies of Nāṭyaśāstra illustrations. They represent artistic interpretations within specific regional and historical contexts, mediated by sculptors' own training, by regional stylistic schools, and by the particular theological programme of the temple in question. Treating a sculptural panel as though it were simply "the Nāṭyaśāstra rendered in stone" collapses several layers of artistic and institutional mediation that a rigorous art history must keep distinct.</p>
+  </div>
+</section>
+
+<section class="topic" id="s10">
+  <span class="topic-number">Section 10</span>
+  <h2 class="topic-title">Preparing the Temple Register</h2>
+  <p class="lede">Having established the theoretical and textual foundation of the karaṇa concept, the monograph's argument now turns to examine how the karaṇa tradition entered architectural space through major South Indian temples. The discussion that follows across the remainder of this Part will focus on Chidambaram and the Naṭarāja tradition, as the single most extensively studied and theologically significant site of karaṇa sculpture; Thanjavur and the broader Chola artistic culture that provided the institutional and dynastic context for this sculptural programme; the Kumbakonam region temples, which extend the geographic range of karaṇa imagery beyond the two most famous sites; the epigraphic evidence bearing on patronage, performer communities, and temple administration; sculptural analysis proper, attentive to iconographic convention and regional style; and finally the broader relationship between dance, devotion, and architecture that emerges from considering all of this evidence together.</p>
+  <p>The central question that organizes this transition, and that the remaining sections of this Part will pursue from several angles, is deceptively simple to state and genuinely difficult to answer with precision: how does a moving body become a temple archive? Every subsequent section — on Chidambaram, on Naṭarāja, on the epigraphic record, on the methodology of reconstruction — is, in one respect or another, an attempt to specify the mechanisms, artistic, institutional, and theological, by which this transformation from ephemeral bodily action to durable architectural record was accomplished.</p>
+</section>
+
+<section class="topic" id="s11">
+  <span class="topic-number">Section 11</span>
+  <h2 class="topic-title">The 108 Karaṇas as a System of Kinetic Knowledge</h2>
+  <p class="lede">Returning to the karaṇa catalogue with the historical and theoretical groundwork of the preceding sections now in place, it is possible to state with more precision why the 108 karaṇas represent one of the most detailed attempts in Indian performance theory to classify human movement. The karaṇas are not arranged as an arbitrary collection of poses assembled without regard to their function within performance; they represent a structured vocabulary through which the body becomes capable of expressing rhythm, narrative, emotion, symbolic action, and spatial transformation — five distinct expressive registers that a single, well-executed karaṇa may engage simultaneously, in the same way that a single well-formed sentence may simultaneously convey propositional content, emotional tone, and pragmatic implicature.</p>
+  <p>The karaṇa tradition therefore belongs simultaneously to the fields of dance technique (the practical, embodied knowledge of how a given movement is physically executed), dramaturgy (the theory of how movement functions within the larger structure of a dramatic or devotional performance), aesthetics (the theory of how movement generates rasa in a qualified spectator, examined at length in the preceding Part), and cultural memory (the accumulated, transmitted knowledge — textual, sculptural, and embodied — through which a movement tradition survives across centuries of institutional and social change).</p>
+  <div class="callout">
+    <h4>Historical Note</h4>
+    <p>The reconstruction of individual karaṇas involves comparison between textual descriptions, commentarial traditions, surviving performance lineages, and temple sculpture. Scholars continue to debate certain identifications where textual and visual evidence do not perfectly correspond — a state of productive scholarly disagreement, rather than a failure of method, that reflects the genuine difficulty of correlating four evidentiary streams (text, commentary, living practice, and stone) that were never designed to serve as cross-checks on one another and that have each been subject to their own processes of historical transmission, loss, and reinterpretation.</p>
+  </div>
+</section>
+
+<section class="topic" id="s12">
+  <span class="topic-number">Section 12</span>
+  <h2 class="topic-title">The Internal Structure of a Karaṇa</h2>
+  <p class="lede">A karaṇa may be understood through multiple layers of organization, each contributing a distinct component to the coordinated whole that constitutes the movement event.</p>
+  <table class="compare">
+    <tr><th>Component</th><th>Function</th></tr>
+    <tr><td>Hasta</td><td>Hand gesture and articulation</td></tr>
+    <tr><td>Pāda</td><td>Foot placement and movement</td></tr>
+    <tr><td>Sthāna</td><td>Body position</td></tr>
+    <tr><td>Cārī</td><td>Leg movement pattern</td></tr>
+    <tr><td>Maṇḍala</td><td>Spatial arrangement</td></tr>
+  </table>
+  <p>The karaṇa emerges from coordination among these five components; no single bodily part or spatial parameter creates meaning independently of its relation to the others. A hasta gesture performed without an appropriate sthāna, or a cārī executed without regard to the maṇḍala it traces through stage space, does not yield a diminished or partial karaṇa — it yields, strictly speaking, no karaṇa at all, in precisely the sense established by the samāyoga principle discussed in Section 6. This layered internal structure is also what makes the karaṇa system generative rather than merely enumerative: the same hasta, combined with different sthāna and cārī, can in principle participate in multiple distinct karaṇas, giving the closed set of 108 named units a combinatorial richness that exceeds what a simple list of 108 independent poses would suggest.</p>
+</section>
+
+<section class="topic" id="s13">
+  <span class="topic-number">Section 13</span>
+  <h2 class="topic-title">Karaṇa and the Principle of Combination</h2>
+  <p class="lede">The importance of karaṇa as a theoretical category lies fundamentally in synthesis rather than enumeration. A hand gesture alone does not constitute a complete expressive event, however precisely executed; a foot movement alone does not constitute a complete dance phrase, however rhythmically accomplished. Meaning emerges through relationship — the recurring thesis of this entire Part, traceable back through the samāyoga definition, through the aesthetic theory of the preceding Part, and ultimately back to the grammatical theory of combination that organizes phonemes into meaningful words.</p>
+  <h3 class="sub-title">Kinetic Grammar, Restated</h3>
+  <table class="compare">
+    <tr><th>Language</th><th>Movement</th></tr>
+    <tr><td>Sound</td><td>Physical impulse</td></tr>
+    <tr><td>Phoneme</td><td>Basic movement element</td></tr>
+    <tr><td>Word</td><td>Karaṇa</td></tr>
+    <tr><td>Sentence</td><td>Aṅgahāra sequence</td></tr>
+    <tr><td>Meaning</td><td>Rasa</td></tr>
+  </table>
+  <div class="callout">
+    <h4>Interpretive status of the comparison</h4>
+    <p>This comparison belongs to interpretive synthesis. It does not suggest that the Nāṭyaśāstra consciously borrowed grammatical theory, nor that Bharata's compilers were working with Pāṇinian categories in mind when they organized the karaṇa chapters. Its value lies in making explicit, through a vocabulary already rigorously developed in an adjacent discipline, the combinatorial logic that governs how the karaṇa system generates its expressive range from a finite inventory of components.</p>
+  </div>
+</section>
+
+<section class="topic" id="s14">
+  <span class="topic-number">Section 14</span>
+  <h2 class="topic-title">Aṅgahāra — The Expansion of Movement</h2>
+  <p class="lede">The karaṇas become larger expressive structures when combined into aṅgahāras, and it is important to be precise about what this expansion involves. An aṅgahāra is not simply a longer sequence of karaṇas performed one after another, the way a longer sentence might simply be a longer string of the same kind of word; it is an organized movement composition, in which the sequence and combination of constituent karaṇas is itself governed by principles of aesthetic and dramaturgical coherence, analogous to (though again not historically derived from) the way a well-formed sentence is governed by syntactic principles that determine which sequences of words yield grammatical, and further, felicitous utterances.</p>
+  <p>Through this process of combination, three distinct transformations occur, each building on the one before. Individual actions become phrases: discrete karaṇas, each already internally coordinated through samāyoga, are combined into larger rhythmic and gestural units. Phrases become expressive units: these combined phrases acquire a dramaturgical or emotional coloring that no single constituent karaṇa possesses on its own, in the same way that a sentence's meaning is not simply the sum of its constituent words' meanings. And movement becomes dramatic communication: the fully expressive unit, the aṅgahāra, becomes capable of conveying narrative content, emotional states, and symbolic significance to a qualified spectator, completing the transformation from isolated physical impulse to full-fledged aesthetic communication that this Part has traced from Section 5 onward.</p>
+</section>
+
+<section class="topic" id="s15">
+  <span class="topic-number">Section 15</span>
+  <h2 class="topic-title">The Temporal Nature of Karaṇa</h2>
+  <p class="lede">A major interpretive issue, already anticipated in Section 8, concerns the relationship between the textual karaṇa — described as an event unfolding through time — and its sculptural representation, which is necessarily and irreducibly static. A written description indicates movement through time, tracing a sequence of configurations connected by specified transitional actions. A sculpture presents a single visual moment, a cross-section taken at one point along that temporal trajectory.</p>
+  <p>The sculptural image therefore represents a transformation that can be schematically stated as follows:</p>
+  <blockquote class="sanskrit">
+    movement → memory → stone
+    <cite>The compression of a temporally extended kinetic event into a single durable image</cite>
+  </blockquote>
+  <p>The sculptor's task, on this account, is not documentary reproduction in any straightforward sense, but selection: identifying the single moment within a karaṇa's temporal unfolding that most economically and legibly conveys the structure of the whole movement to a viewer who did not witness, and cannot directly recover, the movement's full temporal extension. The sculptor captures the visible structure of an action, typically at a moment of maximal formal clarity or dynamic tension, while the viewer reconstructs the implied motion — precisely the act of imaginative completion discussed under "Temple Sculpture as Aesthetic Recognition" in the preceding Part of this monograph.</p>
+</section>
+
+<section class="topic" id="s16">
+  <span class="topic-number">Section 16</span>
+  <h2 class="topic-title">Chidambaram — The Temple as a Dance Archive</h2>
+  <p class="lede">The temple of Chidambaram occupies a genuinely central position in any discussion of dance, Śaiva worship, and the visual representation of karaṇas in South Indian art, and its prominence in the scholarly literature is not accidental to its architectural and theological particularity. The temple is especially associated with the form of Śiva as Naṭarāja, "the Lord of Dance" — an iconographic and theological identification that makes Chidambaram not merely a site where dance imagery happens to appear among other decorative programmes, but a temple whose central deity is himself defined by the act of dancing.</p>
+  <div class="callout">
+    <h4>Established Art-Historical Position</h4>
+    <p>The presence of dance-related sculptural programmes at Chidambaram has been studied extensively within South Indian art history. The panels are generally interpreted within the broader context of Chola-period religious and artistic culture, a period of substantial temple-building activity, dynastic patronage of the arts, and theological elaboration of Śaiva devotional practice, all of which converge in the temple's architectural and sculptural programme.</p>
+  </div>
+  <p>This convergence of theology (Śiva as cosmic dancer), institutional patronage (Chola dynastic support for temple construction and the arts), and technical dramaturgical knowledge (the karaṇa tradition itself) is what makes Chidambaram, more than any comparably documented site, the natural focal point for a study that seeks to trace the passage of the karaṇa tradition from text into architectural stone.</p>
+</section>
+
+<section class="topic" id="s17">
+  <span class="topic-number">Section 17</span>
+  <h2 class="topic-title">Naṭarāja and the Cosmic Interpretation of Movement</h2>
+  <p class="lede">The image of Naṭarāja represents one of the most influential visual expressions of divine movement in the entirety of Indian art, and its interpretive richness has made it a touchstone not only for art historians and dance scholars but for philosophers and theologians of Śaivism more broadly. The dancing Śiva embodies multiple symbolic dimensions simultaneously, each element of the iconographic scheme carrying an established interpretive charge.</p>
+  <table class="compare">
+    <tr><th>Symbol</th><th>Interpretation</th></tr>
+    <tr><td>Raised foot</td><td>Liberation and transcendence</td></tr>
+    <tr><td>Drum</td><td>Creation and rhythm</td></tr>
+    <tr><td>Fire</td><td>Transformation and dissolution</td></tr>
+    <tr><td>Circle of flames</td><td>Cosmic process</td></tr>
+  </table>
+  <div class="callout">
+    <h4>Movement as Revelation</h4>
+    <p>Within this interpretive framework, dance is not merely movement through space. It becomes a metaphor for the continuous transformation of existence — the coexistence, within a single balanced figure, of creation (the drum's rhythm), destruction (the encircling fire), and the stillness of transcendence (the raised foot and serene facial expression) that Śaiva theology takes to characterize the cosmic process as such.</p>
+  </div>
+  <p>This philosophical reading connects movement with revelation in a manner directly continuous with the account of aesthetic recognition developed in the preceding Part of this monograph. It should, however, be distinguished from the historical analysis of temple sculpture itself: the theological interpretation of the Naṭarāja image as a metaphysical statement about cosmic process is a matter of Śaiva doctrinal exegesis, developed and elaborated by theologians and devotees across centuries, and is analytically separable from the art-historical, epigraphic, and iconographic questions of when, how, and under what patronage circumstances the specific sculptural type was developed and disseminated.</p>
+</section>
+
+<section class="topic" id="s18">
+  <span class="topic-number">Section 18</span>
+  <h2 class="topic-title">The Chidambaram Karaṇa Panels</h2>
+  <p class="lede">The sculptural representation of karaṇas at Chidambaram has become a major reference point in scholarly discussions of the relationship between Nāṭyaśāstra theory and temple art, precisely because the panels present an unusually extensive and systematically arranged sequence of dance postures integrated into the temple's architectural fabric, rather than isolated or incidental instances of dance imagery.</p>
+  <p>The panels present figures engaged in dynamic bodily configurations, preserving aspects of a movement tradition within architectural space in a manner that invites — indeed, given the panels' systematic arrangement, seems almost to demand — correlation with the numbered karaṇa sequence of the Nāṭyaśāstra itself. They function simultaneously as religious imagery, integrated into the temple's devotional and theological programme; as artistic expression, subject to the stylistic conventions and technical constraints of Chola-period stone carving; as cultural memory, preserving a trace of a movement tradition whose living performance context has since been substantially transformed; and as visual documentation, offering modern scholars one of the richest available bodies of evidence for reconstructing the historical practice of the karaṇa tradition.</p>
+</section>
+
+<section class="topic" id="s19">
+  <span class="topic-number">Section 19</span>
+  <h2 class="topic-title">Sculpture as Frozen Time</h2>
+  <p class="lede">A sculpture exists in stillness. Dance exists in duration. The karaṇa image, precisely because it attempts to render a temporally extended kinetic event within a medium defined by its permanence and stillness, creates a productive dialogue between these two conditions rather than simply failing to capture one in terms of the other.</p>
+  <h3 class="sub-title">The Paradox of the Stone Dancer</h3>
+  <table class="compare">
+    <tr><th>Dance</th><th>Sculpture</th></tr>
+    <tr><td>Temporary</td><td>Permanent</td></tr>
+    <tr><td>Sequential</td><td>Singular moment</td></tr>
+    <tr><td>Auditory and visual</td><td>Primarily visual</td></tr>
+    <tr><td>Performed</td><td>Contemplated</td></tr>
+  </table>
+  <p>The temple sculpture preserves not the complete movement itself — an impossibility given the categorical difference between the two media — but the possibility of reconstructing movement through perception. This formulation is the culmination of the argument traced through Sections 8, 15, and now 19: the sculptural karaṇa is neither a failed or degraded record of a dance (as it would be judged if evaluated purely against the standard of complete documentary fidelity) nor a self-sufficient static artwork bearing no essential relation to movement (as it might be treated by a purely formalist art history indifferent to dance theory). It occupies the paradoxical middle position the section's title names: a permanent object whose aesthetic function depends on activating, in a qualified viewer, precisely the temporal, sequential, kinetic imagination that its own material stillness cannot supply.</p>
+</section>
+
+<section class="topic" id="s20">
+  <span class="topic-number">Section 20</span>
+  <h2 class="topic-title">The Epigraphic Dimension</h2>
+  <p class="lede">The study of temple dance traditions requires attention not only to sculpture but also to inscriptions, patronage records, and institutional history — a body of evidence that operates according to entirely different documentary conventions than sculptural or textual dramaturgical evidence, and that accordingly supplies a different, complementary kind of historical knowledge.</p>
+  <p>Epigraphy helps scholars understand temple administration, including the institutional structures through which performance traditions were organized, funded, and maintained within the temple economy; performer communities, including the social and professional status of the dancers, musicians, and other specialists attached to particular temples; ritual practices, including the specific liturgical occasions on which dance performance was integrated into temple worship; and patronage networks, including the dynastic, familial, and mercantile sources of the endowments that sustained temple dance traditions across generations.</p>
+  <div class="callout caution">
+    <h4>Methodological Boundary</h4>
+    <p>A sculpture alone cannot always establish the exact performance practice associated with it. Art history requires comparison between visual evidence, inscriptions, texts, and historical context — no single evidentiary stream is self-sufficient, and claims about historical performance practice that rely on sculptural evidence alone, without corroboration from inscriptions or textual sources, should be held with appropriately calibrated confidence.</p>
+  </div>
+</section>
+
+<section class="topic" id="s21">
+  <span class="topic-number">Section 21</span>
+  <h2 class="topic-title">The Karaṇa as a Meeting Point of Disciplines</h2>
+  <p class="lede">The 108 karaṇas bring together several distinct fields of scholarly knowledge, each contributing a necessary but individually insufficient perspective on the tradition as a whole.</p>
+  <table class="compare">
+    <tr><th>Discipline</th><th>Contribution</th></tr>
+    <tr><td>Philology</td><td>Textual interpretation</td></tr>
+    <tr><td>Dance Studies</td><td>Movement reconstruction</td></tr>
+    <tr><td>Art History</td><td>Sculptural analysis</td></tr>
+    <tr><td>Epigraphy</td><td>Historical context</td></tr>
+    <tr><td>Philosophy</td><td>Meaning and revelation</td></tr>
+  </table>
+  <p>This disciplinary convergence is not incidental to the karaṇa tradition's scholarly interest; it is arguably the central reason the tradition rewards sustained interdisciplinary study rather than being fully addressed within any single field's native methodology. A purely philological approach risks treating the karaṇa chapters as a closed textual puzzle, disconnected from the sculptural and living-performance evidence that alone can test certain interpretive hypotheses about how described movements were actually executed. A purely art-historical approach risks treating the sculptural panels as self-sufficient objects, without the textual grounding needed to identify which karaṇa a given panel represents or to understand why particular movements were selected for architectural commemoration. The methodology proposed in Section 23, below, is an explicit attempt to hold these five disciplinary contributions in the kind of coordinated relation that the karaṇa concept itself, defined by samāyoga, requires of its own constituent bodily elements.</p>
+</section>
+
+<section class="topic" id="s22">
+  <span class="topic-number">Section 22</span>
+  <h2 class="topic-title">Transition Toward the Complete Register</h2>
+  <p class="lede">The following sections of the full monograph (beyond the scope of the present two-part overview) move from theoretical discussion toward a more detailed examination of individual karaṇa categories, in which each entry receives sustained attention to its Sanskrit name and its etymological and connotative resonance; its textual meaning, as specified or implied by the relevant verses of the Nāṭyaśāstra and its commentarial tradition; its movement interpretation, as reconstructed through the combined evidence of text, commentary, and living performance practice; its sculptural references, where a securely or plausibly identified sculptural instance survives; and its symbolic and aesthetic dimensions, connecting the specific karaṇa back to the larger philosophical framework of rasa, dhvani, and aesthetic recognition developed across this monograph.</p>
+</section>
+
+<section class="topic" id="s23">
+  <span class="topic-number">Section 23</span>
+  <h2 class="topic-title">Methodology of the Karaṇa Register</h2>
+  <p class="lede">The reconstruction of the 108 karaṇas requires a genuinely multidisciplinary approach precisely because the original performance environment in which the tradition was first practiced no longer exists in its complete historical form — no continuous, unbroken line of transmission connects contemporary performance directly back to the Nāṭyaśāstra's original context, and every modern reconstruction is therefore an act of scholarly and artistic synthesis rather than simple inheritance.</p>
+  <table class="compare">
+    <tr><th>Evidence Source</th><th>Contribution</th></tr>
+    <tr><td>Nāṭyaśāstra text</td><td>Terminology, definitions, movement descriptions</td></tr>
+    <tr><td>Commentarial traditions</td><td>Interpretive explanations</td></tr>
+    <tr><td>Temple sculpture</td><td>Visual representation of movement</td></tr>
+    <tr><td>Living dance traditions</td><td>Embodied experimentation and reconstruction</td></tr>
+    <tr><td>Epigraphy</td><td>Historical context and patronage</td></tr>
+  </table>
+  <div class="callout caution">
+    <h4>Academic Caution</h4>
+    <p>No single source provides a complete and uncontested reconstruction of all 108 karaṇas. Different modern scholars and performance traditions have proposed different interpretations, and the register that results from combining these five evidentiary streams should be understood as the best available scholarly synthesis at a given moment, subject to revision as new textual, sculptural, or epigraphic evidence comes to light, rather than as a definitively closed and final account.</p>
+  </div>
+</section>
+
+<section class="topic" id="s24b">
+  <span class="topic-number">Section 24</span>
+  <h2 class="topic-title">The Naming of Karaṇas</h2>
+  <p class="lede">The Sanskrit names assigned to individual karaṇas frequently derive from animal imagery, drawing on the observed qualities of movement in creatures whose characteristic gait, pounce, or bearing supplied a memorable kinetic template; natural phenomena, such as flowing water, wind, or celestial motion; objects, particularly weapons, tools, and ritual implements whose associated qualities of force or precision could be mapped onto bodily action; actions, naming a karaṇa directly for the practical or dramatic act it most resembles; and mythological references, invoking specific narrative episodes or divine attributes recognizable to an audience trained in the relevant textual traditions.</p>
+  <p>These names function as mnemonic devices, and this mnemonic function should be taken seriously as an explanation of the naming convention's logic. In a tradition transmitted substantially through oral instruction and embodied demonstration rather than through diagrams or systematic notation, a vivid and evocative name — one that calls to mind a recognizable image from shared cultural experience — assists the performer in remembering complex movement structures far more effectively than a purely descriptive or numerical label would. The naming convention is therefore not merely poetic ornamentation; it is a pedagogically functional feature of the tradition's transmission.</p>
+</section>
+
+<section class="topic" id="s25b">
+  <span class="topic-number">Section 25</span>
+  <h2 class="topic-title">Movement Names as Conceptual Images</h2>
+  <p class="lede">A karaṇa name does not always describe a literal physical resemblance between the human body and the animal, object, or phenomenon it names — a crucial qualification that guards against overly literal interpretive expectations when attempting to reconstruct a movement from its name alone. Instead, a name may evoke a quality of movement, a felt dynamic character, rather than a precise visual correspondence of shape.</p>
+  <table class="compare">
+    <tr><th>Movement Image</th><th>Possible Expressive Quality</th></tr>
+    <tr><td>Animal imagery</td><td>Energy, agility, transformation</td></tr>
+    <tr><td>Nature imagery</td><td>Flow, rhythm, expansion</td></tr>
+    <tr><td>Weapon imagery</td><td>Force, direction, precision</td></tr>
+    <tr><td>Divine imagery</td><td>Sacred association</td></tr>
+  </table>
+  <p>This qualitative, rather than strictly mimetic, function of karaṇa names has a direct methodological consequence for the reconstruction project outlined in Section 23: a scholar or performer attempting to reconstruct a karaṇa from its name should treat the name as evidence of the intended expressive quality or dynamic character of the movement, to be weighed alongside textual description, commentarial gloss, and sculptural evidence, rather than as a literal blueprint specifying the exact configuration of limbs. The name is best understood as belonging to the same order of conceptual image that this monograph, throughout its treatment of sphoṭa, dhvani, and rasa, has argued characterizes Indian aesthetic and linguistic theory more broadly: a compact, evocative unit whose full significance is realized only through the informed, participatory engagement of a knowledgeable interpreter, and not through passive, literal decoding.</p>
+</section>
+
+<div class="divider"><span>❖</span></div>
+
+<footer class="colophon">
+  Part IV of IV (Sections 1–25) · A Study of Sphoṭa, Dhvani, and the Karaṇa Tradition
+</footer>
+
+</div>
+</body>
+</html>
+
